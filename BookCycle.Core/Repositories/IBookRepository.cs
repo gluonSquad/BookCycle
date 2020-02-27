@@ -6,8 +6,8 @@ using BookCycle.Core.Models;
 
 namespace BookCycle.Core.Repositories
 {
-    public interface ICategory:IRepository<Category>
+    public interface IBookRepository:IRepository<Book>
     {
-        Task<Category> GetWithBooksByIdAsync(int categoryId);
+        Task<Book> GetWithCategoryByIdAsync(int bookId);
     }
 }
