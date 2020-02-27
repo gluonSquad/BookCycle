@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using BookCycle.Core.Models;
+using BookCycle.Data.Configurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookCycle.Data
@@ -28,7 +29,13 @@ namespace BookCycle.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new BookConfiguration());
+            modelBuilder.ApplyConfiguration(new LikedConfiguration());
+            modelBuilder.ApplyConfiguration(new AuthorConfiguration());
+            modelBuilder.ApplyConfiguration(new BorrowedBookConfiguration());
+            modelBuilder.ApplyConfiguration(new CommentConfiguration());
         }
     }
 }
