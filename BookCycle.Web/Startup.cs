@@ -2,9 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BookCycle.Core.UnitOfWorks;
+using BookCycle.Data;
+using BookCycle.Data.UnitOfWorks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,6 +27,15 @@ namespace BookCycle.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddDbContext<BookCycleDbContext>(options =>
+                {
+                    options.UseSqlServer(Configuration["ConnectionStrings:Sql"].ToString(), o =>
+                        {
+                            o.MigrationsAssembly("BookCycle.Data");
+                        });
+                });
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddControllersWithViews();
         }
 

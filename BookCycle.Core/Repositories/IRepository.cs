@@ -61,7 +61,7 @@ namespace BookCycle.Core.Repositories
         /// Verilen TEntity'ye Göre Toplu Silme
         /// </summary>
         /// <param name="entity"></param>
-        void RemoveRange(IEnumerable<TEntity> entity);
+        void RemoveRange(IEnumerable<TEntity> entites);
 
         /// <summary>
         /// Verilen TEntity'ye Göre Güncelleme
