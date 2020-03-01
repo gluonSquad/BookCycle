@@ -1,0 +1,29 @@
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+body{
+  background-color:#eef7ff;
+}
+
+.container{
+  background-color:#eef7ff;
+}
+
+.sidenav{
+  text-align: center;
+}
+
+.Sidenav{
+  /*
+  position: absolute;
+  */
+}
+
+.Bottom{
+  padding-bottom: 10px;
+  vertical-align: bottom;
+}
