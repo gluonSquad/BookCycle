@@ -1,29 +1,63 @@
 .icon-block {
   padding: 0 15px;
 }
+
 .icon-block .material-icons {
-	font-size: inherit;
+  font-size: inherit;
 }
 
-body{
-  background-color:#eef7ff;
+body {
+  background-color: #eef7ff;
 }
 
-.container{
-  background-color:#eef7ff;
+.container {
+  background-color: #eef7ff;
 }
 
-.sidenav{
+/*sidenav bug: yükseklik cok kısa olunca scroll gerekiyor...*/
+.Sidenav {
+  display: flex;
+  flex-direction: column;
   text-align: center;
+  background-color: #0d47a1;
+  height: 100%;
+  overflow: hidden;
 }
 
-.Sidenav{
-  /*
-  position: absolute;
-  */
+.Sidenav li>a{
+  color: white;
 }
 
-.Bottom{
-  padding-bottom: 10px;
-  vertical-align: bottom;
+.Sidenav_Top{
+  flex-direction: column;
+  padding-top: 15%;
+}
+
+.Sidenav_Bottom {
+  flex-direction: row; /*YANYANA GELMİYOR*/
+  padding-top: 100%;
+}
+
+
+.nav-wrapper{
+  display: flex;
+  flex-direction: row;
+}
+
+.sidenav-trigger{
+  order: 2;
+}
+.MenuItems{
+  order:2;
+  margin-left: auto;
+}
+
+.brand-logo{
+  order: 1;
+}
+
+@media (max-width:600px) {
+  .brand-logo i {
+    display: none;
+  }
 }
