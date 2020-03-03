@@ -24,7 +24,7 @@ body {
   overflow: hidden;
 }
 
-.Sidenav li>a{
+.Sidenav li>a, .Sidenav li>a .fas{
   color: white;
 }
 
@@ -36,6 +36,7 @@ body {
 .Sidenav_Bottom {
   flex-direction: row; /*YANYANA GELMİYOR*/
   padding-top: 100%;
+  flex-wrap: wrap;
 }
 
 
@@ -46,14 +47,19 @@ body {
 
 .sidenav-trigger{
   order: 2;
+  justify-content: flex-end;
 }
 .MenuItems{
   order:2;
+  margin-right: 15px;
+  justify-content: flex-end;
   margin-left: auto;
 }
 
 .brand-logo{
+  margin-left: 20px;
   order: 1;
+  justify-content: center;
 }
 
 @media (max-width:600px) {
