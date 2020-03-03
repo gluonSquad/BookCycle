@@ -67,3 +67,13 @@ body {
     display: none;
   }
 }
+
+@media (max-height:630px) {
+  .Sidenav_Bottom {
+    padding-top: 60%;
+  }
+}
+@media (max-height:525px) {
+  .Sidenav_Bottom {
+    padding-top: 5px;
+  }
