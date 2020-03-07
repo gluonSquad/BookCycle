@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using BookCycle.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace BookCycle.Data.Repositories
 {
     
@@ -25,6 +26,7 @@ namespace BookCycle.Data.Repositories
         public async Task AddAsync(TEntity entity)
         {
             await _dbSet.AddAsync(entity);
+            
         }
 
         public async Task AddRangeAsync(IEnumerable<TEntity> entites)
@@ -65,7 +67,6 @@ namespace BookCycle.Data.Repositories
         public TEntity Update(TEntity entity)
         {
             _context.Entry(entity).State = EntityState.Modified;
-
             return entity;
         }
     }

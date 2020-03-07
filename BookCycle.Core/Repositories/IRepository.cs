@@ -35,7 +35,7 @@ namespace BookCycle.Core.Repositories
         /// <returns></returns>
         Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate);
 
-
+            
         /// <summary>
         /// Verilen TEntity'ye Göre Kaydetme
         /// </summary>

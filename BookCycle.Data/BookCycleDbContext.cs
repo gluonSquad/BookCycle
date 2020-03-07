@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using BookCycle.Core.Models;
 using BookCycle.Data.Configurations;
+using BookCycle.Data.Seeds;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookCycle.Data
@@ -36,6 +37,10 @@ namespace BookCycle.Data
             modelBuilder.ApplyConfiguration(new AuthorConfiguration());
             modelBuilder.ApplyConfiguration(new BorrowedBookConfiguration());
             modelBuilder.ApplyConfiguration(new CommentConfiguration());
+
+            modelBuilder.ApplyConfiguration(new BookSeed(new int[] {1, 2, 3, 4}));
+            modelBuilder.ApplyConfiguration(new CategorySeed(new int[] {1, 2, 3}));
+            modelBuilder.ApplyConfiguration(new AuthorSeed(new int[] {1, 2, 3, 4}));
         }
     }
 }

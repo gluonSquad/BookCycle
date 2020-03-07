@@ -42,14 +42,14 @@ namespace BookCycle.Core.Services
             /// </summary>
             /// <param name="entity"></param>
             /// <returns></returns>
-            Task AddAsync(TEntity entity);
+            Task<TEntity> AddAsync(TEntity entity);
 
             /// <summary>
             /// Verilen TEntity'ye Göre Toplu Bir Şekilde Kaydetme
             /// </summary>
             /// <param name="entites"></param>
             /// <returns></returns>
-            Task AddRangeAsync(IEnumerable<TEntity> entites);
+            Task<IEnumerable<TEntity>> AddRangeAsync(IEnumerable<TEntity> entites);
 
 
             /// <summary>
@@ -62,7 +62,7 @@ namespace BookCycle.Core.Services
             /// Verilen TEntity'ye Göre Toplu Silme
             /// </summary>
             /// <param name="entity"></param>
-            void RemoveRange(IEnumerable<TEntity> entity);
+            void RemoveRange(IEnumerable<TEntity> entities);
 
             /// <summary>
             /// Verilen TEntity'ye Göre Güncelleme
