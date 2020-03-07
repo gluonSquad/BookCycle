@@ -12,7 +12,7 @@ namespace BookCycle.Service.Services
 {
     public class Service<TEntity> : IService<TEntity> where TEntity : class
     {
-        private readonly IUnitOfWork _unitOfWork;
+        public readonly IUnitOfWork _unitOfWork;
         private readonly IRepository<TEntity> _repository;
 
         public Service(IUnitOfWork unitOfWork , IRepository<TEntity> repository)
