@@ -14,7 +14,16 @@ body {
   background-color: #eef7ff;
 }
 
-/*sidenav bug: yükseklik cok kısa olunca scroll gerekiyor...*/
+.owl-carousel .sl1{
+  clip-path: circle(115.8% at 0 0);
+}
+.owl-carousel .sl2{
+  clip-path: circle(75.0% at 50% 12%);
+}
+.owl-carousel .sl3{
+  clip-path: circle(113.6% at 100% 0);
+}
+
 .Sidenav {
   display: flex;
   flex-direction: column;
@@ -34,7 +43,7 @@ body {
 }
 
 .Sidenav_Bottom {
-  flex-direction: row; /*YANYANA GELMİYOR*/
+  flex-direction: row;
   padding-top: 100%;
   flex-wrap: nowrap;
 }
