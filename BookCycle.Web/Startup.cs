@@ -2,9 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using BookCycle.Core.Repositories;
+using BookCycle.Core.Services;
 using BookCycle.Core.UnitOfWorks;
 using BookCycle.Data;
+using BookCycle.Data.Repositories;
 using BookCycle.Data.UnitOfWorks;
+using BookCycle.Service.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,6 +32,14 @@ namespace BookCycle.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(Startup));
+                services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped(typeof(Service<>), typeof(Service<>));
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IBookService, BookService>();
+
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddDbContext<BookCycleDbContext>(options =>
                 {
@@ -35,7 +48,7 @@ namespace BookCycle.Web
                             o.MigrationsAssembly("BookCycle.Data");
                         });
                 });
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+          
             services.AddControllersWithViews();
         }
 

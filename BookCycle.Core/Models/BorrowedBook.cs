@@ -13,5 +13,8 @@ namespace BookCycle.Core.Models
 
         public DateTime BroughtDate { get; set; }
 
+        public virtual User User { get; set; }
+        public virtual Book Book { get; set; }
+
     }
 }

@@ -9,7 +9,7 @@ namespace BookCycle.Data.Repositories
 {
     public class AuthorRepository:Repository<Author> , IAuthorRepository
     {
-        public AuthorRepository(DbContext context) : base(context)
+        public AuthorRepository(BookCycleDbContext context) : base(context)
         {
         }
     }

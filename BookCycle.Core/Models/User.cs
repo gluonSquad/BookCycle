@@ -18,10 +18,13 @@ namespace BookCycle.Core.Models
 
         public Guid ActivateGuid { get; set; }
 
+        public bool IsAdmin { get; set; }
+
+
         public int Penal { get; set; }
 
 
-        public virtual ICollection<Book> Books{ get; set; }
+       
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Liked> Likes { get; set; }
 

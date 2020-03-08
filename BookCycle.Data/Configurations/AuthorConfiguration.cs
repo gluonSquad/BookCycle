@@ -15,7 +15,7 @@ namespace BookCycle.Data.Configurations
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseIdentityColumn();
-            builder.Property(x => x.Name).HasMaxLength(50);
+            builder.Property(x => x.Name).HasMaxLength(80);
             builder.ToTable("Authors");
         }
     }

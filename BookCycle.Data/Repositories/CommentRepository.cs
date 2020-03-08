@@ -9,7 +9,7 @@ namespace BookCycle.Data.Repositories
 {
     public class CommentRepository : Repository<Comment> , ICommentRepository
     {
-        public CommentRepository(DbContext context) : base(context)
+        public CommentRepository(BookCycleDbContext context) : base(context)
         {
         }
     }

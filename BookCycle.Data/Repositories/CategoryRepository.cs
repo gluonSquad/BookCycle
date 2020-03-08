@@ -14,7 +14,7 @@ namespace BookCycle.Data.Repositories
         {
             get => _context as BookCycleDbContext;
         }
-        public CategoryRepository(DbContext context) : base(context)
+        public CategoryRepository(BookCycleDbContext context) : base(context)
         {
         }
 
