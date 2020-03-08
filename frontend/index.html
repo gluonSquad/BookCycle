@@ -8,9 +8,12 @@
     <meta name="author" content="berkctezc">
     <title>BookCycle</title>
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"><!--switch to fontawesome icons-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--switch to fontawesome icons-->
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
     <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link rel="stylesheet" href="owlcarousel/assets/owl.carousel.css">
+    <link rel="stylesheet" href="owlcarousel/assets/owl.theme.default.css">
     <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
 
@@ -48,16 +51,16 @@
     </ul>
     <div class="section no-pad-bot" id="index-banner">
         <div class="container">
-            <br><br>
             <h1 class="header center orange-text">BookCycle</h1>
             <div class="row center">
-                <h5 class="header col s12 light">Lorem ipsum dolor sit amet consectetur.</h5>
+                <h5 class="header col s12 light">Bilgi Paylaştıkça Artar...</h5>
             </div>
-            <div class="row center">
-                <a href="" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
+            <div class="owl-carousel owl-theme">
+                <div><img src="https://picsum.photos/640/480" alt=""></div>
+                <div><img src="https://picsum.photos/800/600" alt=""></div>
+                <div><img src="https://picsum.photos/1024/768" alt=""></div>
             </div>
-            <br><br>
-
+            <br>
         </div>
     </div>
 
@@ -144,8 +147,8 @@
     </footer>
 
 
-    <!--  Scripts-->
-    <script src="js/jquery/dist/jquery.js"></script>
+    <script src="js/jquery/dist/jquery.min.js"></script>
+    <script src="owlcarousel/owl.carousel.min.js"></script>
     <script src="js/materialize.min.js"></script>
     <script>
         //sidenav action
@@ -154,6 +157,22 @@
                 $('.sidenav').sidenav();
             });
         })(jQuery);
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $(".owl-carousel").owlCarousel({
+                items: 1,
+                margin: 40,
+                autoHeight: true,
+                loop: true,
+                nav: true,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true,
+                lazyLoad:true
+            });
+        });
     </script>
 
 </body>
