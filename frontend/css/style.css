@@ -35,6 +35,9 @@ body {
   justify-content: center;
 }
 
+footer .container{
+  background-color: rgba(0, 0, 0, 0);
+}
 
 /*CAROUSEL CLIPPATHS*/
 
