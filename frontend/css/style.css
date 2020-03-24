@@ -1,3 +1,12 @@
+/*OVERRIDES*/
+
+
+body {
+  background-color: #eef7ff;
+}
+
+/*MATERIALIZE OVERRIDES*/
+
 .icon-block {
   padding: 0 15px;
 }
@@ -6,24 +15,44 @@
   font-size: inherit;
 }
 
-body {
-  background-color: #eef7ff;
-}
-
 .container {
   background-color: #eef7ff;
 }
 
-.owl-carousel .sl1{
+.nav-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.sidenav-trigger {
+  order: 2;
+  justify-content: flex-end;
+}
+
+.brand-logo {
+  margin-left: 20px;
+  order: 1;
+  justify-content: center;
+}
+
+
+/*CAROUSEL CLIPPATHS*/
+
+.owl-carousel .sl1 {
   clip-path: circle(115.8% at 0 0);
 }
-.owl-carousel .sl2{
+
+.owl-carousel .sl2 {
   clip-path: circle(75.0% at 50% 12%);
 }
-.owl-carousel .sl3{
+
+.owl-carousel .sl3 {
   clip-path: circle(113.6% at 100% 0);
 }
 
+
+
+/*CUSTOM CLASSES and CHILDS*/
 .Sidenav {
   display: flex;
   flex-direction: column;
@@ -33,11 +62,12 @@ body {
   overflow: hidden;
 }
 
-.Sidenav li>a, .Sidenav li>a .fas{
+.Sidenav li>a,
+.Sidenav li>a .fas {
   color: white;
 }
 
-.Sidenav_Top{
+.Sidenav_Top {
   flex-direction: column;
   padding-top: 15%;
 }
@@ -48,30 +78,14 @@ body {
   flex-wrap: nowrap;
 }
 
-.nav-wrapper{
-  display: flex;
-  flex-direction: row;
-}
-
-.sidenav-trigger{
+.MenuItems {
   order: 2;
-  justify-content: flex-end;
-}
-
-.MenuItems{
-  order:2;
   margin-right: 15px;
   justify-content: flex-end;
   margin-left: auto;
 }
 
-.brand-logo{
-  margin-left: 20px;
-  order: 1;
-  justify-content: center;
-}
-
-.Logo{
+.Logo {
   display: block;
   text-indent: -9999px;
   width: 100px;
@@ -79,6 +93,12 @@ body {
   background: url(kiwi.svg);
   background-size: 100px 82px;
 }
+
+.KitapCard .card-title {
+  text-shadow: 2px 2px 2px black;
+}
+
+/*QUERIES*/
 
 @media (max-width:600px) {
   .brand-logo i {
@@ -91,6 +111,7 @@ body {
     padding-top: 60%;
   }
 }
+
 @media (max-height:525px) {
   .Sidenav_Bottom {
     padding-top: 5px;

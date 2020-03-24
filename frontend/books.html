@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+    <meta name="author" content="berkctezc">
+    <title>BookCycle</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--switch to fontawesome icons-->
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+    <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link rel="stylesheet" href="owlcarousel/assets/owl.carousel.css">
+    <link rel="stylesheet" href="owlcarousel/assets/owl.theme.default.css">
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper blue darken-4">
+            <a href="#!" class="brand-logo"><i class="fas fa-book-reader"></i>BookCycle</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+            <ul class="right hide-on-med-and-down MenuItems">
+                <li><a href="">Kitaplar</a></li>
+                <li><a href="">Kategoriler</a></li>
+                <li><a href="">Paylaş</a></li>
+                <li><a href="">Hesabım</a></li>
+                <li class=""><a href="">Üye Ol</a></li>
+                <li><a href="">Giriş Yap</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <div class="Sidenav">
+            <div class="Sidenav_Top">
+                <li><a href="">Kitaplar<i class="fas fa-book"></i></a></li>
+                <li><a href="">Kategoriler<i class="fas fa-th-list"></i></a></li>
+                <li><a href="">Paylaş<i class="fas fa-hand-holding-heart"></i></a></li>
+                <li><a href="">Hesabım<i class="fas fa-smile"></i></a></li>
+            </div>
+            <div class="Sidenav_Bottom">
+                <hr>
+                <li><a href="">Üye Ol<i class="fas fa-door-open"></i></a></li>
+                <li><a href="">Giriş Yap<i class="fas fa-sign-in-alt"></i></a></li>
+            </div>
+        </div>
+
+    </ul>
+    <div>
+        <div class="row">
+            <div class="col s6 m4 l3 xl2">
+                <div class="card KitapCard">
+                    <div class="card-image">
+                        <img src="https://picsum.photos/500/800">
+                        <span class="card-title">Kitap İsmi</span>
+                    </div>
+                    <div class="card-content">
+                        <p>
+                            <ul class="KitapDetay">
+                                <li>Kitap İsmi: </li>
+                                <li>Yazar: </li>
+                                <li>Mevcut: </li>
+                                <li>Puan: </li>
+                            </ul>
+                        </p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#">DETAY</a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    </div>
+
+    <footer class="page-footer orange center">
+        FOOTER
+    </footer>
+
+
+    <script src="js/jquery/dist/jquery.min.js"></script>
+    <script src="owlcarousel/owl.carousel.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script>
+        //sidenav action
+        (function ($) {
+            $(function () {
+                $('.sidenav').sidenav();
+            });
+        })(jQuery);
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $(".owl-carousel").owlCarousel({
+                items: 1,
+                margin: 40,
+                autoHeight: true,
+                loop: true,
+                nav: true,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true,
+                lazyLoad: true
+            });
+        });
+    </script>
+
+</body>
+
+</html>
