@@ -49,86 +49,74 @@
         </div>
 
     </ul>
-    <div>
-        <div class="row">
-
-            <div class="container">
-                <form method="POST" action="" class="col s12">
-                    <div class="row">
-                        <div class="input-field col s12 m6">
-                            <i class="prefix far fa-id-card"></i>
-                            <input id="first_name" required type="text" class="validate">
-                            <label for="first_name">İsim</label>
-                        </div>
-                        <div class="input-field col s12 m6">
-                            <i class="prefix fas fa-font"></i>
-                            <input id="last_name" required type="text" class="validate">
-                            <label for="last_name">Soyisim</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12 m6">
-                            <i class="prefix fas fa-at"></i>
-                            <input id="email" required type="email" class="validate">
-                            <label for="email">E-Posta</label>
-                        </div>
-                        <div class="input-field col s12 m6">
-                            <i class="prefix fas fa-phone-alt"></i>
-                            <input id="phone_number" type="tel" class="validate">
-                            <label for="phone_number">Telefon Numarası</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="file-field input-field col s12">
-                            <div class="btn blue-grey darken-4">
-                                <i class="fas fa-image"></i>
-                                <i class="fas fa-upload"></i>
-                                <input type="file">
-                            </div>
-                            <div class="file-path-wrapper">
-                                <input id="userimg" class="file-path validate" type="text"
-                                    placeholder="Profil Resminiz">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12 m6">
-                            <i class="prefix fas fa-user-tag"></i>
-                            <input required id="username" type="text" class="validate">
-                            <label for="username">Kullanıcı Adı</label>
-                        </div>
-                        <div class="input-field col s12 m6">
-                            <i class="prefix fas fa-birthday-cake"></i>
-                            <input type="text" class="datepicker">
-                            <label for="birthdate">Doğum Tarihi</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="prefix fas fa-key"></i>
-                            <input required id="password" type="password" class="validate">
-                            <label for="password">Şifre</label>
-                        </div>
-                    </div>
-                    <p class="center-align">
-                        <label>
-                            <input id="user_aggreement" type="checkbox" />
-                            <span>Şözleşmeyi Okudum ve Anladım</span>
-                        </label>
-                    </p>
-                    <div class="center-align">
-                        <button class="btn btn-large blue darken-4 waves-effect waves-light" type="submit" name="action">
-                            <i class="prefix fas fa-paper-plane"></i> &nbsp;Kaydı Tamamla
-                    </div>
-                </form>
-
-
-
+    <div class="container">
+        <form method="POST" action="">
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <i class="prefix far fa-id-card"></i>
+                    <input id="first_name" required type="text" class="validate">
+                    <label for="first_name">İsim</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="prefix fas fa-font"></i>
+                    <input id="last_name" required type="text" class="validate">
+                    <label for="last_name">Soyisim</label>
+                </div>
             </div>
-
-
-        </div>
-    </div>
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <i class="prefix fas fa-at"></i>
+                    <input id="email" required type="email" class="validate">
+                    <label for="email">E-Posta</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="prefix fas fa-phone-alt"></i>
+                    <input id="phone_number" type="tel" class="validate">
+                    <label for="phone_number">Telefon Numarası</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="file-field input-field col s12">
+                    <div class="btn blue-grey darken-4">
+                        <i class="fas fa-image"></i>
+                        <i class="fas fa-upload"></i>
+                        <input type="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input id="userimg" class="file-path validate" type="text" placeholder="Profil Resminiz">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <i class="prefix fas fa-user-tag"></i>
+                    <input required id="username" type="text" class="validate">
+                    <label for="username">Kullanıcı Adı</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="prefix fas fa-birthday-cake"></i>
+                    <input type="text" class="datepicker">
+                    <label for="birthdate">Doğum Tarihi</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="prefix fas fa-key"></i>
+                    <input required id="password" type="password" class="validate">
+                    <label for="password">Şifre</label>
+                </div>
+            </div>
+            <p class="center-align">
+                <label>
+                    <input id="user_agreement" type="checkbox" />
+                    <span>Şözleşmeyi Okudum ve Anladım</span>
+                </label>
+            </p>
+            <div class="center-align">
+                <button class="btn btn-large blue darken-4 waves-effect waves-light" type="submit" name="action">
+                    <i class="prefix fas fa-paper-plane"></i> &nbsp;Kaydı Tamamla
+            </div>
+        </form>
     </div>
 
     <footer class="page-footer orange">
@@ -139,7 +127,6 @@
                     <p class="grey-text text-lighten-4">We are a team of college students working on this project like
                         it's our full time job. Any amount would help support and continue development on this project
                         and is greatly appreciated.</p>
-
 
                 </div>
                 <div class="col l3 s12">
