@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
     <meta name="author" content="berkctezc">
-    <title>Kitaplar - BookCycle</title>
+    <title>Üye Ol - BookCycle</title>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
@@ -51,27 +51,49 @@
     </ul>
     <div>
         <div class="row">
-            <div class="col s6 m4 l3 xl2">
-                <div class="card KitapCard">
-                    <div class="card-image">
-                        <img src="https://picsum.photos/500/800">
-                        <span class="card-title">Kitap İsmi</span>
+
+            <div class="container">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="prefix far fa-id-card"></i>
+                            <input id="first_name" required type="text" class="validate">
+                            <label for="first_name">İsim</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="last_name" required type="text" class="validate">
+                            <label for="last_name">Soyisim</label>
+                        </div>
                     </div>
-                    <div class="card-content">
-                        <p>
-                            <ul class="KitapDetay">
-                                <li>Kitap İsmi: </li>
-                                <li>Yazar: </li>
-                                <li>Mevcut: </li>
-                                <li>Puan: </li>
-                            </ul>
-                        </p>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="prefix fas fa-at"></i>
+                            <input id="email" required type="email" class="validate">
+                            <label for="email">E-Posta</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="phone_number" type="tel" class="validate">
+                            <label for="phone_number">Telefon Numarası</label>
+                        </div>
                     </div>
-                    <div class="card-action">
-                        <a href="#">DETAY</a>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="prefix fas fa-user-tag"></i>
+                            <input required id="username" type="text" class="validate">
+                            <label for="username">Kullanıcı Adı</label>
+                        </div>
                     </div>
-                </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="prefix fas fa-key"></i>
+                            <input required id="password" type="password" class="validate">
+                            <label for="password">Şifre</label>
+                        </div>
+                    </div>
+
+                </form>
             </div>
+
 
 
         </div>

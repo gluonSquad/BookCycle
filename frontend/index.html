@@ -9,18 +9,18 @@
     <title>BookCycle</title>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--switch to fontawesome icons-->
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
     <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link rel="stylesheet" href="owlcarousel/assets/owl.carousel.css">
     <link rel="stylesheet" href="owlcarousel/assets/owl.theme.default.css">
     <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 </head>
 
 <body>
     <nav>
         <div class="nav-wrapper blue darken-4">
-            <a href="#!" class="brand-logo"><i class="fas fa-book-reader"></i>BookCycle</a>
+            <a href="index.html" class="brand-logo"><i class="fas fa-book-reader"></i>BookCycle</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
             <ul class="right hide-on-med-and-down MenuItems">
                 <li><a href="books.html">Kitaplar</a></li>
@@ -150,31 +150,9 @@
     <script src="js/jquery/dist/jquery.min.js"></script>
     <script src="owlcarousel/owl.carousel.min.js"></script>
     <script src="js/materialize.min.js"></script>
-    <script>
-        //sidenav action
-        (function ($) {
-            $(function () {
-                $('.sidenav').sidenav();
-            });
-        })(jQuery);
-    </script>
 
-    <script>
-        $(document).ready(function () {
-            $(".owl-carousel").owlCarousel({
-                items: 1,
-                margin: 40,
-                autoHeight: true,
-                loop: true,
-                nav: true,
-                autoplay: true,
-                autoplayTimeout: 5000,
-                autoplayHoverPause: true,
-                lazyLoad:true
-            });
-        });
-    </script>
-
+    <script src="js/sidenav.js"></script>
+    <script src="js/owlcarousel_settings.js"></script>
 </body>
 
 </html>

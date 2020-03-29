@@ -54,7 +54,6 @@ footer .container{
 }
 
 
-
 /*CUSTOM CLASSES and CHILDS*/
 .Sidenav {
   display: flex;
@@ -101,7 +100,7 @@ footer .container{
   text-shadow: 2px 2px 2px black;
 }
 
-/*QUERIES*/
+/*MEDIA QUERIES*/
 
 @media (max-width:600px) {
   .brand-logo i {
