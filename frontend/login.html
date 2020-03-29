@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
     <meta name="author" content="berkctezc">
-    <title>BookCycle</title>
+    <title>Üye Ol - BookCycle</title>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
@@ -20,14 +20,14 @@
 <body>
     <nav>
         <div class="nav-wrapper blue darken-4">
-            <a href="index.html" class="brand-logo"><i class="fas fa-book-reader"></i>BookCycle</a>
+            <a href="#!" class="brand-logo"><i class="fas fa-book-reader"></i>BookCycle</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
             <ul class="right hide-on-med-and-down MenuItems">
-                <li><a href="books.html">Kitaplar</a></li>
+                <li><a href="">Kitaplar</a></li>
                 <li><a href="">Kategoriler</a></li>
                 <li><a href="">Paylaş</a></li>
                 <li><a href="">Hesabım</a></li>
-                <li><a href="register.html">Üye Ol</a></li>
+                <li class=""><a href="">Üye Ol</a></li>
                 <li><a href="">Giriş Yap</a></li>
             </ul>
         </div>
@@ -36,76 +36,68 @@
     <ul class="sidenav" id="mobile-demo">
         <div class="Sidenav">
             <div class="Sidenav_Top">
-                <li><a href="books.html">Kitaplar<i class="fas fa-book"></i></a></li>
+                <li><a href="">Kitaplar<i class="fas fa-book"></i></a></li>
                 <li><a href="">Kategoriler<i class="fas fa-th-list"></i></a></li>
                 <li><a href="">Paylaş<i class="fas fa-hand-holding-heart"></i></a></li>
                 <li><a href="">Hesabım<i class="fas fa-smile"></i></a></li>
             </div>
             <div class="Sidenav_Bottom">
                 <hr>
-                <li><a href="register.html">Üye Ol<i class="fas fa-door-open"></i></a></li>
+                <li><a href="">Üye Ol<i class="fas fa-door-open"></i></a></li>
                 <li><a href="">Giriş Yap<i class="fas fa-sign-in-alt"></i></a></li>
             </div>
         </div>
 
     </ul>
-    <div class="section no-pad-bot" id="index-banner">
-        <div class="container">
-            <h1 class="header center orange-text">BookCycle</h1>
-            <div class="row center">
-                <h5 class="header col s12 light">Bilgi Paylaştıkça Artar...</h5>
+    <div>
+        <div class="row">
+
+            <div class="container">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="prefix far fa-id-card"></i>
+                            <input id="first_name" required type="text" class="validate">
+                            <label for="first_name">İsim</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="last_name" required type="text" class="validate">
+                            <label for="last_name">Soyisim</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="prefix fas fa-at"></i>
+                            <input id="email" required type="email" class="validate">
+                            <label for="email">E-Posta</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="phone_number" type="tel" class="validate">
+                            <label for="phone_number">Telefon Numarası</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="prefix fas fa-user-tag"></i>
+                            <input required id="username" type="text" class="validate">
+                            <label for="username">Kullanıcı Adı</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="prefix fas fa-key"></i>
+                            <input required id="password" type="password" class="validate">
+                            <label for="password">Şifre</label>
+                        </div>
+                    </div>
+
+                </form>
             </div>
-            <div class="owl-carousel owl-theme">
-                <div><img class="sl1" src="https://picsum.photos/640/480" alt=""></div>
-                <div><img class="sl2" src="https://picsum.photos/800/600" alt=""></div>
-                <div><img class="sl3" src="https://picsum.photos/1024/768" alt=""></div>
-            </div>
-            <br>
+
+
+
         </div>
     </div>
-
-    <div class="container">
-        <div class="section">
-
-            <!--   Icon Section   -->
-            <div class="row">
-                <div class="col s12 m4">
-                    <div class="icon-block">
-                        <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
-                        <h5 class="center">Speeds up development</h5>
-
-                        <p class="light">We did most of the heavy lifting for you to provide a default stylings that
-                            incorporate our custom components. Additionally, we refined animations and transitions to
-                            provide a smoother experience for developers.</p>
-                    </div>
-                </div>
-
-                <div class="col s12 m4">
-                    <div class="icon-block">
-                        <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
-                        <h5 class="center">User Experience Focused</h5>
-
-                        <p class="light">By utilizing elements and principles of Material Design, we were able to create
-                            a framework that incorporates components and animations that provide more feedback to users.
-                            Additionally, a single underlying responsive system across all platforms allow for a more
-                            unified user experience.</p>
-                    </div>
-                </div>
-
-                <div class="col s12 m4">
-                    <div class="icon-block">
-                        <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
-                        <h5 class="center">Easy to work with</h5>
-
-                        <p class="light">We have provided detailed documentation as well as specific code examples to
-                            help new users get started. We are also always open to feedback and can answer any questions
-                            a user may have about Materialize.</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <br><br>
     </div>
 
     <footer class="page-footer orange">
@@ -152,7 +144,6 @@
     <script src="js/materialize.min.js"></script>
 
     <script src="js/sidenav.js"></script>
-    <script src="js/owlcarousel_settings.js"></script>
 </body>
 
 </html>

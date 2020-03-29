@@ -53,7 +53,7 @@
         <div class="row">
 
             <div class="container">
-                <form class="col s12">
+                <form method="POST" action="" class="col s12">
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="prefix far fa-id-card"></i>
@@ -85,15 +85,33 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
+                            <i class="prefix fas fa-birthday-cake"></i>
+                            <input type="text" class="datepicker">
+                            <label for="birthdate">Doğum Tarihi</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
                             <i class="prefix fas fa-key"></i>
                             <input required id="password" type="password" class="validate">
                             <label for="password">Şifre</label>
                         </div>
                     </div>
-
+                    <p class="center-align">
+                        <label>
+                            <input id="user_aggreement" type="checkbox" />
+                            <span>Şözleşmeyi Okudum ve Anladım</span>
+                        </label>
+                    </p>
+                    <p class="center-align">
+                        <button class="btn-large waves-effect waves-light" type="submit" name="action">
+                            <i class="prefix fas fa-paper-plane"></i> &nbsp; Kaydı Tamamla
+                    </p>
                 </form>
-            </div>
 
+
+
+            </div>
 
 
         </div>
@@ -144,6 +162,17 @@
     <script src="js/materialize.min.js"></script>
 
     <script src="js/sidenav.js"></script>
+
+    <script>
+        //bu sayfaya özel
+        $(document).ready(function () {
+            $('.datepicker').datepicker({
+                showClearBtn:true,
+                isRTL:true
+            }
+            );
+        });
+    </script>
 </body>
 
 </html>
