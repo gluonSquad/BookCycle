@@ -52,7 +52,7 @@ namespace WebAPI.Controllers
 
         public IActionResult GetById(int bookId)
         {
-            var result = _bookService.GetListByCategory(bookId);
+            var result = _bookService.GetById(bookId);
             if (result.Success)
             {
                 return Ok(result.Data);
