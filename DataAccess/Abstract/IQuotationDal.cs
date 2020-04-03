@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Core.Entities
+namespace DataAccess.Abstract
 {
-    public interface IEntity
+    public interface IQuotationDal
     {
+
     }
 }
