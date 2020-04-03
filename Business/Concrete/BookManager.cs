@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Business.Abstract;
+using Business.Constants;
+using Core.Utilities;
 using DataAccess.Abstract;
 using Entities.Concrete;
 
@@ -16,34 +18,37 @@ namespace Business.Concrete
         {
             _bookDal = bookDal;
         }
-        public void Add(Book book)
+        public IResult Add(Book book)
         {
             _bookDal.Add(book);
+            return new SuccessResult(Messages.BookAdded);
         }
 
-        public void Delete(Book book)
+        public IResult Delete(Book book)
         {
             _bookDal.Delete(book);
+            return new SuccessResult(Messages.BookDeleted);
         }
 
-        public Book GetById(int bookId)
+        public IDataResult<Book> GetById(int bookId)
         {
-            return _bookDal.Get(b => b.Id == bookId);
+            return new SuccessDataResult<Book>(_bookDal.Get(b => b.Id == bookId)); 
         }
 
-        public List<Book> GetList()
+        public IDataResult<List<Book>> GetList()
         {
-            return _bookDal.GetList().ToList();
+            return new SuccessDataResult<List<Book>>(_bookDal.GetList().ToList());
         }
 
-        public List<Book> GetListByCategory(int categoryId)
+        public IDataResult<List<Book>> GetListByCategory(int categoryId)
         {
-            return _bookDal.GetList(b => b.CategoryId == categoryId).ToList();
+            return new SuccessDataResult<List<Book>>(_bookDal.GetList(b => b.CategoryId == categoryId).ToList());
         }
 
-        public void Update(Book book)
+        public IResult Update(Book book)
         {
            _bookDal.Update(book);
+            return new SuccessResult(Messages.BookUpdated);
         }
     }
 }

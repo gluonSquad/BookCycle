@@ -2,19 +2,20 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Core.Utilities;
 
 namespace Business.Abstract
 {
     public interface IBookService
     {
-        Book GetById(int bookId);
-        List<Book> GetList();
-        List<Book> GetListByCategory(int categoryId);
+        IDataResult<Book> GetById(int bookId);
+        IDataResult<List<Book>> GetList();
+        IDataResult<List<Book>> GetListByCategory(int categoryId);
 
-        void Add(Book book);
+        IResult Add(Book book);
 
-        void Delete(Book book);
+        IResult Delete(Book book);
 
-        void Update(Book book);
+        IResult Update(Book book);
     }
 }
