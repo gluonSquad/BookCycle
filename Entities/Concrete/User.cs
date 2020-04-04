@@ -30,9 +30,9 @@ namespace Entities.Concrete
         public int Age { get; set; }
 
 
-        public ICollection<Review> Reviews { get; set; }
+        public virtual ICollection<Review> Reviews { get; set; }
 
-        public ICollection<Quotation> Quotations { get; set; }
+        public virtual ICollection<Quotation> Quotations { get; set; }
 
 
 
