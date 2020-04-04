@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+    <ProjectReference Include="..\DataTransferObjects\DataTransferObjects.csproj" />
     <ProjectReference Include="..\Entities\Entities.csproj" />
   </ItemGroup>
 

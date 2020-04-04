@@ -27,14 +27,14 @@ namespace WebAPI.Controllers
             var result = _bookService.GetList();
             if (result.Success)
             {
+
                 return Ok(result.Data);
             }
-
             return BadRequest(result.Message);
 ;       }
 
 
-        [HttpGet("getlistbycategory")]
+        [HttpGet("getlistbycategory")] 
 
         public IActionResult GetListByCategory(int categoryId)
         {

@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{CF78DA1B-4869-4EF4-8470-B95C29811EC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{CF78DA1B-4869-4EF4-8470-B95C29811EC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{56BE6951-0033-4EAF-8405-3EBCDFC783DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{56BE6951-0033-4EAF-8405-3EBCDFC783DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{DBB801F8-8926-4DE4-8370-577C51430E9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Business\Business.csproj", "{DBB801F8-8926-4DE4-8370-577C51430E9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{189427BC-6424-413C-ADFC-A27ED2051312}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{189427BC-6424-413C-ADFC-A27ED2051312}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{34DB4AAF-D968-4FC3-B0D3-8499AA8C7BD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WebAPI\WebAPI.csproj", "{34DB4AAF-D968-4FC3-B0D3-8499AA8C7BD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTransferObjects", "DataTransferObjects\DataTransferObjects.csproj", "{2111D0F2-9689-4448-AB8C-B61735109880}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{34DB4AAF-D968-4FC3-B0D3-8499AA8C7BD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34DB4AAF-D968-4FC3-B0D3-8499AA8C7BD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34DB4AAF-D968-4FC3-B0D3-8499AA8C7BD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2111D0F2-9689-4448-AB8C-B61735109880}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2111D0F2-9689-4448-AB8C-B61735109880}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2111D0F2-9689-4448-AB8C-B61735109880}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2111D0F2-9689-4448-AB8C-B61735109880}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

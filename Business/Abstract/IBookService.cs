@@ -3,13 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Core.Utilities;
+using DataTransferObjects;
 
 namespace Business.Abstract
 {
     public interface IBookService
     {
         IDataResult<Book> GetById(int bookId);
-        IDataResult<List<Book>> GetList();
+        IDataResult<List<BookForListDto>> GetList();
         IDataResult<List<Book>> GetListByCategory(int categoryId);
 
         IResult Add(Book book);
@@ -17,5 +18,7 @@ namespace Business.Abstract
         IResult Delete(Book book);
 
         IResult Update(Book book);
+
+
     }
 }

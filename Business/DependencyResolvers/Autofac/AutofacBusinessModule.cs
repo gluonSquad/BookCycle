@@ -15,6 +15,11 @@ namespace Business.DependencyResolvers.Autofac
         {
             builder.RegisterType<BookManager>().As<IBookService>();
             builder.RegisterType<EfBookDal>().As<IBookDal>();
+            builder.RegisterType<EfAuthorDal>().As<IAuthorDal>();
+            builder.RegisterType<EfCategoryDal>().As<ICategoryDal>();
+            builder.RegisterType<EfQuotationDal>().As<IQuotationDal>();
+            builder.RegisterType<EfReviewDal>().As<IReviewDal>();
+            builder.RegisterType<EfUserDal>().As<IUserDal>();
         }
     }
 }

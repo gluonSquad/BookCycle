@@ -11,7 +11,7 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseLazyLoadingProxies();
+            
             optionsBuilder.UseSqlServer(@"Server=.;Database=BookCycle;Trusted_Connection=true");
         }
 
