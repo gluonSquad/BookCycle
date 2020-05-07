@@ -79,6 +79,8 @@ namespace DataTransferObjects
         public int QuotesLike { get; set; }
 
         public DateTime? CreatedOn { get; set; }
+
+        public UserDto User { get; set; }
     }
     public class CategoryDto
     {

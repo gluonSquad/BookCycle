@@ -2,41 +2,45 @@
 using System.Collections.Generic;
 using System.Text;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Concrete.EntityFramework.Contexts
 {
-    public class BookCycleContext : DbContext
+    public class BookCycleContext : IdentityDbContext<AppUser , AppRole ,int>
     {
        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             
             optionsBuilder.UseSqlServer(@"Server=.;Database=BookCycle;Trusted_Connection=true");
+            base.OnConfiguring(optionsBuilder);
         }
-
-        public DbSet<Category> Categories { get; set; }
-
-        public DbSet<Book> Books { get; set; }
-
-        public DbSet<Author> Authors { get; set; }
-
-        public DbSet<Review> Reviews { get; set; }
-
-        public DbSet<Quotation> Quotations { get; set; }
-
-
-        public DbSet<User> Users { get; set; }
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>()
+            // Relation Key tanımlamalar BookAppUser'un PK'si
+            modelBuilder.Entity<BookAppUser>()
+                .HasKey(ba => new { ba.BookId, ba.AppUserId });
+
+            // Relation Key tanımlamalar BookAppUser'un FK'si / BookAppUser -> Book
+            modelBuilder.Entity<BookAppUser>()
+                .HasOne(ba => ba.Book)
+                .WithMany(b => b.BookAppUsers)
+                .HasForeignKey(ba => ba.BookId);
+
+            // Relation Key tanımlamalar BookAppUser'un FK'si / BookAppUser -> AppUser
+            modelBuilder.Entity<BookAppUser>()
+                .HasOne(ba => ba.AppUser)
+                .WithMany(a => a.BookAppUsers)
+                .HasForeignKey(ba => ba.AppUserId);
+
+            modelBuilder.Entity<AppUser>()
                 .HasMany(u => u.Reviews)
-                .WithOne(r => r.User);
-            modelBuilder.Entity<User>()
+                .WithOne(r => r.AppUser);
+            modelBuilder.Entity<AppUser>()
                 .HasMany(u => u.Quotations)
-                .WithOne(q => q.User);
+                .WithOne(q => q.AppUser);
 
             modelBuilder.Entity<Book>()
                 .HasMany(b => b.Quotations)
@@ -56,6 +60,20 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
                 .WithMany(a => a.Books)
                 .HasForeignKey(b => b.AuthorId);
 
+            base.OnModelCreating(modelBuilder);
+
         }
+
+
+        public DbSet<Category> Categories { get; set; }
+
+        public DbSet<Book> Books { get; set; }
+
+        public DbSet<Author> Authors { get; set; }
+
+        public DbSet<Review> Reviews { get; set; }
+
+        public DbSet<Quotation> Quotations { get; set; }
+        public DbSet<BookAppUser> BookAppUsers { get; set; }
     }
 }

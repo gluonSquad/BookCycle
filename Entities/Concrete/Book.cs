@@ -37,6 +37,8 @@ namespace Entities.Concrete
         
         public virtual ICollection<Quotation> Quotations { get; set; }
 
+        public virtual ICollection<BookAppUser> BookAppUsers { get; set; }
+
 
     }
 }

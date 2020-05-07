@@ -19,7 +19,7 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<EfCategoryDal>().As<ICategoryDal>();
             builder.RegisterType<EfQuotationDal>().As<IQuotationDal>();
             builder.RegisterType<EfReviewDal>().As<IReviewDal>();
-            builder.RegisterType<EfUserDal>().As<IUserDal>();
+            //builder.RegisterType<EfUserDal>().As<IUserDal>();
         }
     }
 }

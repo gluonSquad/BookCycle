@@ -4,14 +4,16 @@ using DataAccess.Concrete.EntityFramework.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(BookCycleContext))]
-    partial class BookCycleContextModelSnapshot : ModelSnapshot
+    [Migration("20200507122057_InitialCreate2")]
+    partial class InitialCreate2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -231,9 +233,6 @@ namespace DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AppUserId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("BookId")
                         .HasColumnType("int");
 
@@ -249,11 +248,14 @@ namespace DataAccess.Migrations
                     b.Property<int>("QuotesLike")
                         .HasColumnType("int");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("AppUserId");
-
                     b.HasIndex("BookId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Quotations");
                 });
@@ -264,9 +266,6 @@ namespace DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("AppUserId")
-                        .HasColumnType("int");
 
                     b.Property<int?>("BookId")
                         .HasColumnType("int");
@@ -289,11 +288,14 @@ namespace DataAccess.Migrations
                     b.Property<string>("ReviewText")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("AppUserId");
-
                     b.HasIndex("BookId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Reviews");
                 });
@@ -431,24 +433,24 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entities.Concrete.Quotation", b =>
                 {
-                    b.HasOne("Entities.Concrete.AppUser", "AppUser")
-                        .WithMany("Quotations")
-                        .HasForeignKey("AppUserId");
-
                     b.HasOne("Entities.Concrete.Book", "Book")
                         .WithMany("Quotations")
                         .HasForeignKey("BookId");
+
+                    b.HasOne("Entities.Concrete.AppUser", "User")
+                        .WithMany("Quotations")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Review", b =>
                 {
-                    b.HasOne("Entities.Concrete.AppUser", "AppUser")
-                        .WithMany("Reviews")
-                        .HasForeignKey("AppUserId");
-
                     b.HasOne("Entities.Concrete.Book", "Book")
                         .WithMany("Reviews")
                         .HasForeignKey("BookId");
+
+                    b.HasOne("Entities.Concrete.AppUser", "User")
+                        .WithMany("Reviews")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>

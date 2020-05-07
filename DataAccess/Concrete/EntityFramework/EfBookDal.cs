@@ -13,13 +13,13 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfBookDal : EfEntityRepositoryBase<Book, BookCycleContext>, IBookDal
     {
-        public List<Book> MapToBookForList()
-        {
-            using (var context = new BookCycleContext())
-            {
-                var books = context.Books.Include(b => b.Reviews).ThenInclude(br=>br.User).Include(b => b.Quotations).Include(b=>b.Author).Include(b=>b.Category).ToList();
-                return books;
-            }
-        }
+        //public List<Book> MapToBookForList()
+        //{
+        //    using (var context = new BookCycleContext())
+        //    {
+        //        var books = context.Books.Include(b => b.Reviews).ThenInclude(br=>br.AppUser).Include(b => b.Quotations).Include(b=>b.Author).Include(b=>b.Category).ToList();
+        //        return books;
+        //    }
+        //}
     }
 }
