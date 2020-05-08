@@ -1,0 +1,61 @@
+﻿@model AppUserAddViewModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_StandartLayout.cshtml";
+}
+
+    <form asp-action="Register" method="Post" class="w-75 mt-4 mx-auto p-3 shadow">
+        <div class="form-group">
+            <label asp-for="@Model.FirstName"></label>
+            <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+            <input asp-for="@Model.FirstName" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.LastName"></label>
+            <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+            <input asp-for="@Model.LastName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.UserName"></label>
+            <span asp-validation-for="@Model.UserName" class="text-danger"></span>
+            <input asp-for="@Model.UserName" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.Password"></label>
+            <span asp-validation-for="@Model.Password" class="text-danger"></span>
+            <input asp-for="@Model.Password"  class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.ConfirmPassword"></label>
+            <span asp-validation-for="@Model.ConfirmPassword" class="text-danger"></span>
+            <input asp-for="@Model.ConfirmPassword" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Email"></label>
+            <span asp-validation-for="@Model.Email" class="text-danger"></span>
+            <input asp-for="@Model.Email" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.Age"></label>
+            <span asp-validation-for="@Model.Age" class="text-danger"></span>
+            <input asp-for="@Model.Age" class="form-control" />
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="@Model.Description"></label>
+            <span asp-validation-for="@Model.Description" class="text-danger"></span>
+            <textarea asp-for="@Model.Description" class="form-control"></textarea>
+        </div>
+        
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+
+        </div>
+        
+        <button type="submit" class="btn btn-info btn-sm">Kayıt Ol</button>
+        <a href="" class="btn btn-warning btn-sm">Vazgeç</a>
+    </form>

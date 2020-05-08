@@ -25,6 +25,7 @@ namespace Entities.Concrete
 
         public string DatePublished { get; set; }
 
+        public DateTime CreatedOn { get; set; } = DateTime.Now;
         public int CategoryId { get; set; }
 
         public int AuthorId { get; set; }

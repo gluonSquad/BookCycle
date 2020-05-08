@@ -57,6 +57,7 @@ namespace WebUI.Areas.Admin.Controllers
                 bookModel.Rating = book.Rating;
                 bookModel.Author = book.Author;
                 bookModel.Category = book.Category;
+                bookModel.CreatedOn = book.CreatedOn;
 
                 model.Add(bookModel);
             }

@@ -30,6 +30,7 @@ namespace WebUI.Areas.Admin.Models
 
         public int AuthorId { get; set; }
 
+        public DateTime CreatedOn { get; set; }
         public virtual Author Author { get; set; }
 
         public virtual Category Category { get; set; }

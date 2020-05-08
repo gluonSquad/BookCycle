@@ -68,6 +68,7 @@ namespace Business.Concrete
                 Isbn = b.Isbn,
                 Rating = b.Rating,
                 Title = b.Title,
+                CreatedOn = b.CreatedOn,
                 Quotations = b.Quotations.Select(bq => new Quotation
                 {
                     CreatedOn = bq.CreatedOn,

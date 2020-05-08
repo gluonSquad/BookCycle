@@ -27,7 +27,7 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (var context = new BookCycleContext())
             {
-                var books = context.Books.Include(b => b.Reviews).ThenInclude(br => br.AppUser).Include(b => b.Quotations).Include(b => b.Author).Include(b => b.Category).ToList();
+                var books = context.Books.Include(b => b.Reviews).ThenInclude(br => br.AppUser).Include(b => b.Quotations).Include(b => b.Author).Include(b => b.Category).OrderByDescending(I=>I.CreatedOn).ToList();
                 return books;
             }
         }
