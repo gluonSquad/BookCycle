@@ -23,7 +23,7 @@ namespace Entities.Concrete
 
         public string BookPublisher { get; set; }
 
-        public DateTime DatePublished { get; set; }
+        public string DatePublished { get; set; }
 
         public int CategoryId { get; set; }
 

@@ -1,0 +1,38 @@
+﻿@model  List<WebUI.Areas.Admin.Models.BookListViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .card-group>.card {
+        flex: 1 0 25%;
+        margin-bottom: 10px;
+    }
+    .card-group>.card:nth-child(3n-1) {
+        margin-right: 30px;
+        margin-left: 30px;
+    }
+    
+
+</style>
+<div class="text-center alert-info font-weight-bold" style="font-size: 20px">Toplam Kitap Sayısı : @Model.Count</div>
+    
+
+<div class="card-group mt-3">
+    @foreach (var item in Model)
+    {
+        <div class="card">
+            <img style="width: 160px; height: 250px; margin: auto;" class="img-fluid" src="@item.BookImageUrl" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">@item.Title - @item.Author.Name</h5>
+                <p class="card-text"><small class="text-muted">Isbn :  @item.Isbn</small></p>
+                <p class="card-text"><small class="text-muted">Sayfa Sayısı :  @item.BookPages</small></p>
+                <p class="card-text"><small class="text-muted">Yayın Evi :  @item.BookPublisher</small></p>
+                <p class="card-text"><small class="text-muted">Yayın Tarihi:  @item.DatePublished</small></p>
+                <p class="card-text"><small class="text-muted">Türü :   @item.Category.Name</small></p>
+
+            </div>
+        </div>
+    }
+</div>

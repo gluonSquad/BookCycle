@@ -9,15 +9,17 @@ namespace Business.Abstract
 {
     public interface IBookService
     {
-        IDataResult<Book> GetById(int bookId);
-        IDataResult<List<BookForListDto>> GetList();
-        IDataResult<List<Book>> GetListByCategory(int categoryId);
+        Book GetById(int bookId);
+        List<Book> GetList();
+        List<Book> GetListByCategory(int categoryId);
 
-        IResult Add(Book book);
+        void Add(Book book);
 
-        IResult Delete(Book book);
+        void Delete(Book book);
 
-        IResult Update(Book book);
+        void Update(Book book);
+
+        public bool CheckIsbnAndTitle(string isbn, string title);
 
 
     }

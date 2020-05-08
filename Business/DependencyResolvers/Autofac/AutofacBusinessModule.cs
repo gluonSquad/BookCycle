@@ -14,6 +14,8 @@ namespace Business.DependencyResolvers.Autofac
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<BookManager>().As<IBookService>();
+            builder.RegisterType<CategoryManager>().As<ICategoryService>();
+            builder.RegisterType<AuthorManager>().As<IAuthorService>();
             builder.RegisterType<EfBookDal>().As<IBookDal>();
             builder.RegisterType<EfAuthorDal>().As<IAuthorDal>();
             builder.RegisterType<EfCategoryDal>().As<ICategoryDal>();

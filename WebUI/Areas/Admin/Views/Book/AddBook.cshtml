@@ -1,0 +1,57 @@
+﻿@model WebUI.Areas.Admin.Models.BookAddViewModel
+@{
+    ViewData["Title"] = "AddBook";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/lib/swal/bootstrap-sweetalert/sweetalert.min.css" rel="stylesheet" />
+
+
+<div class="w-75 mx-auto p-3">
+    <div class="form-group">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" id="title" type="text" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="Author"></label>
+        <input asp-for="Author" id="author" type="text" class="form-control" />
+        <span asp-validation-for="Author" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-info btn-sm" id="addBook">Ekle</button>
+</div>
+
+
+
+
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/swal/bootstrap-sweetalert/sweetalert.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $("#addBook").click(function () {
+                author = $("#author").val();
+                title = $("#title").val();
+                $.ajax({
+                    type: "Post",
+                    url: "/Admin/Book/GetGoodReadUriAndAddBook",
+                    data: { author: author, title: title },
+                    success: function (data) {
+                        var gelenObje = jQuery.parseJSON(data);
+                        
+                        if (gelenObje == true) {
+                            swal("Kitap başarıyla eklendi!", "Destek olduğunuz için teşekkürler", "success")
+                        } if (gelenObje == false) {
+                            swal("Kitap eklenemedi!", "Bu kitap daha önceden eklenmiştir", "error")
+                        }if (gelenObje==null) {
+                            swal("Kitap bulunamadı", "Böyle bir kitap adı veya yazar bulunamadı", "warning")
+                        }
+
+                    },
+
+
+                })
+            })
+        })
+    </script>
+

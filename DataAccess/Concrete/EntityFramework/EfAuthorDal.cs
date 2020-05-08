@@ -10,5 +10,6 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfAuthorDal : EfEntityRepositoryBase<Author,BookCycleContext> , IAuthorDal
     {
+       
     }
 }

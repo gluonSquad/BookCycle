@@ -10,5 +10,6 @@ namespace DataAccess.Abstract
     public interface IBookDal : IEntityRepository<Book>
     {
         //List<Book> MapToBookForList();
+        List<Book> GetBookWithEagerLoading();
     }
 }

@@ -20,27 +20,27 @@ namespace Business.Concrete
         {
             _bookDal = bookDal;
         }
-        public IResult Add(Book book)
+        public void Add(Book book)
         {
             _bookDal.Add(book);
-            return new SuccessResult(Messages.BookAdded);
+           
         }
 
-        public IResult Delete(Book book)
+        public void Delete(Book book)
         {
             _bookDal.Delete(book);
-            return new SuccessResult(Messages.BookDeleted);
+            
         }
 
-        public IDataResult<Book> GetById(int bookId)
+        public Book GetById(int bookId)
         {
-            return new SuccessDataResult<Book>(_bookDal.Get(b => b.Id == bookId));
+            return _bookDal.Get(b => b.Id == bookId);
         }
 
-        public IDataResult<List<BookForListDto>> GetList()
-        {
-            throw new NotImplementedException();
-        }
+        //public List<BookForListDto> GetList()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         //public IDataResult<List<BookForListDto>> GetList()
         //{
@@ -49,60 +49,76 @@ namespace Business.Concrete
         //    return new SuccessDataResult<List<BookForListDto>>(dto);
         //}
 
-        //private List<BookForListDto> MapToBookForListDto(List<Book> books)
-        //{
-        //    var returnedDto = new List<BookForListDto>(books.Select(b => new BookForListDto
-        //    {
-        //        Author = new AuthorDto
-        //        {
-        //            FirstName = b.Author.FirstName,
-        //            Id = b.Author.Id,
-        //            LastName = b.Author.LastName
-        //        },
-        //        BookImageUrl = b.BookImageUrl,
-        //        BookPages = b.BookPages,
-        //        BookPublisher = b.BookPublisher,
-        //        Category = new CategoryDto { Id = b.Category.Id, Name = b.Category.Name },
-        //        DatePublished = b.DatePublished,
-        //        Description = b.Description,
-        //        Id = b.Id,
-        //        Isbn = b.Isbn,
-        //        Rating = b.Rating,
-        //        Title = b.Title,
-        //        Quotations = b.Quotations.Select(bq => new QuotationDto
-        //        {
-        //            CreatedOn = bq.CreatedOn,
-        //            CurrentPage = bq.CurrentPage,
-        //            Id = bq.Id,
-        //            QuotationText = bq.QuotationText,
-        //            QuotesLike = bq.QuotesLike
-        //        }).ToList(),
-        //        Reviews = b.Reviews.Select(br => new ReviewDto
-        //        {
-        //            Id = br.Id,
-        //            User = new UserDto { FirstName = br.User.FirstName, LastName = br.User.LastName },
-        //            BookStatus = br.BookStatus,
-        //            CreatedOn = br.CreatedOn,
-        //            HeadLine = br.HeadLine,
-        //            Rating = br.Rating,
-        //            ReviewLike = br.ReviewLike,
-        //            ReviewText = br.ReviewText
-        //        }).ToList()
-        //    }));
-
-        //    return returnedDto;
-        //}
-
-        public IDataResult<List<Book>> GetListByCategory(int categoryId)
+        private List<Book> MapToBookForListDto(List<Book> books)
         {
-            return new SuccessDataResult<List<Book>>(_bookDal.GetList(b => b.CategoryId == categoryId).ToList());
+            var returned = new List<Book>(books.Select(b => new Book
+            {
+                Author = new Author
+                {
+                    Name = b.Author.Name,
+                    Id = b.Author.Id,
+                },
+                BookImageUrl = b.BookImageUrl,
+                BookPages = b.BookPages,
+                BookPublisher = b.BookPublisher,
+                Category = new Category { Id = b.Category.Id, Name = b.Category.Name },
+                DatePublished = b.DatePublished,
+                Description = b.Description,
+                Id = b.Id,
+                Isbn = b.Isbn,
+                Rating = b.Rating,
+                Title = b.Title,
+                Quotations = b.Quotations.Select(bq => new Quotation
+                {
+                    CreatedOn = bq.CreatedOn,
+                    CurrentPage = bq.CurrentPage,
+                    Id = bq.Id,
+                    QuotationText = bq.QuotationText,
+                    QuotesLike = bq.QuotesLike
+                }).ToList(),
+                Reviews = b.Reviews.Select(br => new Review
+                {
+                    Id = br.Id,
+                    AppUser = new AppUser { FirstName = br.AppUser.FirstName, LastName = br.AppUser.LastName },
+                    BookStatus = br.BookStatus,
+                    CreatedOn = br.CreatedOn,
+                    HeadLine = br.HeadLine,
+                    Rating = br.Rating,
+                    ReviewLike = br.ReviewLike,
+                    ReviewText = br.ReviewText
+                }).ToList()
+            }));
+
+            return books;
         }
 
-        public IResult Update(Book book)
+        public List<Book> GetListByCategory(int categoryId)
+        {
+            return _bookDal.GetList(b => b.CategoryId == categoryId).ToList();
+        }
+
+        public void Update(Book book)
         {
             _bookDal.Update(book);
-            return new SuccessResult(Messages.BookUpdated);
+            
         }
 
+        public List<Book> GetList()
+        {
+            var result = _bookDal.GetBookWithEagerLoading();
+            var books = MapToBookForListDto(result);
+            return books;
+
+        }
+
+        public bool CheckIsbnAndTitle(string isbn, string title)
+        {
+            var book = _bookDal.Get(b => b.Isbn == isbn && b.Title == title);
+            if (book == null)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

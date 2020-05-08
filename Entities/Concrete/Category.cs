@@ -7,11 +7,15 @@ namespace Entities.Concrete
 {
     public class Category : IEntity
     {
+        public Category()
+        {
+            Books = new HashSet<Book>();
+        }
         public int Id { get; set; }
 
         public string Name { get; set; }
 
-        public virtual ICollection<Book> Books{ get; set; }
+        public  ICollection<Book> Books{ get; set; }
 
     }
 }
