@@ -1,4 +1,5 @@
 
+using System;
 using DataAccess.Concrete.EntityFramework.Contexts;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Builder;
@@ -27,6 +28,17 @@ namespace WebUI
                 opt.Password.RequireLowercase = false;
                 opt.Password.RequireNonAlphanumeric = false;
             }).AddEntityFrameworkStores<BookCycleContext>();
+
+
+            services.ConfigureApplicationCookie(opt =>
+            {
+                opt.Cookie.Name = "BookCycleCookie";
+                opt.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict;
+                opt.Cookie.HttpOnly = true;
+                opt.ExpireTimeSpan = TimeSpan.FromDays(20);
+                opt.Cookie.SecurePolicy = Microsoft.AspNetCore.Http.CookieSecurePolicy.SameAsRequest;
+                opt.LoginPath = "/Home/Index";
+            });
             services.AddControllersWithViews();
 
         }
