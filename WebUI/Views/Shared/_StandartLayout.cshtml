@@ -7,9 +7,13 @@
     <link href="~/lib/bootswatch/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-    <div>
-        @RenderBody()
-    </div>
+<div>
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-danger">@TempData["message"]</div>
+    }
+    @RenderBody()
+</div>
     <script src="~/lib/jquery/jquery.min.js"></script>
     <script src="~/lib/twitter-bootstrap/js/bootstrap.min.js"></script>
     <script src="~/lib/jqueryValidate/jquery.validate.min.js"></script>

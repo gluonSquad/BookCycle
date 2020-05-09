@@ -4,19 +4,27 @@
     Layout = "~/Views/Shared/_StandartLayout.cshtml";
 }
 
-    <form action="Login" method="post" class="mt-5 w-50 mx-auto p-4 shadow">
+    <form asp-action="Login" method="post" class="mt-5 w-50 mx-auto p-4 shadow">
         <div class="form-group">
             <label asp-for="UserName"></label>
-            <span asp-validation-for="UserName"></span>
+            <span asp-validation-for="UserName" class="text-danger"></span>
             <input asp-for="UserName" class="form-control" />
         </div>
 
         <div class="form-group">
             <label asp-for="Password"></label>
-            <span asp-validation-for="Password"></span>
+            <span asp-validation-for="Password" class="text-danger"></span>
             <input asp-for="Password" class="form-control" />
         </div>
+
+        <div class="form-check">
+            <input tyoe="checkbox" asp-for="RememberMe" class="form-check-input" />
+            <label asp-for="RememberMe" class="form-check-label"> </label>
+        </div>
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+
+        </div>
         <a asp-action="Register" class="btn btn-warning btn-sm">Kayıt Ol</a>
-        <input type="submit"  class="btn btn-info btn-sm" value="Giriş Yap"/>
-        
+        <input type="submit" class="btn btn-info btn-sm" value="Giriş Yap" />
+
     </form>
