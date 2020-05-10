@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebUI.CustomValidator;
 using WebUI.EmailServices;
 using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
@@ -33,12 +34,12 @@ namespace WebUI
             {
                 opt.Password.RequireDigit = false;
                 opt.Password.RequireUppercase = false;
-                opt.Password.RequiredLength = 1;
+                opt.Password.RequiredLength = 8;
                 opt.Password.RequireLowercase = false;
-                opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequireNonAlphanumeric = true;
 
                 opt.SignIn.RequireConfirmedEmail = true;
-            }).AddEntityFrameworkStores<BookCycleContext>().AddDefaultTokenProviders();
+            }).AddErrorDescriber<CustomIdentityValidator>().AddEntityFrameworkStores<BookCycleContext>().AddDefaultTokenProviders();
 
 
             services.ConfigureApplicationCookie(opt =>

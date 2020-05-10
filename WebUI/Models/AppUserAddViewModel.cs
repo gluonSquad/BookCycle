@@ -37,11 +37,6 @@ namespace WebUI.Models
         [Required(ErrorMessage = "Soyad alanı boş geçilemez.")]
         public string LastName { get; set; }
 
-        [Display(Name="Yaşınız : ")]
-        [Range(0,120,ErrorMessage = "Aralık dışında bir yaş değeri girdiniz.")]
-        public int Age { get; set; }
-
-        [Display(Name="Sizi Tanıyalım")]
-        public string Description { get; set; }
+   
     }
 }

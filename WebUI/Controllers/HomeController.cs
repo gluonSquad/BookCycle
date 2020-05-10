@@ -85,8 +85,7 @@ namespace WebUI.Controllers
                     Email = model.Email,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    Age = model.Age,
-                    Description = model.Description
+                 
                 };
                var result = await _userManager.CreateAsync(user,model.Password);
 
