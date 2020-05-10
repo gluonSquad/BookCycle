@@ -1,10 +1,151 @@
 ﻿@model AppUserSignInModel
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_StandartLayout.cshtml";
+    Layout = null;
 }
 
-    <form asp-action="Login" method="post" class="mt-5 w-50 mx-auto p-4 shadow">
+<!Doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="~/css/login.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+</head>
+<style>
+    .validation-summary-errors > ul {
+         
+            list-style-type: none;
+    }
+
+    .custom {
+        opacity: 0;
+        position: relative;
+    }
+
+    .custom + label {
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .custom[type="checkbox"] + label::before {
+        content: "";
+        width: 1.4em;
+        height: 1.4em;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        margin-right: 1em;
+        border-radius: 6px;
+        background-color: transparent;
+        -webkit-transition: background 300ms ease-in;
+        transition: background 300ms ease-in;
+    }
+
+    .custom[type="checkbox"] + label::after {
+        content: "\2713";
+        color: white;
+        position: absolute;
+        left: 7px;
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        -webkit-transition: all 300ms ease-in-out;
+        transition: all 300ms ease-in-out;
+    }
+
+    .custom[type="checkbox"]:checked + label::after {
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+
+    .custom[type="checkbox"]:checked + label::before {
+        background-color: #55967E;
+    }
+
+    label {
+        color: #555;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bold;
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="img">
+            <img src="~/img/book.svg" />
+        </div>
+        <div class="login-container">
+            <form asp-action="Login" method="post">
+                <img class="logo" src="~/img/logo.svg" />
+                <h2>HOŞGELDİN</h2>
+                <span asp-validation-for="UserName" style="color: #55967E; display: inline-block;margin-bottom: 5%;"></span>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-user"></i>
+                    </div>
+
+                    <div>
+                        <h5 asp-for="UserName">Kullanıcı Adı</h5>
+                        <input asp-for="UserName" class="input" type="text" />
+                    </div>
+
+                </div>
+                <span asp-validation-for="Password" style="color:#55967E"></span>
+                <div class="input-div two">
+                    <div class="i">
+                        <i class="fas fa-lock"></i>
+                    </div>
+
+                    <div>
+                        <h5 asp-for="Password">Şifre</h5>
+                        <input class="input" asp-for="Password" />
+                    </div>
+
+                </div>
+
+
+                <div style="text-align: left;" class="form-check">
+                    <input class="custom" tyoe="checkbox" asp-for="RememberMe" />
+                    <label asp-for="RememberMe"> </label>
+                </div>
+
+                <div asp-validation-summary="ModelOnly" style="color: #55967e; margin-top: 5%; margin-bottom: 5%;">
+
+                </div>
+
+                <input type="submit" class="btn" value="GİRİŞ YAP" />
+            </form>
+        </div>
+</div>
+<script src="https://kit.fontawesome.com/70e637288c.js" crossorigin="anonymous"></script>
+    <script>
+        const inputs = document.querySelectorAll('.input');
+
+        function focusFunc() {
+            let parent = this.parentNode.parentNode;
+            parent.classList.add("focus");
+        }
+
+        function blurFunc() {
+            let parent = this.parentNode.parentNode;
+            if (this.value == "") {
+                parent.classList.remove('focus');
+            }
+        }
+
+        inputs.forEach(input => {
+            input.addEventListener('focus', focusFunc);
+            input.addEventListener('blur', blurFunc);
+        });
+    </script>
+</body>
+
+</html>
+
+
+
+
+@*<form asp-action="Login" method="post" class="mt-5 w-50 mx-auto p-4 shadow">
         <div class="form-group">
             <label asp-for="UserName"></label>
             <span asp-validation-for="UserName" class="text-danger"></span>
@@ -27,4 +168,4 @@
         <a asp-action="Register" class="btn btn-warning btn-sm">Kayıt Ol</a>
         <input type="submit" class="btn btn-info btn-sm" value="Giriş Yap" />
 
-    </form>
+    </form>*@
