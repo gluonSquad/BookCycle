@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Core.Entities;
 using Microsoft.AspNetCore.Identity;
 
 namespace Entities.Concrete

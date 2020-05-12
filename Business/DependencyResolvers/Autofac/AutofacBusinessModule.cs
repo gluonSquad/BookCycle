@@ -5,6 +5,7 @@ using Autofac;
 using Business.Abstract;
 using Business.Concrete;
 using DataAccess.Abstract;
+using DataAccess.Concrete.Abstract;
 using DataAccess.Concrete.EntityFramework;
 
 namespace Business.DependencyResolvers.Autofac
@@ -21,6 +22,9 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<EfCategoryDal>().As<ICategoryDal>();
             builder.RegisterType<EfQuotationDal>().As<IQuotationDal>();
             builder.RegisterType<EfReviewDal>().As<IReviewDal>();
+
+            builder.RegisterType<AppUserManager>().As<IAppUserService>();
+            builder.RegisterType<EfAppUserDal>().As<IAppUserDal>();
             //builder.RegisterType<EfUserDal>().As<IUserDal>();
         }
     }

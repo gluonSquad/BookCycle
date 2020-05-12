@@ -49,7 +49,7 @@ namespace Business.Concrete
         //    return new SuccessDataResult<List<BookForListDto>>(dto);
         //}
 
-        private List<Book> MapToBookForListDto(List<Book> books)
+        private List<Book> MapToBookForList(List<Book> books)
         {
             var returned = new List<Book>(books.Select(b => new Book
             {
@@ -107,7 +107,7 @@ namespace Business.Concrete
         public List<Book> GetList()
         {
             var result = _bookDal.GetBookWithEagerLoading();
-            var books = MapToBookForListDto(result);
+            var books = MapToBookForList(result);
             return books;
 
         }

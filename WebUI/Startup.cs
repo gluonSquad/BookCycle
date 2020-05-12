@@ -1,6 +1,10 @@
 
 using System;
+using Business.Abstract;
+using Business.Concrete;
 using Castle.Core.Configuration;
+using DataAccess.Concrete.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.EntityFramework.Contexts;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Builder;
@@ -26,6 +30,8 @@ namespace WebUI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            
+            
             services.AddRazorPages()
                 .AddRazorRuntimeCompilation();
           
@@ -37,7 +43,6 @@ namespace WebUI
                 opt.Password.RequiredLength = 8;
                 opt.Password.RequireLowercase = false;
                 opt.Password.RequireNonAlphanumeric = true;
-
                 opt.SignIn.RequireConfirmedEmail = true;
             }).AddErrorDescriber<CustomIdentityValidator>().AddEntityFrameworkStores<BookCycleContext>().AddDefaultTokenProviders();
 
