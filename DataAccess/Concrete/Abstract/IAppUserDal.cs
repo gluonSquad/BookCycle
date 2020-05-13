@@ -9,6 +9,6 @@ namespace DataAccess.Concrete.Abstract
     public interface IAppUserDal 
     {
         List<AppUser> GetNotAdmin();
-        List<AppUser> GetNotAdmin(string searchWord, int currentPage);
+        List<AppUser> GetNotAdmin(out int totalPage,string searchWord, int currentPage);
     }
 }

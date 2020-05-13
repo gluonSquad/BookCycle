@@ -2,9 +2,22 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    string s = (string) ViewBag.SearchedWord;
 }
 
-
+<div>
+    @if (!string.IsNullOrWhiteSpace(s))
+    {
+        <div class="border border-dark p-3 mb-2">
+            <strong>@s</strong> kelimesi için sonuçları görüyorsunuz.
+            <a class="float-right" asp-action="Index">Filtreyi kaldır</a>
+        </div>
+    }
+    <form method="get" asp-action="Index" class="text-right">
+        <input type="text" name="s" class="form-control-sm border border-primary border-top-0 border-left-0 border-right-0 "/>
+        <button type="submit" class="btn btn-primary btn-sm">Ara</button>
+    </form>
+</div>
 
 <table class="table table-hover">
     <thead>
@@ -33,9 +46,20 @@
 <nav aria-label="Page navigation example">
   
     <ul class="pagination justify-content-center">
-        @for (int i = 1; i <= ViewBag.TotalPage; i++)
+        @if (!string.IsNullOrWhiteSpace(s))
         {
-            <li class="page-item @(ViewBag.CurrentPage==i ? "active" : "")"><a class="page-link" asp-action="Index" asp-route-page="@i">@i</a></li>
+            for (int i = 1; i <= ViewBag.TotalPage; i++)
+            {
+                <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")"><a class="page-link" asp-action="Index" asp-route-s="@s" asp-route-page="@i">@i</a></li>
+            }
         }
+        else
+        {
+            for (int i = 1; i <= ViewBag.TotalPage; i++)
+            {
+                <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")"><a class="page-link" asp-action="Index" asp-route-page="@i">@i</a></li>
+            }
+        }
+
     </ul>
 </nav>

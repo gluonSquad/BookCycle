@@ -24,9 +24,9 @@ namespace Business.Concrete
 
         }
 
-        public List<AppUser> GetNotAdmin(string searchWord, int currentPage)
+        public List<AppUser> GetNotAdmin(out int totalPage,string searchWord, int currentPage)
         {
-            return _userDal.GetNotAdmin(searchWord, currentPage);
+            return _userDal.GetNotAdmin(out totalPage , searchWord, currentPage);
         }
-    }
+    } 
 }

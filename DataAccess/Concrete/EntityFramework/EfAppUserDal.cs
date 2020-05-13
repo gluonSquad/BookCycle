@@ -38,7 +38,7 @@ namespace DataAccess.Concrete.EntityFramework
             }).ToList();
 
         }
-        public List<AppUser> GetNotAdmin(string searchWord , int currentPage)
+        public List<AppUser> GetNotAdmin(out int totalPage,string searchWord , int currentPage)
         {
             using var context = new BookCycleContext();
 
@@ -64,11 +64,15 @@ namespace DataAccess.Concrete.EntityFramework
             });
 
 
-            if(!string.IsNullOrWhiteSpace(searchWord))
+            totalPage = (int)Math.Ceiling((double)result.Count() / 3);
+
+            if (!string.IsNullOrWhiteSpace(searchWord))
             {
                 result =result.Where(I =>
                     I.FirstName.ToLower().Contains(searchWord.ToLower()) ||
                     I.LastName.ToLower().Contains(searchWord.ToLower()));
+
+                totalPage = (int)Math.Ceiling((double)result.Count() / 3);
             }
 
             result = result.Skip((currentPage - 1) * 3).Take(3);

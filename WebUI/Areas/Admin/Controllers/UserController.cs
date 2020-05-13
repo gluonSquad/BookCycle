@@ -22,8 +22,13 @@ namespace WebUI.Areas.Admin.Controllers
         {
             TempData["Active"] = "user";
             ViewBag.CurrentPage = page;
-            ViewBag.TotalPage = (int)Math.Ceiling((double)_appUserService.GetNotAdmin().Count() / 3);
-            var users = _appUserService.GetNotAdmin(s, page);
+            //ViewBag.TotalPage = (int)Math.Ceiling((double)_appUserService.GetNotAdmin().Count() / 3);
+            int totalPage;
+
+            ViewBag.SearchedWord = s;
+
+            var users = _appUserService.GetNotAdmin(out totalPage , s, page);
+            ViewBag.TotalPage = totalPage;
             ViewBag.Users = users;
             return View();
         }

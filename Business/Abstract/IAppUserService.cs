@@ -8,6 +8,6 @@ namespace Business.Abstract
     public interface IAppUserService
     {
         List<AppUser> GetNotAdmin();
-        List<AppUser> GetNotAdmin(string searchWord,int currentPage );
+        List<AppUser> GetNotAdmin(out int totalPage, string searchWord, int currentPage);
     }
 }
