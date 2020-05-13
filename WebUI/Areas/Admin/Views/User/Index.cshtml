@@ -13,7 +13,7 @@
             <a class="float-right" asp-action="Index">Filtreyi kaldır</a>
         </div>
     }
-    <form method="get" asp-action="Index" class="text-right">
+    <form method="get" asp-action="Index" class="text-right mt-2 mb-2">
         <input type="text" name="s" class="form-control-sm border border-primary border-top-0 border-left-0 border-right-0 "/>
         <button type="submit" class="btn btn-primary btn-sm">Ara</button>
     </form>
@@ -23,10 +23,12 @@
     <thead>
     <tr>
         <th scope="col">Id</th>
+        <th scope="col">Profil Resmi</th>
         <th scope="col">İsim</th>
         <th scope="col">Soyisim</th>
         <th scope="col">Kullanıcı Adı</th>
         <th scope="col">Email</th>
+        <th scope="col">Kitap Sayısı</th>
     </tr>
     </thead>
     <tbody>
@@ -34,10 +36,12 @@
     {
         <tr>
             <th scope="row">@item.Id</th>
+            <td><img src="~/img/@item.ProfileImageFile" /></td>
             <td>@item.FirstName</td>
             <td>@item.LastName</td>
             <td>@item.UserName</td>
             <td>@item.Email</td>
+            <td><getBookAppUserId app-user-id="@item.Id"></getBookAppUserId></td>
         </tr>
     }
     </tbody>

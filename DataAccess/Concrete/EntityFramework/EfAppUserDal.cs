@@ -64,7 +64,7 @@ namespace DataAccess.Concrete.EntityFramework
             });
 
 
-            totalPage = (int)Math.Ceiling((double)result.Count() / 3);
+            totalPage = (int)Math.Ceiling((double)result.Count() / 5);
 
             if (!string.IsNullOrWhiteSpace(searchWord))
             {
@@ -72,10 +72,10 @@ namespace DataAccess.Concrete.EntityFramework
                     I.FirstName.ToLower().Contains(searchWord.ToLower()) ||
                     I.LastName.ToLower().Contains(searchWord.ToLower()));
 
-                totalPage = (int)Math.Ceiling((double)result.Count() / 3);
+                totalPage = (int)Math.Ceiling((double)result.Count() / 5);
             }
 
-            result = result.Skip((currentPage - 1) * 3).Take(3);
+            result = result.Skip((currentPage - 1) * 5).Take(5);
 
             return result.ToList();
         }

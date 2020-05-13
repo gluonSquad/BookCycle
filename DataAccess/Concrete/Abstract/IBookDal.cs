@@ -11,5 +11,6 @@ namespace DataAccess.Abstract
     {
         //List<Book> MapToBookForList();
         List<Book> GetBookWithEagerLoading();
+      
     }
 }

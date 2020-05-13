@@ -8,7 +8,7 @@ namespace Entities.Concrete
 {
     public class AppUser : IdentityUser<int>
     {
-        public string ProfileImageFile { get; set; }
+        public string ProfileImageFile { get; set; } = "default.png";
 
         public string Description { get; set; }
 
