@@ -9,6 +9,7 @@ using System.Xml.Linq;
 using Business.Abstract;
 using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -17,6 +18,7 @@ using WebUI.Areas.Admin.Models;
 namespace WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class BookController : Controller
     {
         private IBookService _bookService;

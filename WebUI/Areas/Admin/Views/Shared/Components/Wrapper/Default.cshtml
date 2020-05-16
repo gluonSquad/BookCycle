@@ -1,0 +1,16 @@
+﻿@model WebUI.Areas.Admin.Models.AppUserListViewModel
+
+@{
+    string active = TempData["Active"]?.ToString();
+}
+<div class="border-right" id="sidebar-wrapper">
+    <div class="sidebar-heading">
+        <img src="~/img/@Model.Picture" alt="@Model.UserName" class="img-thumbnail" style="height: 10rem !important;" />
+    </div>
+    <div class="list-group list-group-flush">
+        <a asp-action="AddBook" asp-controller="Book" class="list-group-item list-group-item-action @(active=="book" ?  "active" : "" )"><i class="fas fa-book mr-2"></i>Kitap İşlemleri</a>
+        <a asp-action="Index" asp-controller="User" class="list-group-item list-group-item-action @(active=="user" ? "active" : "")"><i class="fas fa-users mr-2"></i>Üye işlemleri</a>
+        <a asp-action="Index" asp-controller="Profile" class="list-group-item list-group-item-action @(active=="profile" ? "active" : "")"><i class="fas fa-user mr-2"></i>Profilim</a>
+        <a asp-area="" asp-action="Logout" asp-controller="Home" class="list-group-item list-group-item-action @(active=="profile" ? "active" : "")"><i class="fas fa-sign-out-alt mr-2"></i>Çıkış Yap</a>
+    </div>
+</div>

@@ -1,0 +1,88 @@
+﻿@model WebUI.Areas.Admin.Models.AppUserListViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@if (TempData["message"] != null)
+{
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+          @TempData["message"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+<form asp-action="Index" method="post" class="w-75 mx-auto p-3" enctype="multipart/form-data">
+    <input type="hidden" asp-for="@Model.Id" />
+    <div class="form-group">
+        <label asp-for="@Model.UserName"></label>
+        <span asp-validation-for="@Model.UserName" class="text-danger"></span>
+        <input asp-for="@Model.UserName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.FirstName"></label>
+        <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+        <input asp-for="@Model.FirstName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.LastName"></label>
+        <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+        <input asp-for="@Model.LastName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Email"></label>
+        <span asp-validation-for="@Model.Email" class="text-danger"></span>
+        <input asp-for="@Model.Email" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Description"></label>
+        <span asp-validation-for="@Model.Description" class="text-danger"></span>
+        <textarea style="resize: none" asp-for="@Model.Description" class="form-control"></textarea>
+    </div>
+
+
+    <div class="form-group mt-2">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+                <div>
+                    <h5 class="text-center">Şu an ki resminiz : </h5>
+                    <img src="~/img/@Model.Picture" class="w-100" style="height: 15rem !important;" alt="@Model.UserName" />
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div id="areaPreview" style="display: none !important;">
+                    <h5 class="text-center">Seçtiğiniz resim : </h5>
+                    <img id="photoPreview" src="" class="w-100" alt="" style="height: 15rem !important;" />
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-12">
+                <label>Resim Seç : </label>
+                <input type="file" class="form-control-file" name="photo" id="Photo" />
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-info btn-sm mt-2">
+        <i class="fas fa-check mr-2"></i>
+        Kaydet
+    </button>
+</form>
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#Photo").change(function (e) {
+                $("#areaPreview").show();
+                $("#photoPreview").attr('src', URL.createObjectURL(e.target.files[0]));
+            });
+        })
+    </script>
+}

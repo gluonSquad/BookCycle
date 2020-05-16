@@ -1,6 +1,4 @@
-﻿@{
-    string active = TempData["Active"]?.ToString();
- }
+﻿
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +19,7 @@
     <!-- Custom styles for this template -->
 
     <link href="~/lib/template-css/simple-sidebar.css" rel="stylesheet" />
-
+    <link href="~/lib/fontAwesome/css/all.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -29,17 +27,7 @@
     <div class="d-flex" id="wrapper">
 
         <!-- Sidebar -->
-        <div class="border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading">Admin</div>
-            <div class="list-group list-group-flush">
-                <a asp-action="AddBook" asp-controller="Book"  class="list-group-item list-group-item-action @(active=="book" ?  "active" : "" )">Kitap İşlemleri</a>
-                <a asp-action="Index" asp-controller="User" class="list-group-item list-group-item-action @(active=="user" ? "active" : "")">Üye işlemleri</a>
-                <a href="#" class="list-group-item list-group-item-action">Overview</a>
-                <a href="#" class="list-group-item list-group-item-action">Events</a>
-                <a href="#" class="list-group-item list-group-item-action">Profile</a>
-                <a href="#" class="list-group-item list-group-item-action">Status</a>
-            </div>
-        </div>
+        @await Component.InvokeAsync("Wrapper")
         <!-- /#sidebar-wrapper -->
         <!-- Page Content -->
         <div id="page-content-wrapper">
@@ -74,9 +62,9 @@
                     </div>*@
             </nav>
 
-            
-                @RenderBody()
-      
+
+            @RenderBody()
+
 
         </div>
         <!-- /#page-content-wrapper -->
@@ -86,15 +74,16 @@
     <!-- Bootstrap core JavaScript -->
     <script src="~/lib/jquery/jquery.min.js"></script>
     <script src="~/lib/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
- 
 
-<!-- Menu Toggle Script -->
+    <script src="~/lib/fontAwesome/js/all.min.js"></script>
+
+    <!-- Menu Toggle Script -->
     <script>
         $("#menu-toggle").click(function (e) {
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });</script>
-
+    @RenderSection("scripts", required: false)
 </body>
 
 </html>
