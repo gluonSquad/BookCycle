@@ -25,13 +25,15 @@ namespace WebUI.Areas.Admin.Controllers
         private IConfiguration configuration;
         private ICategoryService _categoryService;
         private IAuthorService _authorService;
+        private IFileService _fileService;
 
-        public BookController(IBookService bookService, IConfiguration configuration, ICategoryService categoryService, IAuthorService authorService)
+        public BookController(IBookService bookService, IConfiguration configuration, ICategoryService categoryService, IAuthorService authorService, IFileService fileService)
         {
             _bookService = bookService;
             this.configuration = configuration;
             _categoryService = categoryService;
             _authorService = authorService;
+            _fileService = fileService;
         }
 
         public IActionResult Index()
@@ -39,9 +41,7 @@ namespace WebUI.Areas.Admin.Controllers
             List<Book> books = _bookService.GetList();
 
             List<BookListViewModel> model = new List<BookListViewModel>();
-          
             
-
             foreach (var book in books)
             {
                 
@@ -64,6 +64,21 @@ namespace WebUI.Areas.Admin.Controllers
                 model.Add(bookModel);
             }
             return View(model);
+        }
+
+
+        public IActionResult GetExcel()
+        {
+            List<Book> books = _bookService.GetList();
+         
+            return File(_fileService.TransferExcel(books), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",Guid.NewGuid()+".xlsx");
+        }
+        public IActionResult GetPdf()
+        {
+            List<Book> books = _bookService.GetList();
+
+            var path = _fileService.TransferPdf(books);
+            return File(path, "application/pdf", Guid.NewGuid() + ".pdf");
         }
 
 
