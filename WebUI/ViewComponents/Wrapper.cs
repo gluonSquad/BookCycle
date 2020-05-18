@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebUI.Areas.Admin.Models;
 
-namespace WebUI.Areas.Admin.ViewComponents
+namespace WebUI.ViewComponents
 {
     public class Wrapper : ViewComponent
     {
@@ -27,7 +27,16 @@ namespace WebUI.Areas.Admin.ViewComponents
             model.UserName = user.UserName;
             model.Description = user.Description;
             model.Picture = user.ProfileImageFile;
-            return View(model);
+
+            var roles = _userManager.GetRolesAsync(user).Result;
+            if (roles.Contains("Admin"))
+            {
+                return View(model);
+            }
+
+            return View("Member", model);
+
+           
         }
     }
 }

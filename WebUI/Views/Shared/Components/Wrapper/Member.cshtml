@@ -1,0 +1,72 @@
+﻿@model WebUI.Areas.Admin.Models.AppUserListViewModel
+
+@{
+    string active = TempData["Active"]?.ToString();
+}
+
+<style>
+    .active {
+        background-color: #E4E7EC;
+        border-radius: 50px;
+        cursor: pointer;
+    }
+    a:hover {
+        text-decoration: none;
+    }
+    
+</style>
+
+<div class="f-ac-center LogoText">
+    <img class="mr-3" src="~/img/logo-2.svg">
+    <h2 class="headingText">BookCycle</h2>
+</div>
+<div class="f-jc-center menu">
+    <div class="f-ac-center pl-3 pt-2 pb-2 hoverclass mt-3">
+        <img class="mr-3" src="~/img/home.svg">
+        <h4 class="headingText">Anasayfa</h4>
+
+    </div>
+    <div class="f-ac-center pl-3 pt-2 pb-2 hoverclass mt-3">
+
+        <img class="mr-3" src="~/img/books.svg" />
+
+        <h4 class="headingText">Kitaplar</h4>
+
+    </div>
+
+    <div class="f-ac-center pl-3 pt-2 pb-2 hoverclass mt-3">
+
+        <img class="mr-3" src="~/img/comments.svg" />
+
+        <h4 class="headingText">Yorumlar</h4>
+
+    </div>
+
+    <a class="f-ac-center mt-3 pl-3 pt-2 pb-2 hoverclass">
+
+        <img class="mr-3" src="~/img/quote.svg" />
+
+        <h4 class="headingText">Alıntılar</h4>
+
+    </a>
+
+
+    <a asp-action="Index" asp-controller="Profile" class="f-ac-center mt-3 pl-3 pt-2 pb-2 hoverclass  @(active=="profile" ? "active" : "")">
+
+        <img class="mr-3" src="~/img/profile.svg" />
+
+        <h4 class="headingText">Profil</h4>
+
+    </a>
+    <button class="mt-3 p-3 btn btn-success btn-block">Yorum</button>
+
+    <button class="mt-3 p-3 btn btn-success btn-block">Alıntı</button>
+
+    <div class="f-ac-center f-jc-center">
+        <button style="border: none;" class="mb-3 btn-absolute btn btn-primary btn-block">
+            <img style="border-radius: 50%; float:left" height="40" width="40" src="~/img/@Model.Picture">
+            <span style="color:white; font-weight: bold; display: inline-block;">@Model.UserName</span>
+            <span style="display:inline-block">@Model.FirstName  @Model.LastName</span>
+        </button>
+    </div>
+</div>
