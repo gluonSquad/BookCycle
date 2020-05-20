@@ -1,95 +1,104 @@
-﻿@model WebUI.Areas.Admin.Models.AppUserListViewModel
+﻿@model WebUI.Areas.Member.Models.CustomModel
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
 }
 
-<!doctype html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Twitter Card</title>
-    <link rel="stylesheet" href="css/estilos.css">
+
     <link href='https://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
     <link href="https://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+   
+
 </head>
-<body>
+
 <style>
     * {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box; }
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
 
 
 
-header {
-  display: block;
-  overflow: hidden;
-  position: relative;
-  padding-bottom: 2em;
- }
+    header {
+        display: block;
+        overflow: hidden;
+        position: relative;
+        padding-bottom: 2em;
+    }
 
-.container {
-  width: 100%;
-    padding-bottom: 1.5em;
-    background-color: white;
-    padding: 0;
-    
-}
+    .container {
+        width: 100%;
+        padding-bottom: 1.5em;
+        background-color: white;
+        padding: 0;
+    }
 
-.bg {
-  border-bottom: 8px solid #55967E;
-    width: 100%;
-    height: 450px;
-}
+    .bg {
+        border-bottom: 8px solid #55967E;
+        width: 100%;
+        height: 450px;
+    }
 
     .bio:hover > .desc {
-  cursor: pointer;
-  opacity: 1; }
-
-.avatarcontainer {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  margin: auto;
-  width: 120px;
-  height: 120px;
-  display: block; }
-    
-    .avatar {
-  width: 100%;
-  border: 8px solid #55967E;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
-  border-radius: 50%;
-  overflow: hidden;
-  position: relative; }
-  
-
-.data {
-  margin-top: .6em;
-  color: #81878b; }
-  .data li {
-    width: 32%;
-    text-align: center;
-    display: inline-block;
-    font-size: 1.5em;
-    font-family: 'Lato';
-    border-right: solid 1px #bdc3c7; }
-    .data li:last-child {
-      border: none; }
-    .data li span {
-      display: block;
-      text-transform: uppercase;
-      font-family: 'Quicksand';
-      font-size: .5em;
-      margin-top: .6em;
-      font-weight:700;
+        cursor: pointer;
+        opacity: 1;
     }
+
+    .avatarcontainer {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        margin: auto;
+        width: 120px;
+        height: 120px;
+        display: block;
+    }
+
+    .avatar {
+        width: 100%;
+        border: 8px solid #55967E;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        border-radius: 50%;
+        overflow: hidden;
+        position: relative;
+    }
+
+
+    .data {
+        margin-top: .6em;
+        color: #81878b;
+    }
+
+        .data li {
+            width: 32%;
+            text-align: center;
+            display: inline-block;
+            font-size: 1.5em;
+            font-family: 'Lato';
+            border-right: solid 1px #bdc3c7;
+        }
+
+            .data li:last-child {
+                border: none;
+            }
+
+            .data li span {
+                display: block;
+                text-transform: uppercase;
+                font-family: 'Quicksand';
+                font-size: .5em;
+                margin-top: .6em;
+                font-weight: 700;
+            }
 
     .desc {
         display: flex;
@@ -118,21 +127,24 @@ header {
         -o-transition-timing-function: ease-in;
         transition-timing-function: ease-in;
     }
-  .desc h3 {
-     
-    font-family: "Lato";
-    font-size: 1.2em;
-    margin-bottom: .5em; }
-  .desc p {
-    font-size: .9em;
-    font-family: 'Quicksand';
-    line-height: 1.5em; }
+
+        .desc h3 {
+            font-family: "Lato";
+            font-size: 1.2em;
+            margin-bottom: .5em;
+        }
+
+        .desc p {
+            font-size: .9em;
+            font-family: 'Quicksand';
+            line-height: 1.5em;
+        }
 
     .follow {
         margin: 1.5em auto 0 auto;
         background-color: #55967E;
         width: 150px;
-        color: white;
+        color: white !important;
         font-family: "Lato";
         text-align: center;
         padding: 1em;
@@ -154,24 +166,33 @@ header {
         -o-transition-timing-function: ease;
         transition-timing-function: ease;
     }
-  .follow:hover {
-    background-color: #167abd;
-    cursor: pointer; }
+
+        .follow:hover {
+            background-color: #2f973e;
+            cursor: pointer;
+        }
+    .alert-success {
+        background-color: #55967E;
+        color: white;
+    }
+    #deneme:hover {
+        background-color: #2f973e !important;
+    }
 </style>
 
 <div class="container">
     <header>
         <div class="bio">
-            <img src="https://resizeimage.net/mypic/X83LLdpJlfzFQwJM/Ihyc1/photo-1507842217343-583bb7270b.jpg" alt="background" class="bg">
+            <img src="~/img/kutuphane.jpg" alt="background" class="bg">
             <div class="desc">
-                <h3>@Model.UserName</h3>
-                <p>@Model.Description</p>
+                <h3>@Model.Member.UserName</h3>
+                <p>@Model.Member.Description</p>
             </div>
         </div>
 
         <div class="avatarcontainer">
-            <img src="~/img/@Model.Picture" alt="avatar" class="avatar">
-           
+            <img style="width: 120px; height: 120px;" src="~/img/@Model.Member.Picture" alt="avatar" class="avatar">
+
         </div>
 
 
@@ -179,7 +200,7 @@ header {
 
     <div class="content">
         <div class="data">
-            <p style="text-align: center; text-transform: uppercase;font-weight: bold">@Model.FirstName @Model.LastName</p>
+            <p style="text-align: center; text-transform: uppercase;font-weight: bold">@Model.Member.FirstName @Model.Member.LastName</p>
             <ul>
                 <li>
                     2,934
@@ -195,15 +216,150 @@ header {
                 </li>
             </ul>
         </div>
-        
+
+        @if (TempData["sa"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+                <strong>@TempData["sa"]</strong> 
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
         <div style="text-align: center">
-            <div style="display: inline-block" class="follow"> <img class="icon-twitter"> İncelemeler</div>
-            <div style="display: inline-block;" class="follow"> Alıntılar</div>
+            <a style="display: inline-block" class="follow"> <img class="icon-twitter"> İncelemeler</a>
+            <a style="display: inline-block;" class="follow"> Alıntılar</a>
+            <button style="border: none; outline: none;" type="button" class="follow" data-toggle="modal" data-target="#exampleModal">Profili Düzenle</button>
         </div>
-     
+
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form1" method="post" enctype="multipart/form-data">
+                            <input type="hidden" asp-for="@Model.Member.Id" />
+                            <input type="hidden" asp-for="@Model.Member.UserName" />
+
+                            <div class="form-group">
+                                <label asp-for="@Model.Member.FirstName"></label>
+                                <span asp-validation-for="@Model.Member.FirstName" class="text-danger"></span>
+                                <input asp-for="@Model.Member.FirstName" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.Member.LastName"></label>
+                                <span asp-validation-for="@Model.Member.LastName" class="text-danger"></span>
+                                <input asp-for="@Model.Member.LastName" class="form-control" />
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="@Model.Member.Email"></label>
+                                <span asp-validation-for="@Model.Member.Email" class="text-danger"></span>
+                                <input asp-for="@Model.Member.Email" class="form-control" />
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="@Model.Member.Description"></label>
+                                <span asp-validation-for="@Model.Member.Description" class="text-danger"></span>
+                                <textarea style="resize: none" asp-for="@Model.Member.Description" class="form-control"></textarea>
+                            </div>
+
+
+                            <div class="form-group mt-2">
+                                <div class="row">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-4">
+                                        <div>
+                                            <h5 class="text-center">Şu an ki resminiz : </h5>
+                                            <input type="hidden" asp-for="@Model.Member.Picture" />
+                                            <img src="~/img/@Model.Member.Picture" style="width: 128px; height: 128px;" alt="@Model.Member.UserName" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div id="areaPreview" style="display: none !important;">
+                                            <h5 class="text-center">Seçtiğiniz resim : </h5>
+                                            <img id="photoPreview" src="" style="width: 128px; height: 128px;" alt="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-12">
+                                        <label asp-for="MyFile"></label>
+                                        <input asp-for="MyFile" class="form-control-file" id="Photo">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                                <button style="background-color:#55967E" id="deneme" type="submit" class="btn btn-info btn-sm mt-2">
+                                    <i class="fas fa-check mr-2"></i>
+                                    Kaydet
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
     </div>
 
 </div>
 
-</body>
-</html>
+
+@section scripts{
+    <script src="~/lib/jqueryValidate/jquery.validate.min.js"></script>
+    <script src="~/lib/jqueryUnob/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript">
+
+
+        $("#Photo").change(function(e) {
+            $("#areaPreview").show();
+
+
+            $("#photoPreview").attr('src', URL.createObjectURL(e.target.files[0]));
+
+
+        });
+
+
+        $("#submitForm").on('click', function (evt) {
+            evt.preventDefault();
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Index","Profile")",
+                data: new FormData(document.forms[0]),
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    console.log(data);
+                    alert("başarılı");
+                }
+            })
+
+        })
+
+        $('#exampleModal').on('show.bs.modal',
+            function(event) {
+                var button = $(event.relatedTarget) // Button that triggered the modal
+                var recipient = button.data('whatever') // Extract info from data-* attributes
+// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+                var modal = $(this)
+                modal.find('.modal-title').text('Profili Düzenle');
+            });
+    </script>
+
+   
+
+}

@@ -60,10 +60,10 @@ namespace WebUI.Areas.Admin.Controllers
                 }
 
                 updatedUser.UserName = model.UserName;
-                updatedUser.FirstName = model.UserName;
-                updatedUser.LastName = model.UserName;
-                updatedUser.Email = model.UserName;
-                updatedUser.Description = model.UserName;
+                updatedUser.FirstName = model.FirstName;
+                updatedUser.LastName = model.LastName;
+                updatedUser.Email = model.Email;
+                updatedUser.Description = model.Description;
                 var result = await _userManager.UpdateAsync(updatedUser);
                 if (result.Succeeded)
                 {
