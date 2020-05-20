@@ -20,5 +20,10 @@ namespace Business.Concrete
         {
             _categoryDal.Add(category);
         }
+
+        public Category ExitsCategory(string categoryName)
+        {
+            return _categoryDal.Get(a => a.Name == categoryName);
+        }
     }
 }

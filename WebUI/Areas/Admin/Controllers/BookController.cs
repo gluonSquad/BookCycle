@@ -80,17 +80,11 @@ namespace WebUI.Areas.Admin.Controllers
             var path = _fileService.TransferPdf(books);
             return File(path, "application/pdf", Guid.NewGuid() + ".pdf");
         }
-
-
-
         public IActionResult AddBook()
         {
             TempData["Active"] = "book"; 
             return View( new BookAddViewModel());
         }
-
-      
-
 
         [HttpPost]
         public IActionResult GetGoodReadUriAndAddBook(string title, string author)
@@ -116,14 +110,9 @@ namespace WebUI.Areas.Admin.Controllers
             {
                 return Json(null);
             }
-
-
-          
-
             XDocument xmlResponsesData = XDocument.Parse(responseData);
             XElement goodreadsRoot = xmlResponsesData.Element("GoodreadsResponse");
             XElement bookRootElement = goodreadsRoot.Element("book");
-
             XElement titleElement = bookRootElement.Element("title");
             XElement isbnElement = bookRootElement.Element("isbn13");
             XElement descriptionElement = bookRootElement.Element("description");
@@ -133,7 +122,6 @@ namespace WebUI.Areas.Admin.Controllers
             XElement publisherYear = bookRootElement.Element("publication_year");
             XElement publisherMonth = bookRootElement.Element("publication_month");
             XElement publisherDay = bookRootElement.Element("publication_day");
-
             string bookTitleValue = titleElement.Value;
             string bookIsbnValue = isbnElement.Value;
             string bookDescriptionValue = descriptionElement.Value;
@@ -152,18 +140,25 @@ namespace WebUI.Areas.Admin.Controllers
             }else
                 bookImg = bookImgValue;
 
-
             var bookPublisher = publisherElement.Value;
             var bookPublisherDate = (bookPublisherMonthValue != "" && bookPublisherDayValue != "" ?   String.Join("-", bookPublisherYearValue, bookPublisherMonthValue,
                 bookPublisherMonthValue) : bookPublisherYearValue);
             var cleanDescription = Regex.Replace(bookDescriptionValue, "<[^>]*>", string.Empty);
-
-        
             Category categoryEntity = new Category
             {
-                Name = "deneme"
+                Name = "Kitap"
             };
-            _categoryService.Add(categoryEntity);
+            var checkCategory = _categoryService.ExitsCategory(categoryEntity.Name);
+            if (checkCategory == null)
+            {
+                _categoryService.Add(categoryEntity);
+            }
+
+            else
+            {
+                categoryEntity = checkCategory;
+            }
+         
             Author authorEntity = new Author
             {
                 Name = author

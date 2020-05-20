@@ -1,8 +1,105 @@
-﻿
+﻿@model WebUI.Areas.Member.Models.BookAddViewModel
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
 }
+<link href="~/lib/swal/bootstrap-sweetalert/sweetalert.min.css" rel="stylesheet" />
 
-<h1>Index</h1>
+<style>
+    #btn-primary:active {
+        border-color: #2f973e;
+    }
+</style>
+
+<div  style="margin: 0;background-color: #364C71; ; color: white; border: none; border-radius: 0;" class="alert alert-secondary text-center" role="alert">
+    Anasayfa
+</div>
+
+<div style="border-radius: 0; background-color: #364C71;" class="card text-center">
+    <div  class="card-body">
+
+        <img style="height: 160px; width: 160px;" src="~/img/logo.svg" />
+        <h5  style="color: white;" class="card-title">Kitaplığımızın Büyümesinde Destek Ol </h5>
+        <p style="color: white;" class="card-text">Kitap adı ve yazar bilgisini girdiğiniz taktirde bu kitabı bünyemizde depolayacağız bu yüzden daha fazla kitaba erişim sağlayabilmek için aşağıdaki butona tıklayarak kitap ekleyebilirsiniz.</p>
+        <button id="bookButton" style="background-color: #55967E; border: none;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+            Kitap Ekle
+        </button>
+    </div>
+  
+</div>
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Kitap Ekle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="w-75 mx-auto p-3">
+                    <div class="form-group">
+                        <label asp-for="Title"></label>
+                        <input asp-for="Title" id="title" type="text" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Author"></label>
+                        <input asp-for="Author" id="author" type="text" class="form-control" />
+                        <span asp-validation-for="Author" class="text-danger"></span>
+                    </div>
+                   
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                <button style="background-color:#55967E" type="submit" class="btn btn-info btn-sm" id="addBook">Ekle</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script src="~/lib/swal/bootstrap-sweetalert/sweetalert.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $("#addBook").click(function () {
+            author = $("#author").val();
+            title = $("#title").val();
+            $.ajax({
+                type: "Post",
+                url: "/Member/Home/GetGoodReadUriAndAddBook",
+                data: { author: author, title: title },
+                success: function (data) {
+                    var gelenObje = jQuery.parseJSON(data);
+
+                    if (gelenObje == true) {
+                        $("#author").val("");
+                        $("#title").val("");
+                        swal("Kitap başarıyla eklendi!", "Destek olduğunuz için teşekkürler", "success")
+                       
+                    } if (gelenObje == false) {
+                        $("#author").val("");
+                        $("#title").val("");
+                        swal("Kitap eklenemedi!", "Bu kitap daha önceden eklenmiştir", "error")
+                    } if (gelenObje == null) {
+                        $("#author").val("");
+                        $("#title").val("");
+                        swal("Kitap bulunamadı", "Böyle bir kitap adı veya yazar bulunamadı", "warning")
+                    }
+
+                },
+
+
+            })
+        })
+    })
+</script>
 
