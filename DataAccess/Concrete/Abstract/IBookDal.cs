@@ -11,6 +11,6 @@ namespace DataAccess.Abstract
     {
         //List<Book> MapToBookForList();
         List<Book> GetBookWithEagerLoading();
-      
+        List<Book> GetBookList(out int totalPage, string searchWord, int currentPage);
     }
 }

@@ -26,13 +26,13 @@
         <h4 class="headingText">Anasayfa</h4>
 
     </a>
-    <div class="f-ac-center pl-3 pt-2 pb-2 hoverclass mt-3">
+    <a  asp-action="Index" asp-controller="Book" class="f-ac-center pl-3 pt-2 pb-2 hoverclass mt-3 @(active=="book" ? "active" : "")">
 
         <img class="mr-3" src="~/img/books.svg" />
 
         <h4 class="headingText">Kitaplar</h4>
 
-    </div>
+    </a>
 
     <div class="f-ac-center pl-3 pt-2 pb-2 hoverclass mt-3">
 

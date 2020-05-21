@@ -1,0 +1,93 @@
+﻿
+
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
+    string s = (string)ViewBag.SearchedWord;
+}
+
+
+<style>
+    .card-group > .card {
+        flex: 1 0 25%;
+        margin-bottom: 10px;
+    }
+
+        .card-group > .card:nth-child(3n-1) {
+            margin-right: 30px;
+            margin-left: 30px;
+        }
+</style>
+<div style="margin: 0;background-color: #364C71; ; color: white; border: none; border-radius: 0;" class="alert alert-secondary text-center" role="alert">
+    Kitaplar
+</div>
+<div>
+    @if (!string.IsNullOrWhiteSpace(s))
+    {
+        <div class="border  p-3 mb-2">
+            <strong style="color:#55967E">@s</strong> kelimesi için sonuçları görüyorsunuz.
+            <a style="color : #55967E" class="float-right" asp-action="Index">Filtreyi kaldır</a>
+        </div>
+    }
+    <form method="get" asp-action="Index" class="text-right mt-2 mb-2">
+        <input placeholder="Kitap Adı veya Yazar Adı Girin" style="border-bottom: 1px solid #364C71 !important;" type="text" name="s" class="form-control-sm border border-primary border-top-0 border-left-0 border-right-0 " />
+        <button style="border:none;" type="submit" class="btn btn-primary btn-sm">Ara</button>
+    </form>
+</div>
+
+<div class="card-group">
+
+    @foreach (var item in ViewBag.Books)
+    {
+        <div class="card">
+            <img style="width: 160px; height: 250px; margin: auto;" class="img-fluid" src="@item.BookImageUrl" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title text-center">@item.Title - @item.Author.Name</h5>
+                <p class="card-text"><small class="text-muted">Isbn : @item.Isbn</small></p>
+                <p class="card-text"><small class="text-muted">Sayfa Sayısı : @item.BookPages</small></p>
+                <p class="card-text"><small class="text-muted">Yayın Evi : @item.BookPublisher</small></p>
+                <p class="card-text"><small class="text-muted">Yayın Tarihi: @item.DatePublished</small></p>
+                <p class="card-text"><small class="text-muted">Türü : @item.Category.Name</small></p>
+            </div>
+            <div class="card-footer text-muted">
+                <a style="background-color: #55967E; color: white; font-size: 15px; border: none;" class="btn btn-primary btn-sm">
+                    Kitaplığa Ekle
+                </a>
+                <a style="        color: white;
+        font-size: 15px;
+        border: none;" class="btn btn-info btn-sm">
+                    İncele
+                </a>
+                <a style="color: white; font-size: 15px; border: none;" class="btn btn-secondary btn-sm">
+                    Alıntı
+                </a>
+            </div>
+
+        </div>
+    }
+</div>
+
+
+<nav aria-label="Page navigation example">
+
+    <ul class="pagination justify-content-center">
+        @if (!string.IsNullOrWhiteSpace(s))
+        {
+            for (int i = 1; i <= ViewBag.TotalPage; i++)
+            {
+                <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")"><a style="background-color: #364C71 !important; border: 1px solid white !important; color: white;"style="background-color: #364C71 !important; border: 1px solid white !important; color: white;" class="page-link" asp-action="Index" asp-route-s="@s" asp-route-page="@i">@i</a></li>
+            }
+        }
+        else
+        {
+            for (int i = 1; i <= ViewBag.TotalPage; i++)
+            {
+                <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")"><a  style="background-color: #364C71 !important; border: 1px solid white !important; color: white;" class="page-link" asp-action="Index" asp-route-page="@i">@i</a></li>
+            }
+        }
+
+    </ul>
+</nav>
+

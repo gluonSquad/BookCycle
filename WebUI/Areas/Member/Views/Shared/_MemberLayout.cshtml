@@ -84,19 +84,25 @@
         position: absolute;
         bottom: 0;
     }
+    .fixedmen {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        z-index: 1;
+    }
 </style>
 
 
 <body>
 
     <div class="row area">
-        <div class="f-jc-center col-3 col-sm-3">
+        <div class="fixedmen f-jc-center col-3 col-sm-3">
             <div class="spiral pl-3 pr-3">
                 @await Component.InvokeAsync("Wrapper")
 
             </div>
         </div>
-        <div style="background-color:yellow; padding: 0; border-right: 1px solid black; border-left: 1px solid black;" class="col-6 col-sm-6">@RenderBody()</div>
+        <div style="margin-left: auto; padding: 0; border-right: 1px solid black; border-left: 1px solid black;" class="col-6 col-sm-6">@RenderBody()</div>
         <div style="background-color:blue;" class="col-3 col-sm-3">Değişen Alan</div>
     </div>
     <!-- /#wrapper -->

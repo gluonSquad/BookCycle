@@ -121,5 +121,10 @@ namespace Business.Concrete
             }
             return false;
         }
+
+        public List<Book> GetBookList(out int totalPage, string searchWord, int currentPage)
+        {
+            return _bookDal.GetBookList(out totalPage, searchWord, currentPage);
+        }
     }
 }

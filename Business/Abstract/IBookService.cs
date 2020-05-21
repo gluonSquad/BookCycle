@@ -20,7 +20,7 @@ namespace Business.Abstract
         void Update(Book book);
 
         public bool CheckIsbnAndTitle(string isbn, string title);
-
+        List<Book> GetBookList(out int totalPage, string searchWord, int currentPage);
 
     }
 }

@@ -32,6 +32,58 @@ namespace DataAccess.Concrete.EntityFramework
             }
         }
 
+        public List<Book> GetBookList(out int totalPage, string searchWord, int currentPage)
+        {
+            using var context = new BookCycleContext();
+
+
+            var result = context.Books.Join(context.Categories, book => book.CategoryId, category => category.Id,
+                (resultBook, resultCategory) => new
+                {
+                    book = resultBook,
+                    category = resultCategory
+                }).Join(context.Authors, twoTableResult => twoTableResult.book.AuthorId, author => author.Id,
+                (resultTable, resultAuthor) => new
+                {
+                    book = resultTable.book,
+                    category = resultTable.category,
+                    author = resultAuthor
+                }).Select(I => new Book()
+            {
+                Id = I.book.Id,
+                Isbn = I.book.Isbn,
+                CategoryId = I.book.CategoryId,
+                AuthorId = I.book.AuthorId,
+                Title = I.book.Title,
+                BookPublisher = I.book.BookPublisher,
+                BookPages = I.book.BookPages,
+                BookImageUrl = I.book.BookImageUrl,
+                DatePublished = I.book.DatePublished,
+                Description = I.book.Description,
+                Rating = I.book.Rating,
+                Author = I.book.Author,
+                Category = I.book.Category,
+                CreatedOn = I.book.CreatedOn,
+
+            });
+            totalPage = (int)Math.Ceiling((double)result.Count() / 12);
+
+            if (!string.IsNullOrWhiteSpace(searchWord))
+            {
+                result = result.Where(I =>
+                    I.Title.ToLower().Contains(searchWord.ToLower()) ||
+                    I.Author.Name.ToLower().Contains(searchWord.ToLower()));
+
+                totalPage = (int)Math.Ceiling((double)result.Count() / 12);
+            }
+
+            result = result.Skip((currentPage - 1) * 12).Take(12);
+
+            return result.ToList();
+        }
+
+     
+
        
     }
 }
