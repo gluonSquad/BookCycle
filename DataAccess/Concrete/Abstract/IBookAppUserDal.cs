@@ -8,5 +8,7 @@ namespace DataAccess.Concrete.Abstract
     public interface IBookAppUserDal
     {
         public List<Book> GetByAppUserId(int appUserId);
+        public int AddBookAppUser(int bookId, int appUserId);
+
     }
 }

@@ -20,5 +20,10 @@ namespace Business.Concrete
         {
             return _bookAppUserDal.GetByAppUserId(appUserId);
         }
+
+        public int AddBookAppUser(int bookId, int appUserId)
+        {
+            return _bookAppUserDal.AddBookAppUser(bookId , appUserId);
+        }
     }
 }

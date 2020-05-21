@@ -8,5 +8,6 @@ namespace Business.Abstract
     public interface IBookAppUserService
     {
         List<Book> GetByAppUserId(int appUserId);
+        int AddBookAppUser(int bookId, int appUserId);
     }
 }

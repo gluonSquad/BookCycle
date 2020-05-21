@@ -22,18 +22,22 @@ namespace WebUI.Areas.Member.Controllers
         private IConfiguration configuration;
         private ICategoryService _categoryService;
         private IAuthorService _authorService;
+        private readonly IBookAppUserService _bookAppUserService;
         private readonly UserManager<AppUser> _userManager;
-        public BookController(IBookService bookService, IConfiguration configuration, ICategoryService categoryService, IAuthorService authorService, UserManager<AppUser> userManager)
+        public BookController(IBookService bookService, IConfiguration configuration, ICategoryService categoryService, IAuthorService authorService, UserManager<AppUser> userManager, IBookAppUserService bookAppUserService)
         {
             _bookService = bookService;
             this.configuration = configuration;
             _categoryService = categoryService;
             _authorService = authorService;
             _userManager = userManager;
+            _bookAppUserService = bookAppUserService;
         }
 
-        public IActionResult Index(string s , int page = 1 )
+        public async Task<IActionResult> Index(string s , int page = 1 )
         {
+            var appUser = await _userManager.FindByNameAsync(User.Identity.Name);
+            TempData["appUserId"] = appUser.Id; 
             TempData["Active"] = "book";
             ViewBag.CurrentPage = page;
             int totalPage;
@@ -46,5 +50,22 @@ namespace WebUI.Areas.Member.Controllers
             
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Index(int bookId, int appUserId)
+        {
+            var result = _bookAppUserService.AddBookAppUser(bookId,appUserId);
+            if (result == 1)
+            {
+                return Json(true);
+            }
+
+            return Json(false);
+
+        }
+
+
+
+
     }
 }
