@@ -1,0 +1,141 @@
+﻿@model WebUI.Areas.Member.Models.CommentAddViewModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
+}
+<div style="margin: 0;background-color: #364C71; ; color: white; border-bottom: 2px solid white; border-top: none; border-left: none; border-right: none; border-radius: 0;" class="alert alert-secondary text-center" role="alert">
+    Kitap İnceleme
+</div>
+
+<style>
+    select {
+        margin-bottom: 1em !important;
+        padding: .25em !important;
+        border: 0 !important;
+        border-bottom: 2px solid #55967E !important;
+        background-color: #364C71 !important;
+        color: white !important;
+        font-weight: bold !important;
+        letter-spacing: .15em !important;
+        border-radius: 0 !important;
+    }
+        select:focus, select:active {
+            outline: 0 !important;
+            border-bottom-color: #55967E !important;
+        }
+
+    input {
+        margin-bottom: 1em !important;
+        padding: .25em !important;
+        border: 0 !important;
+        border-bottom: 2px solid #55967E !important;
+        background-color: #364C71 !important;
+        color: white !important;
+        font-weight: bold !important;
+        letter-spacing: .15em !important;
+        border-radius: 0 !important;
+    }
+
+    input:focus, input:active {
+        outline: 0 !important;
+        border-bottom-color: #55967E !important;
+    }
+
+    .form-control:focus {
+        border: none !important;
+        border-color: white !important;
+        outline: none !important
+    }
+
+    .form-control:active {
+        border: none !important;
+        border-color: white !important;
+        outline: none !important
+    }
+    input[type=radio] {
+        border: 0px;
+        width: 30px;
+        height:30px;
+    }
+    .follow {
+        margin: 1.5em auto 0 auto;
+        background-color: #55967E;
+        width: 150px;
+        color: white !important;
+        font-family: "Lato";
+        text-align: center;
+        padding: 1em;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -o-border-radius: 5px;
+        border-radius: 5px;
+        -webkit-transition-property: all;
+        -moz-transition-property: all;
+        -o-transition-property: all;
+        transition-property: all;
+        -webkit-transition-duration: 0.3s;
+        -moz-transition-duration: 0.3s;
+        -o-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        -webkit-transition-timing-function: ease;
+        -moz-transition-timing-function: ease;
+        -o-transition-timing-function: ease;
+        transition-timing-function: ease;
+    }
+
+    .follow:hover {
+        background-color: #2f973e;
+        cursor: pointer;
+    }
+
+
+</style>
+@using (Html.BeginForm(FormMethod.Post))
+{
+<div style="background-color: #364C71; height: 100vh; padding-top: 30px;" class="container">
+    @Html.HiddenFor(x => x.AppUserId , TempData["userId"])
+    <div class="row form-group">
+        @Html.LabelFor(x => x.BookId, "Kitap Adı : ", new { @class = "col-md-3", @style = "color:white;display:flex;align-items:center; font-weight:bold;" })
+        @Html.DropDownListFor(x => x.BookId, Model.Books, null, new { @class = "col-md-4 form-control" })
+    </div>
+    <div class="row form-group">
+        @Html.LabelFor(x => x.HeadLine, "İnceleme Başlığı: ", new { @class = "col-md-3", @style = "color:white;display:flex;align-items:center; font-weight:bold;" })
+        @Html.TextBoxFor(x => x.HeadLine, null, new { @class = "col-md-4 form-control" })
+    </div>
+    <div class="row form-group">
+        @Html.LabelFor(x => x.BookStatus, "Okunma Durumu : ", new { @class = "col-md-3", @style = "color:white;display:flex;align-items:center; font-weight:bold;" })
+        
+        <input style="margin-right: 10px;" type="radio" id="Okudum" name="BookStatus" value="Okudum" />
+        <label style="margin-right: 10px; color: white;" for="Okudum">Okudum</label>
+        <input style="margin-right: 10px;" type="radio" id="Okuyorum" name="BookStatus" value="Okuyorum" />
+        <label style="margin-right: 10px; color: white;" for="Okuyorum">Okuyorum</label>
+        <input style="margin-right: 10px;" type="radio" id="YarimBiraktim" name="BookStatus" value="YarimBiraktim" />
+        <label style="color: white; margin-right: 10px;" for="YarimBiraktim">Yarım Bıraktım</label>
+    </div>
+    <div class="row form-group">
+        @Html.LabelFor(x => x.Rating, "Beğeni : ", new { @class = "col-md-3", @style = "color:white;display:flex;align-items:center; font-weight:bold;" })
+        <input style="margin-right: 10px;" type="radio" id="bir" name="Rating" value=1 />
+        <label style="margin-right: 10px; color: white;" for="bir">1</label>
+        <input style="margin-right: 10px;" type="radio" id="iki" name="Rating" value=2 />
+        <label style="margin-right: 10px; color: white;" for="iki">2</label>
+        <input style="margin-right: 10px;" type="radio" id="uc" name="Rating" value=3 />
+        <label style="color: white; margin-right: 10px;" for="uc">3</label>
+        <input style="margin-right: 10px;" type="radio" id="dort" name="Rating" value=4 />
+        <label style="margin-right: 10px; color: white;" for="dort">4</label>
+        <input style="margin-right: 10px;" type="radio" id="bes" name="Rating" value=5 />
+        <label style="margin-right: 10px; color: white;" for="bes">5</label>
+    </div>
+    <div class="row form-group">
+        @Html.LabelFor(x => x.ReviewText, "Yorum :", new { @class = "col-md-3", @style = "color:white;display:flex;align-items:center; font-weight:bold;" })
+        @Html.TextAreaFor(x => x.ReviewText, 10, 40, new { @class = "col-md-4 form-control", @style = "resize:none;" })
+    </div>
+
+    <hr style="border-top: 1px solid white;" />
+    <div style="float: right;" class="row">
+        <button style="margin-right: 15px; border: none !important" type="submit" class="btn btn-primary btn-sm follow" value="Kaydet">Paylaş</button>
+    </div>
+</div>
+}
+

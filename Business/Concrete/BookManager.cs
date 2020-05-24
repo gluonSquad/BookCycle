@@ -93,6 +93,8 @@ namespace Business.Concrete
             return books;
         }
 
+    
+
         public List<Book> GetListByCategory(int categoryId)
         {
             return _bookDal.GetList(b => b.CategoryId == categoryId).ToList();

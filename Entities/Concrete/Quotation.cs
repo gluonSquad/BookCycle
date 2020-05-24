@@ -17,6 +17,10 @@ namespace Entities.Concrete
 
         public DateTime? CreatedOn { get; set; }
 
+
+        public int? BookId { get; set; }
+
+        public int? AppUserId { get; set; }
         public virtual  AppUser AppUser { get; set; }
 
         public virtual Book Book { get; set; }

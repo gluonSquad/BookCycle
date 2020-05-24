@@ -4,16 +4,17 @@
     Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
 }
 
-<head>
-    <meta charset="UTF-8">
-    <title>Twitter Card</title>
+    <head>
+        <meta charset="UTF-8">
+        <title>Twitter Card</title>
 
-    <link href='https://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
-    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
-   
+        <link href='https://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
+        <link href="https://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
 
-</head>
+        <link href="~/lib/fontAwesome/css/all.min.css" rel="stylesheet" />
+
+    </head>
 
 <style>
     * {
@@ -84,7 +85,7 @@
             display: inline-block;
             font-size: 1.5em;
             font-family: 'Lato';
-            border-right: solid 1px #bdc3c7;
+            border-right: solid 1px white;
         }
 
             .data li:last-child {
@@ -177,10 +178,32 @@
     }
     #deneme:hover {
         background-color: #2f973e !important;
+    }  
+    .align-items-center {
+        -ms-flex-align: center!important;
+        align-items: center!important;
+    }
+    .d-flex {
+        display: -ms-flexbox!important;
+        display: flex!important;
+    }
+    span {
+        font-size: 20px !important;
+    }
+    .dot {
+        color: beige;
+        font-size: 22px !important;
+        height: 50px;
+        text-align: center;
+        width: 50px;
+        background-color: #55967E;
+        border-radius: 50%;
+        display: inline-block;
+        opacity: 0.8;
     }
 </style>
 
-<div class="container">
+<div style="background-color: #364C71;" class="container">
     <header>
         <div class="bio">
             <img src="~/img/kutuphane.jpg" alt="background" class="bg">
@@ -200,19 +223,18 @@
 
     <div class="content">
         <div class="data">
-            <p style="text-align: center; text-transform: uppercase;font-weight: bold">@Model.Member.FirstName @Model.Member.LastName</p>
+            <p style="text-align: center; text-transform: uppercase; font-weight: bold; color: white; font-size: 20px;">@Model.Member.FirstName @Model.Member.LastName</p>
             <ul>
                 <li>
-                    2,934
-                    <span>Kitap Sayısı</span>
+                    <span style="color:white; font-size: 25px;"><getBookAppUserId  app-user-id="@Model.Member.Id"></getBookAppUserId></span>
                 </li>
                 <li>
-                    1,119
-                    <span>İnceleme Sayısı</span>
+                    <span style="color: white; font-size:20px">@ViewBag.Comment.Count</span>
+                    <span style="color: white; font-size:20px">İnceleme Sayısı</span>
                 </li>
                 <li>
-                    530
-                    <span>Alıntı Sayısı</span>
+                    <span style="color: white; font-size:20px">530</span>
+                    <span style="color: white; font-size: 20px;">Alıntı Sayısı</span>
                 </li>
             </ul>
         </div>
@@ -220,17 +242,66 @@
         @if (TempData["sa"] != null)
         {
             <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-                <strong>@TempData["sa"]</strong> 
+                <strong>@TempData["sa"]</strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
         }
-        <div style="text-align: center">
+        <div  style="text-align: center; margin-bottom: 10px;">
             <a style="display: inline-block" class="follow"> <img class="icon-twitter"> İncelemeler</a>
             <a style="display: inline-block;" class="follow"> Alıntılar</a>
             <button style="border: none; outline: none;" type="button" class="follow" data-toggle="modal" data-target="#exampleModal">Profili Düzenle</button>
         </div>
+      
+      
+        <div style="margin-right: 0; margin-left: 0; background-color: #364C71; border-top: 8px solid #55967e; text-align: center;" class="row">
+            @foreach (var item in ViewBag.Comment)
+            {
+            <div class="container mt-4" style="padding-bottom: 20px; border-bottom: 1px solid black; background-color:#364c71">
+                <div style="padding-left: 0; padding-right: 0;" class="row">
+
+
+                    <div class="col-md-4 mt-5">
+                        <div>
+                            <img style="width: 160px; height: 250px; position: relative;" alt="Web Studio" class="img-fluid" src="@item.Book.BookImageUrl" />
+
+                        </div>
+                        <div style="display: flex; justify-content: center;">
+                            @if (item.BookStatus == "Okudum")
+                            {
+                                <span style="font-size: 18px !important; width: 160px; border-radius: 0;" class="badge badge-success">Okudum</span>
+                            }
+                            @if (item.BookStatus == "Okuyorum")
+                            {
+                                <span style="font-size: 18px !important; width: 160px; border-radius: 0;" class="badge badge-warning">Okuyorum</span>
+                            }
+                            @if (item.BookStatus == "YarimBiraktim")
+                            {
+                                <span style="font-size: 18px !important; width: 160px; border-radius: 0;" class="badge badge-danger">Yarım Bıraktım</span>
+                            }
+                        </div>
+                        <div style="display: flex; justify-content: center; align-items: center;">
+                            <span style="position: absolute; font-size: 42px !important; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; justify-content: center; align-items: center;" class="dot">@item.Rating</span>
+                        </div>
+
+                    </div>
+                    <div style="justify-content: center;" class="col-md-8 col-lg-8   d-flex align-items-center mt-3 mt-md-0">
+                        <div>
+                            <h1 style="color: #55967e; font-weight: bold; font-size: 27px !important;">@item.Book.Title</h1>
+                            <h2 style="color: white;">@item.HeadLine</h2>
+                            <span style="display: block; color: white; font-size: 18px !important;"><i class="fas fa-hourglass-half mr-2"></i>@item.CreatedOn.ToString("D")</span>
+                            <span style="color: white; font-size: 18px !important;"><i class="fas fa-user-edit mr-2 "></i>@item.AppUser.FirstName @item.AppUser.LastName</span>
+                            <p style="color: white;" class="margin-top-s">@item.ReviewText</p>
+                            <h5 style="color: #55967e; font-weight: bold;">@item.Book.Author.Name</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    }
+        </div>
+                 
+
 
 
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

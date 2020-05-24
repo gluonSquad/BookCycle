@@ -19,7 +19,11 @@ namespace Entities.Concrete
 
         public  int Rating { get; set; }
 
-        public DateTime? CreatedOn { get; set; }
+        public DateTime? CreatedOn { get; set; } = DateTime.Now;
+
+        public int? BookId { get; set; }
+
+        public int? AppUserId { get; set; }
 
         public virtual AppUser AppUser { get; set; } 
 

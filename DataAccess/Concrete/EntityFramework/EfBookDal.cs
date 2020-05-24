@@ -31,6 +31,7 @@ namespace DataAccess.Concrete.EntityFramework
                 return books;
             }
         }
+      
 
         public List<Book> GetBookList(out int totalPage, string searchWord, int currentPage)
         {

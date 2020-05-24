@@ -26,7 +26,7 @@ namespace WebUI.TagHelpers
             List<Book> userbooks = _bookAppUserService.GetByAppUserId(AppUserId);
             int bookCount = userbooks.Count();
 
-            string htmlString = $"<strong> Kütüphanendeki kitap sayısı :</strong> {bookCount}";
+            string htmlString = $"{bookCount} <span>Kitap Sayısı</span>";
             output.Content.SetHtmlContent(htmlString);
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Business.Abstract;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -19,14 +20,19 @@ namespace WebUI.Areas.Member.Controllers
     public class ProfileController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
+        private IBookService _bookService;
+        private readonly IBookAppUserService _bookAppUserService;
 
-        public ProfileController(UserManager<AppUser> userManager)
+        public ProfileController(UserManager<AppUser> userManager, IBookService bookService, IBookAppUserService bookAppUserService)
         {
             _userManager = userManager;
+            _bookService = bookService;
+            _bookAppUserService = bookAppUserService;
         }
 
         public  async Task<IActionResult> Index()
         {
+            var books = _bookService.GetList();
             TempData["Active"] = "profile";
             TempData["sa"] =TempData["deneme"];
             var appUser = await _userManager.FindByNameAsync(User.Identity.Name);
@@ -40,11 +46,25 @@ namespace WebUI.Areas.Member.Controllers
             member.Picture = appUser.ProfileImageFile;
             CustomModel model = new CustomModel();
             model.Member = member;
-            
-           
+
+            List<Review> reviews = new List<Review>();
+            var userId = appUser.Id;
+            var userbooks = _bookAppUserService.GetByAppUserId(userId);
+            foreach (var book in userbooks)
+            {
+                if (book.Reviews.Count > 0)
+                {
+                    reviews.AddRange(book.Reviews);
+                }
+            }
+
+            ViewBag.Comment= reviews;
           
             return View(model);
         }
+
+
+    
 
 
         [HttpPost]

@@ -11,6 +11,8 @@ namespace Business.Abstract
     {
         Book GetById(int bookId);
         List<Book> GetList();
+
+      
         List<Book> GetListByCategory(int categoryId);
 
         void Add(Book book);
