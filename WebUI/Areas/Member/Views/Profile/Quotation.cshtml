@@ -4,17 +4,17 @@
     Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
 }
 
-    <head>
-        <meta charset="UTF-8">
-        <title>Twitter Card</title>
+<head>
+    <meta charset="UTF-8">
+    <title>Twitter Card</title>
 
-        <link href='https://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
-        <link href="https://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
 
-        <link href="~/lib/fontAwesome/css/all.min.css" rel="stylesheet" />
+    <link href="~/lib/fontAwesome/css/all.min.css" rel="stylesheet" />
 
-    </head>
+</head>
 
 <style>
     * {
@@ -172,24 +172,30 @@
             background-color: #2f973e;
             cursor: pointer;
         }
+
     .alert-success {
         background-color: #55967E;
         color: white;
     }
+
     #deneme:hover {
         background-color: #2f973e !important;
-    }  
+    }
+
     .align-items-center {
-        -ms-flex-align: center!important;
-        align-items: center!important;
+        -ms-flex-align: center !important;
+        align-items: center !important;
     }
+
     .d-flex {
-        display: -ms-flexbox!important;
-        display: flex!important;
+        display: -ms-flexbox !important;
+        display: flex !important;
     }
+
     span {
         font-size: 20px !important;
     }
+
     .dot {
         color: white;
         font-size: 22px !important;
@@ -199,7 +205,6 @@
         background-color: #55967E;
         border-radius: 50%;
         display: inline-block;
-      
     }
 </style>
 
@@ -226,7 +231,7 @@
             <p style="text-align: center; text-transform: uppercase; font-weight: bold; color: white; font-size: 20px;">@Model.Member.FirstName @Model.Member.LastName</p>
             <ul>
                 <li>
-                    <span style="color:white; font-size: 25px;"><getBookAppUserId  app-user-id="@Model.Member.Id"></getBookAppUserId></span>
+                    <span style="color:white; font-size: 25px;"><getBookAppUserId app-user-id="@Model.Member.Id"></getBookAppUserId></span>
                 </li>
                 <li>
                     <span style="color: white; font-size:20px">@ViewBag.Comment.Count</span>
@@ -248,18 +253,18 @@
                 </button>
             </div>
         }
-        <div  style="text-align: center; margin-bottom: 10px;">
+        <div style="text-align: center; margin-bottom: 10px;">
             <a asp-action="Comment" asp-controller="Profile" style="display: inline-block" class="follow"> <img class="icon-twitter"> İncelemeler</a>
             <a asp-action="Quotation" asp-controller="Profile" style="display: inline-block;" class="follow"> Alıntılar</a>
             <button style="border: none; outline: none;" type="button" class="follow" data-toggle="modal" data-target="#exampleModal">Profili Düzenle</button>
         </div>
-      
-      
+
+
         <div style="margin-right: 0; margin-left: 0; background-color: #364C71; border-top: 8px solid #55967e; text-align: center;" class="row">
             @foreach (var quotation in ViewBag.Quotations)
             {
                 <div class="container mt-4" style="padding-bottom: 20px; position: relative; border-bottom: 1px solid black; background-color: #364c71">
-                 
+
                     <div style="padding-left: 0; padding-right: 0; margin-right: 0; margin-left: 0" class="row">
 
 
@@ -268,7 +273,7 @@
                                 <img style="width: 160px; height: 250px; position: relative;" alt="Web Studio" class="img-fluid" src="@quotation.Book.BookImageUrl" />
 
                             </div>
-                          
+
 
                         </div>
                         <div style="justify-content: center;" class="col-md-8 col-lg-8   d-flex align-items-center mt-3 mt-md-0">
@@ -284,61 +289,9 @@
                     </div>
                 </div>
             }
-            @foreach (var item in ViewBag.Comment)
-            {
-                <div class="container mt-4" style="padding-bottom: 20px; position: relative; border-bottom: 1px solid black; background-color: #364c71">
-                    @if (item.Rating == 0 || item.Rating == 1 || item.Rating == 2)
-                    {
-                        <span style="top: 0; right: 0; position: absolute; font-size: 42px !important; /* top: 50%; */ /* left: 50%; */ /* transform: translate(-50%, -50%); */ display: flex; margin-right: 20px; justify-content: center; background-color: #df382c; align-items: center;" class="dot">@item.Rating</span>
-                    }
-                    @if (item.Rating == 3 || item.Rating == 4)
-                    {
-                        <span style="top: 0; right: 0; position: absolute; font-size: 42px !important; /* top: 50%; */ /* left: 50%; */ /* transform: translate(-50%, -50%); */ display: flex; margin-right: 20px; justify-content: center; background-color: #efb73e; align-items: center;" class="dot">@item.Rating</span>
-                    }
-                    @if (item.Rating == 5)
-                    {
-                        <span style="top: 0; right: 0; position: absolute; font-size: 42px !important; /* top: 50%; */ /* left: 50%; */ /* transform: translate(-50%, -50%); */ display: flex; margin-right: 20px; justify-content: center; background-color: #38b44a; align-items: center;" class="dot">@item.Rating</span>
-                    }
-                    <div style="padding-left: 0; padding-right: 0; margin-right: 0; margin-left: 0" class="row">
-
-
-                        <div class="col-md-4 mt-5">
-                            <div>
-                                <img style="width: 160px; height: 250px; position: relative;" alt="Web Studio" class="img-fluid" src="@item.Book.BookImageUrl" />
-
-                            </div>
-                            <div style="display: flex; justify-content: center;">
-                                @if (item.BookStatus == "Okudum")
-                                {
-                                    <span style="font-size: 18px !important; width: 160px; border-radius: 0;" class="badge badge-success">Okudum</span>
-                                }
-                                @if (item.BookStatus == "Okuyorum")
-                                {
-                                    <span style="font-size: 18px !important; width: 160px; border-radius: 0;" class="badge badge-warning">Okuyorum</span>
-                                }
-                                @if (item.BookStatus == "YarimBiraktim")
-                                {
-                                    <span style="font-size: 18px !important; width: 160px; border-radius: 0;" class="badge badge-danger">Yarım Bıraktım</span>
-                                }
-                            </div>
-
-
-                        </div>
-                        <div style="justify-content: center;" class="col-md-8 col-lg-8   d-flex align-items-center mt-3 mt-md-0">
-                            <div>
-                                <h1 style="color: #55967e; font-weight: bold; font-size: 27px !important;">@item.Book.Title</h1>
-                                <h2 style="color: white;">@item.HeadLine</h2>
-                                <span style="display: block; color: white; font-size: 18px !important;"><i class="fas fa-hourglass-half mr-2"></i>@item.CreatedOn.ToString("D")</span>
-                                <span style="color: white; font-size: 18px !important;"><i class="fas fa-user-edit mr-2 "></i>@item.AppUser.FirstName @item.AppUser.LastName</span>
-                                <p style="color: white; text-align: justify" class="margin-top-s">@item.ReviewText</p>
-                                <h5 style="color: #55967e; font-weight: bold;">@item.Book.Author.Name</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
+         
         </div>
-                 
+
 
 
 
@@ -446,7 +399,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "@Url.Action("Index","Profile")",
+                url: "@Url.Action("Quotation","Profile")",
                 data: new FormData(document.forms[0]),
                 contentType: false,
                 processData: false,
@@ -469,6 +422,6 @@
             });
     </script>
 
-   
+
 
 }

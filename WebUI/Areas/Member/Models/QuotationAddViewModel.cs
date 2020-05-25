@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using Core.Entities;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Entities.Concrete
+namespace WebUI.Areas.Member.Models
 {
-    public class Quotation : IEntity
+    public class QuotationAddViewModel
     {
         public int Id { get; set; }
 
@@ -21,9 +22,6 @@ namespace Entities.Concrete
         public int? BookId { get; set; }
 
         public int? AppUserId { get; set; }
-        public virtual  AppUser AppUser { get; set; }
-
-        public virtual Book Book { get; set; }
-
+        public List<SelectListItem> Books { get; set; }
     }
 }

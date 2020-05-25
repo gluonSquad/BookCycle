@@ -29,6 +29,7 @@ namespace Business.DependencyResolvers.Autofac
 
 
             builder.RegisterType<BookAppUserManager>().As<IBookAppUserService>();
+            builder.RegisterType<QuotationManager>().As<IQuotationService>();
             builder.RegisterType<CommentManager>().As<ICommentService>();
             builder.RegisterType<FileManager>().As<IFileService>();
             builder.RegisterType<EfBookAppUserDal>().As<IBookAppUserDal>();

@@ -1,0 +1,119 @@
+﻿@model WebUI.Areas.Member.Models.QuotationAddViewModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
+}
+<div style="margin: 0;background-color: #364C71; ; color: white; border-bottom: 2px solid white; border-top: none; border-left: none; border-right: none; border-radius: 0;" class="alert alert-secondary text-center" role="alert">
+    Kitap Alıntı 
+</div>
+
+<style>
+    select {
+        margin-bottom: 1em !important;
+        padding: .25em !important;
+        border: 0 !important;
+        border-bottom: 2px solid #55967E !important;
+        background-color: #364C71 !important;
+        color: white !important;
+        font-weight: bold !important;
+        letter-spacing: .15em !important;
+        border-radius: 0 !important;
+    }
+
+        select:focus, select:active {
+            outline: 0 !important;
+            border-bottom-color: #55967E !important;
+        }
+
+    input {
+        margin-bottom: 1em !important;
+        padding: .25em !important;
+        border: 0 !important;
+        border-bottom: 2px solid #55967E !important;
+        background-color: #364C71 !important;
+        color: white !important;
+        font-weight: bold !important;
+        letter-spacing: .15em !important;
+        border-radius: 0 !important;
+    }
+
+        input:focus, input:active {
+            outline: 0 !important;
+            border-bottom-color: #55967E !important;
+        }
+
+    .form-control:focus {
+        border: none !important;
+        border-color: white !important;
+        outline: none !important
+    }
+
+    .form-control:active {
+        border: none !important;
+        border-color: white !important;
+        outline: none !important
+    }
+
+    input[type=radio] {
+        border: 0px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .follow {
+        margin: 1.5em auto 0 auto;
+        background-color: #55967E;
+        width: 150px;
+        color: white !important;
+        font-family: "Lato";
+        text-align: center;
+        padding: 1em;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -o-border-radius: 5px;
+        border-radius: 5px;
+        -webkit-transition-property: all;
+        -moz-transition-property: all;
+        -o-transition-property: all;
+        transition-property: all;
+        -webkit-transition-duration: 0.3s;
+        -moz-transition-duration: 0.3s;
+        -o-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        -webkit-transition-timing-function: ease;
+        -moz-transition-timing-function: ease;
+        -o-transition-timing-function: ease;
+        transition-timing-function: ease;
+    }
+
+        .follow:hover {
+            background-color: #2f973e;
+            cursor: pointer;
+        }
+</style>
+@using (Html.BeginForm(FormMethod.Post))
+{
+    <div style="background-color: #364C71; height: 100vh; padding-top: 30px;" class="container">
+        @Html.HiddenFor(x => x.AppUserId, TempData["userId"])
+        <div class="row form-group">
+            @Html.LabelFor(x => x.BookId, "Kitap Adı : ", new { @class = "col-md-3", @style = "color:white;display:flex;align-items:center; font-weight:bold;" })
+            @Html.DropDownListFor(x => x.BookId, Model.Books, null, new { @class = "col-md-4 form-control" })
+        </div>
+        <div class="row form-group">
+            @Html.LabelFor(x => x.QuotationText, "Kitap Alıntısı :", new { @class = "col-md-3", @style = "color:white;display:flex;align-items:center; font-weight:bold;" })
+            @Html.TextAreaFor(x => x.QuotationText, 10, 40, new { @class = "col-md-4 form-control", @style = "resize:none;" })
+        </div>
+      
+        <div class="row form-group">
+            @Html.LabelFor(x => x.CurrentPage, "Alıntı Yapılan Sayfa : ", new { @class = "col-md-3", @style = "color:white;display:flex;align-items:center; font-weight:bold;" })
+            @Html.TextBoxFor(x => x.CurrentPage, null, new { type="number", @class = "col-md-4 form-control" })
+        </div>
+
+        <hr style="border-top: 1px solid white;" />
+        <div style="float: right;" class="row">
+            <button style="margin-right: 15px; border: none !important" type="submit" class="btn btn-primary btn-sm follow" value="Kaydet">Alıntıla</button>
+        </div>
+    </div>
+}

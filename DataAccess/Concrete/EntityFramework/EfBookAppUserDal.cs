@@ -61,8 +61,31 @@ namespace DataAccess.Concrete.EntityFramework
                     CurrentPage = bq.CurrentPage,
                     Id = bq.Id,
                     QuotationText = bq.QuotationText,
-                    QuotesLike = bq.QuotesLike
-                }).ToList(),
+                    QuotesLike = bq.QuotesLike,
+                    AppUser = new AppUser { FirstName = bq.AppUser.FirstName, LastName = bq.AppUser.LastName },
+                    BookId = bq.BookId,
+                    AppUserId = bq.AppUserId,
+                    Book = new Book
+                    {
+                        Author = new Author
+                        {
+                            Name = bq.Book.Author.Name,
+                            Id = bq.Book.Author.Id,
+                        },
+                        BookImageUrl = bq.Book.BookImageUrl,
+                        BookPages = bq.Book.BookPages,
+                        BookPublisher = bq.Book.BookPublisher,
+                        Category = new Category { Id = bq.Book.Category.Id, Name = bq.Book.Category.Name },
+                        DatePublished = bq.Book.DatePublished,
+                        Description = bq.Book.Description,
+                        Id = bq.Book.Id,
+                        Isbn = bq.Book.Isbn,
+                        Rating = bq.Book.Rating,
+                        Title = bq.Book.Title,
+                        CreatedOn = bq.Book.CreatedOn,
+                    }
+                }).OrderByDescending(b => b.CreatedOn).ToList(),
+
                 Reviews = b.Book.Reviews.Select(br => new Review
                 {
                     Id = br.Id,
@@ -94,7 +117,7 @@ namespace DataAccess.Concrete.EntityFramework
                         Title = br.Book.Title,
                         CreatedOn = br.Book.CreatedOn,
                     }
-                }).ToList()
+                }).OrderByDescending(b => b.CreatedOn).ToList()
             });
 
             return result.ToList();
@@ -129,8 +152,31 @@ namespace DataAccess.Concrete.EntityFramework
                     CurrentPage = bq.CurrentPage,
                     Id = bq.Id,
                     QuotationText = bq.QuotationText,
-                    QuotesLike = bq.QuotesLike
-                }).OrderByDescending(b=>b.CreatedOn).ToList(),
+                    QuotesLike = bq.QuotesLike,
+                    AppUser = new AppUser { FirstName = bq.AppUser.FirstName, LastName = bq.AppUser.LastName },
+                    BookId = bq.BookId,
+                    AppUserId = bq.AppUserId,
+                    Book = new Book
+                    {
+                        Author = new Author
+                        {
+                            Name = bq.Book.Author.Name,
+                            Id = bq.Book.Author.Id,
+                        },
+                        BookImageUrl = bq.Book.BookImageUrl,
+                        BookPages = bq.Book.BookPages,
+                        BookPublisher = bq.Book.BookPublisher,
+                        Category = new Category { Id = bq.Book.Category.Id, Name = bq.Book.Category.Name },
+                        DatePublished = bq.Book.DatePublished,
+                        Description = bq.Book.Description,
+                        Id = bq.Book.Id,
+                        Isbn = bq.Book.Isbn,
+                        Rating = bq.Book.Rating,
+                        Title = bq.Book.Title,
+                        CreatedOn = bq.Book.CreatedOn,
+                    }
+                }).OrderByDescending(b => b.CreatedOn).ToList(),
+
                 Reviews = b.Book.Reviews.Select(br => new Review
                 {
                     Id = br.Id,
@@ -162,7 +208,7 @@ namespace DataAccess.Concrete.EntityFramework
                         Title = br.Book.Title,
                         CreatedOn = br.Book.CreatedOn,
                     }
-                }).OrderByDescending(b=>b.CreatedOn).ToList()
+                }).OrderByDescending(b => b.CreatedOn).ToList()
             });
 
             return result.ToList();
@@ -197,8 +243,31 @@ namespace DataAccess.Concrete.EntityFramework
                     CurrentPage = bq.CurrentPage,
                     Id = bq.Id,
                     QuotationText = bq.QuotationText,
-                    QuotesLike = bq.QuotesLike
+                    QuotesLike = bq.QuotesLike,
+                    AppUser = new AppUser { FirstName = bq.AppUser.FirstName, LastName = bq.AppUser.LastName },
+                    BookId = bq.BookId,
+                    AppUserId = bq.AppUserId,
+                    Book = new Book
+                    {
+                        Author = new Author
+                        {
+                            Name = bq.Book.Author.Name,
+                            Id = bq.Book.Author.Id,
+                        },
+                        BookImageUrl = bq.Book.BookImageUrl,
+                        BookPages = bq.Book.BookPages,
+                        BookPublisher = bq.Book.BookPublisher,
+                        Category = new Category { Id = bq.Book.Category.Id, Name = bq.Book.Category.Name },
+                        DatePublished = bq.Book.DatePublished,
+                        Description = bq.Book.Description,
+                        Id = bq.Book.Id,
+                        Isbn = bq.Book.Isbn,
+                        Rating = bq.Book.Rating,
+                        Title = bq.Book.Title,
+                        CreatedOn = bq.Book.CreatedOn,
+                    }
                 }).OrderByDescending(b => b.CreatedOn).ToList(),
+
                 Reviews = b.Book.Reviews.Select(br => new Review
                 {
                     Id = br.Id,
