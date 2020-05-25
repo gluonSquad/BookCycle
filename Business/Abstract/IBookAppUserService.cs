@@ -9,5 +9,8 @@ namespace Business.Abstract
     {
         List<Book> GetByAppUserId(int appUserId);
         int AddBookAppUser(int bookId, int appUserId);
+
+        List<Book> GetAll();
+        List<Book> GetAll(out int totalPage, string searchWord, int currentPage);
     }
 }

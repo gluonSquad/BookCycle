@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using WebUI.Areas.Member.Models;
+using WebUI.Extensions;
 
 namespace WebUI.Areas.Member.Controllers
 {
@@ -43,22 +44,27 @@ namespace WebUI.Areas.Member.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(CommentAddViewModel model)
         {
-            var appUser = await _userManager.FindByNameAsync(User.Identity.Name);
-            var userId = appUser.Id;
-            model.AppUserId = userId;
-            Review comment = new Review
+            if (ModelState.IsValid)
             {
-                AppUserId = model.AppUserId,
-                BookStatus = model.BookStatus,
-                BookId = model.BookId,
-                HeadLine = model.HeadLine,
-                ReviewText = model.ReviewText,
-                Rating = model.Rating,
-                CreatedOn = DateTime.Now,
-                ReviewLike = model.ReviewLike,
+                var appUser = await _userManager.FindByNameAsync(User.Identity.Name);
+                var userId = appUser.Id;
+                model.AppUserId = userId;
+                Review comment = new Review
+                {
+                    AppUserId = model.AppUserId,
+                    BookStatus = model.BookStatus,
+                    BookId = model.BookId,
+                    HeadLine = model.HeadLine,
+                    ReviewText = model.ReviewText,
+                    Rating = model.Rating,
+                    CreatedOn = DateTime.Now,
+                    ReviewLike = model.ReviewLike,
 
-            };
-            _commentService.Add(comment);
+                };
+                _commentService.Add(comment);
+               
+            }
+          
             return RedirectToAction("Index","Comment");
         }
 
@@ -73,6 +79,29 @@ namespace WebUI.Areas.Member.Controllers
             return result;
         }
 
+
+        public IActionResult List(string s  , int page=1)
+        {
+            TempData["Active"] = "comment";
+            ViewBag.CurrentPage = page;
+            int totalPage;
+            ViewBag.SearchedWord = s;
+            
+            var books = _bookAppUserService.GetAll(out totalPage, s, page);
+            ViewBag.TotalPage = totalPage;
+            List<Review> reviews = new List<Review>();
+            foreach (var book in books)
+            {
+                if (book.Reviews.Count > 0)
+                {
+                    reviews.AddRange(book.Reviews);
+                }
+            }
+            reviews.ShuffleMethod();
+            return View(reviews);
+        }
+
        
+
     }
 }

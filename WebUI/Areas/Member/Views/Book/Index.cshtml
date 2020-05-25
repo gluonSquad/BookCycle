@@ -13,32 +13,33 @@
 <style>
     .card-group > .card {
         flex: 1 0 25%;
-        margin-bottom: 10px;
+        margin-top: 10px;
     }
 
         .card-group > .card:nth-child(3n-1) {
             margin-right: 30px;
             margin-left: 30px;
         }
+   
 </style>
-<div style="margin: 0;background-color: #364C71; ; color: white; border: none; border-radius: 0;" class="alert alert-secondary text-center" role="alert">
+<div style="margin: 0;background-color: #364C71; ; border-bottom: 1px solid black; color: white; border-top: none; border-right: none; border-left: none; border-radius: 0;" class="alert alert-secondary text-center" role="alert">
     Kitaplar
 </div>
 <div>
     @if (!string.IsNullOrWhiteSpace(s))
     {
-        <div class="border  p-3 mb-2">
+        <div class="border  p-3">
             <strong style="color:#55967E">@s</strong> kelimesi için sonuçları görüyorsunuz.
-            <a style="color : #55967E" class="float-right" asp-action="Index">Filtreyi kaldır</a>
+            <a style="color: #55967E " class="float-right" asp-action="Index">Filtreyi kaldır</a>
         </div>
     }
-    <form method="get" asp-action="Index" class="text-right mt-2 mb-2">
-        <input placeholder="Kitap Adı veya Yazar Adı Girin" style="border-bottom: 1px solid #364C71 !important;" type="text" name="s" class="form-control-sm border border-primary border-top-0 border-left-0 border-right-0 " />
-        <button style="border:none;" type="submit" class="btn btn-primary btn-sm">Ara</button>
-    </form>
+<form style="padding: 20px;" method="get" asp-action="Index" class="text-right mt-2 mb-2">
+    <input placeholder="Kitap Adı veya Yazar Adı Girin" style="border-bottom: 1px solid #364C71 !important;" type="text" name="s" class="form-control-sm border border-primary border-top-0 border-left-0 border-right-0 " />
+    <button style="border:none;background-color: #55967E;" type="submit" class="btn btn-primary btn-sm">Ara</button>
+</form>
 </div>
 
-<div class="card-group">
+<div style="background-color: white;" class="card-group">
 
     @foreach (var item in ViewBag.Books)
     {
@@ -56,12 +57,12 @@
                 <button type="submit"  data-bookid="@item.Id" data-appuserid="@TempData["appUserId"]" style="background-color: #55967E; color: white; font-size: 15px; border: none;" class="bookUser btn btn-primary btn-sm">
                     Kitaplığa Ekle
                 </button>
-                <a style="        color: white;
+                <a asp-action="List" asp-controller="Comment" asp-route-s="@item.Title" style="        color: white;
         font-size: 15px;
         border: none;" class="btn btn-info btn-sm">
                     İncele
                 </a>
-                <a style="color: white; font-size: 15px; border: none;" class="btn btn-secondary btn-sm">
+                <a  style="color: white; font-size: 15px; border: none;" class="btn btn-secondary btn-sm">
                     Alıntı
                 </a>
             </div>
@@ -73,7 +74,7 @@
 
 <nav aria-label="Page navigation example">
 
-    <ul class="pagination justify-content-center">
+    <ul style="padding: 10px;margin-bottom:0" class="pagination justify-content-center">
         @if (!string.IsNullOrWhiteSpace(s))
         {
             for (int i = 1; i <= ViewBag.TotalPage; i++)

@@ -33,6 +33,7 @@ namespace WebUI.Areas.Member.Controllers
         public  async Task<IActionResult> Index()
         {
             var books = _bookService.GetList();
+           
             TempData["Active"] = "profile";
             TempData["sa"] =TempData["deneme"];
             var appUser = await _userManager.FindByNameAsync(User.Identity.Name);
