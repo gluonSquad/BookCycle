@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using WebUI.Areas.Member.Models;
+using WebUI.Extensions;
 
 namespace WebUI.Areas.Member.Controllers
 {
@@ -75,6 +76,19 @@ namespace WebUI.Areas.Member.Controllers
                 result.Add(new SelectListItem(userBook.Title, userBook.Id.ToString()));
             }
             return result;
+        }
+
+
+        public IActionResult List(string s, int page = 1)
+        {
+            TempData["Active"] = "quotation";
+            ViewBag.CurrentPage = page;
+            int totalPage;
+            ViewBag.SearchedWord = s;
+            var quotations = _quotationService.GetQuotations(out totalPage, s, page);
+            ViewBag.TotalPage = totalPage;
+            quotations.ShuffleMethod();
+            return View(quotations);
         }
     }
 }

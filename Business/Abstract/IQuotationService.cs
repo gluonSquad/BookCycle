@@ -8,5 +8,6 @@ namespace Business.Abstract
     public interface IQuotationService
     {
         public void Add(Quotation quotation);
+        public List<Quotation> GetQuotations(out int totalPage, string searchWord, int currentPage);
     }
 }

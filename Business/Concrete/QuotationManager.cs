@@ -21,5 +21,10 @@ namespace Business.Concrete
         {
             _quotationDal.Add(quotation);
         }
+
+        public List<Quotation> GetQuotations(out int totalPage, string searchWord, int currentPage)
+        {
+            return _quotationDal.GetQuotations(out totalPage, searchWord, currentPage);
+        }
     }
 }

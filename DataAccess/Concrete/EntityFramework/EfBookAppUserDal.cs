@@ -303,7 +303,7 @@ namespace DataAccess.Concrete.EntityFramework
             });
 
             totalPage = (int)Math.Ceiling((double)result.Count() / 12);
-
+           
             if (!string.IsNullOrWhiteSpace(searchWord))
             {
                 result = result.Where(I =>
@@ -311,10 +311,10 @@ namespace DataAccess.Concrete.EntityFramework
                     I.Author.Name.ToLower().Contains(searchWord.ToLower()));
 
                 totalPage = (int)Math.Ceiling((double)result.Count() / 12);
+
             }
 
             result = result.Skip((currentPage - 1) * 12).Take(12);
-
             return result.ToList();
 
         }

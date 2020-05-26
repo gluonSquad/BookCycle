@@ -8,6 +8,6 @@ namespace DataAccess.Abstract
 {
     public interface IQuotationDal : IEntityRepository<Quotation>
     {
-
+        public List<Quotation> GetQuotations(out int totalPage, string searchWord, int currentPage);
     }
 }

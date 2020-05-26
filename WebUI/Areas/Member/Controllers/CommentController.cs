@@ -86,19 +86,10 @@ namespace WebUI.Areas.Member.Controllers
             ViewBag.CurrentPage = page;
             int totalPage;
             ViewBag.SearchedWord = s;
-            
-            var books = _bookAppUserService.GetAll(out totalPage, s, page);
+            var comments = _commentService.GetComments(out totalPage, s, page);
             ViewBag.TotalPage = totalPage;
-            List<Review> reviews = new List<Review>();
-            foreach (var book in books)
-            {
-                if (book.Reviews.Count > 0)
-                {
-                    reviews.AddRange(book.Reviews);
-                }
-            }
-            reviews.ShuffleMethod();
-            return View(reviews);
+            comments.ShuffleMethod();
+            return View(comments);
         }
 
        
