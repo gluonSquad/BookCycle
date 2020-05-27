@@ -235,7 +235,7 @@
                 </li>
                 <li>
                     <span style="color: white; font-size:20px">@ViewBag.Comment.Count</span>
-                    <span style="color: white; font-size:20px">İnceleme Sayısı</span>
+                    <span style="color: white; font-size:20px">Yorum Sayısı</span>
                 </li>
                 <li>
                     <span style="color: white; font-size:20px">@ViewBag.Quotations.Count</span>
@@ -253,11 +253,15 @@
                 </button>
             </div>
         }
-        <div style="text-align: center; margin-bottom: 10px;">
-            <a asp-action="Comment" asp-controller="Profile" style="display: inline-block" class="follow"> <img class="icon-twitter"> İncelemeler</a>
-            <a style="display: inline-block;" class="follow"> Alıntılar</a>
-            <button style="border: none; outline: none;" type="button" class="follow" data-toggle="modal" data-target="#exampleModal">Profili Düzenle</button>
-        </div>
+    <div style="text-align: center; margin-bottom: 10px;">
+        <a asp-action="Comment" asp-route-user="@Model.Member.UserName" asp-controller="Profile" style="display: inline-block" class="follow"> <img class="icon-twitter"> Yorumlar</a>
+        <a asp-action="Quotation" asp-route-user="@Model.Member.UserName" asp-controller="Profile" style="display: inline-block;" class="follow"> Alıntılar</a>
+        @if (@Model.IsProfile == true)
+        {
+            <button asp-route-user="@Model.Member.UserName" style="border: none; outline: none;" type="button" class="follow" data-toggle="modal" data-target="#exampleModal">Profili Düzenle</button>
+        }
+
+    </div>
 
 
         <div style="margin-right: 0; margin-left: 0; background-color: #364C71; border-top: 8px solid #55967e; text-align: center;" class="row">
@@ -307,7 +311,7 @@
                                 <h1 style="color: #55967e; font-weight: bold; font-size: 27px !important;">@item.Book.Title</h1>
                                 <h2 style="color: white;">@item.HeadLine</h2>
                                 <span style="display: block; color: white; font-size: 18px !important;"><i class="fas fa-hourglass-half mr-2"></i>@item.CreatedOn.ToString("D")</span>
-                                <span style="color: white; font-size: 18px !important;"><i class="fas fa-user-edit mr-2 "></i>@item.AppUser.FirstName @item.AppUser.LastName</span>
+                                <span style="color: white; font-size: 18px !important;"><i class="fas fa-user-edit mr-2 "></i>@Model.Member.FirstName @Model.Member.LastName</span>
                                 <p style="color: white; text-align: justify" class="margin-top-s">@item.ReviewText</p>
                                 <h5 style="color: #55967e; font-weight: bold;">@item.Book.Author.Name</h5>
                             </div>

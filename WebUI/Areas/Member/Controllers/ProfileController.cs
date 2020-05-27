@@ -31,27 +31,107 @@ namespace WebUI.Areas.Member.Controllers
             _bookAppUserService = bookAppUserService;
         }
 
-        public  async Task<IActionResult> Index()
+        public  async Task<IActionResult> Index(string user)
         {
             var books = _bookService.GetList();
-           
+            var userId = 0;
+            AppUser currentUser = new AppUser();
+            Models.Member member = new Models.Member();
+            CustomModel model = new CustomModel();
+            AppUser profileUser = new AppUser();
             TempData["Active"] = "profile";
             TempData["sa"] =TempData["deneme"];
+            var userprofile = TempData["currentUser"];
             var appUser = await _userManager.FindByNameAsync(User.Identity.Name);
-            Models.Member member = new Models.Member();
-            member.Id = appUser.Id;
-            member.FirstName = appUser.FirstName;
-            member.LastName = appUser.LastName;
-            member.Email = appUser.Email;
-            member.UserName = appUser.UserName;
-            member.Description = appUser.Description;
-            member.Picture = appUser.ProfileImageFile;
-            CustomModel model = new CustomModel();
-            model.Member = member;
+           
+            if(userprofile == null)
+            {
+                profileUser = null;
+
+                member.Id = appUser.Id;
+                member.FirstName = appUser.FirstName;
+                member.LastName = appUser.LastName;
+                member.Email = appUser.Email;
+                member.UserName = appUser.UserName;
+                member.Description = appUser.Description;
+                member.Picture = appUser.ProfileImageFile;
+                model.Member = member;
+                userId = appUser.Id;
+            }
+            else
+            {
+                profileUser = await _userManager.FindByNameAsync(userprofile.ToString());
+                member.Id = profileUser.Id;
+                member.FirstName = profileUser.FirstName;
+                member.LastName = profileUser.LastName;
+                member.Email = profileUser.Email;
+                member.UserName = profileUser.UserName;
+                member.Description = profileUser.Description;
+                member.Picture = profileUser.ProfileImageFile;
+                model.Member = member;
+                userId = profileUser.Id;
+            }
+
+            if(user == null)
+            {
+                currentUser = null;
+                member.Id = appUser.Id;
+                member.FirstName = appUser.FirstName;
+                member.LastName = appUser.LastName;
+                member.Email = appUser.Email;
+                member.UserName = appUser.UserName;
+                member.Description = appUser.Description;
+                member.Picture = appUser.ProfileImageFile;
+                model.Member = member;
+                userId = appUser.Id;
+            }
+
+            else
+            {
+                currentUser = await _userManager.FindByNameAsync(user);
+
+                member.Id = currentUser.Id;
+                member.FirstName = currentUser.FirstName;
+                member.LastName = currentUser.LastName;
+                member.Email = currentUser.Email;
+                member.UserName = currentUser.UserName;
+                member.Description = currentUser.Description;
+                member.Picture = currentUser.ProfileImageFile;
+                model.Member = member;
+                userId = currentUser.Id;
+            }
+        
+         
+
+            if(currentUser != null)
+            {
+                if (appUser.UserName != currentUser.UserName)
+                {
+                    model.IsProfile = false;
+                }
+                else
+                {
+                    model.IsProfile = true;
+                }
+            }
+
+            if (profileUser != null)
+            {
+                if (appUser.UserName == profileUser.UserName)
+                {
+                    model.IsProfile = true;
+                }
+                else
+                {
+                    model.IsProfile = false;
+                }
+            }
+
+
 
             List<Review> reviews = new List<Review>();
             List<Quotation> quotations = new List<Quotation>();
-            var userId = appUser.Id;
+           
             var userbooks = _bookAppUserService.GetByAppUserId(userId);
             foreach (var book in userbooks)
             {
@@ -76,27 +156,107 @@ namespace WebUI.Areas.Member.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> Comment()
+        public async Task<IActionResult> Comment(string user)
         {
             var books = _bookService.GetList();
-
+            var userId = 0;
+            AppUser currentUser = new AppUser();
+            Models.Member member = new Models.Member();
+            CustomModel model = new CustomModel();
+            AppUser profileUser = new AppUser();
             TempData["Active"] = "profile";
             TempData["sa"] = TempData["deneme"];
+            var userprofile = TempData["currentUser"];
             var appUser = await _userManager.FindByNameAsync(User.Identity.Name);
-            Models.Member member = new Models.Member();
-            member.Id = appUser.Id;
-            member.FirstName = appUser.FirstName;
-            member.LastName = appUser.LastName;
-            member.Email = appUser.Email;
-            member.UserName = appUser.UserName;
-            member.Description = appUser.Description;
-            member.Picture = appUser.ProfileImageFile;
-            CustomModel model = new CustomModel();
-            model.Member = member;
+
+            if (userprofile == null)
+            {
+                profileUser = null;
+
+                member.Id = appUser.Id;
+                member.FirstName = appUser.FirstName;
+                member.LastName = appUser.LastName;
+                member.Email = appUser.Email;
+                member.UserName = appUser.UserName;
+                member.Description = appUser.Description;
+                member.Picture = appUser.ProfileImageFile;
+                model.Member = member;
+                userId = appUser.Id;
+            }
+            else
+            {
+                profileUser = await _userManager.FindByNameAsync(userprofile.ToString());
+                member.Id = profileUser.Id;
+                member.FirstName = profileUser.FirstName;
+                member.LastName = profileUser.LastName;
+                member.Email = profileUser.Email;
+                member.UserName = profileUser.UserName;
+                member.Description = profileUser.Description;
+                member.Picture = profileUser.ProfileImageFile;
+                model.Member = member;
+                userId = profileUser.Id;
+            }
+
+            if (user == null)
+            {
+                currentUser = null;
+                member.Id = appUser.Id;
+                member.FirstName = appUser.FirstName;
+                member.LastName = appUser.LastName;
+                member.Email = appUser.Email;
+                member.UserName = appUser.UserName;
+                member.Description = appUser.Description;
+                member.Picture = appUser.ProfileImageFile;
+                model.Member = member;
+                userId = appUser.Id;
+            }
+
+            else
+            {
+                currentUser = await _userManager.FindByNameAsync(user);
+
+                member.Id = currentUser.Id;
+                member.FirstName = currentUser.FirstName;
+                member.LastName = currentUser.LastName;
+                member.Email = currentUser.Email;
+                member.UserName = currentUser.UserName;
+                member.Description = currentUser.Description;
+                member.Picture = currentUser.ProfileImageFile;
+                model.Member = member;
+                userId = currentUser.Id;
+            }
+
+
+
+            if (currentUser != null)
+            {
+                if (appUser.UserName != currentUser.UserName)
+                {
+                    model.IsProfile = false;
+                }
+                else
+                {
+                    model.IsProfile = true;
+                }
+            }
+
+            if (profileUser != null)
+            {
+                if (appUser.UserName == profileUser.UserName)
+                {
+                    model.IsProfile = true;
+                }
+                else
+                {
+                    model.IsProfile = false;
+                }
+            }
+
+
 
             List<Review> reviews = new List<Review>();
             List<Quotation> quotations = new List<Quotation>();
-            var userId = appUser.Id;
+
             var userbooks = _bookAppUserService.GetByAppUserId(userId);
             foreach (var book in userbooks)
             {
@@ -121,27 +281,107 @@ namespace WebUI.Areas.Member.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> Quotation()
+        public async Task<IActionResult> Quotation(string user)
         {
             var books = _bookService.GetList();
-
+            var userId = 0;
+            AppUser currentUser = new AppUser();
+            Models.Member member = new Models.Member();
+            CustomModel model = new CustomModel();
+            AppUser profileUser = new AppUser();
             TempData["Active"] = "profile";
             TempData["sa"] = TempData["deneme"];
+            var userprofile = TempData["currentUser"];
             var appUser = await _userManager.FindByNameAsync(User.Identity.Name);
-            Models.Member member = new Models.Member();
-            member.Id = appUser.Id;
-            member.FirstName = appUser.FirstName;
-            member.LastName = appUser.LastName;
-            member.Email = appUser.Email;
-            member.UserName = appUser.UserName;
-            member.Description = appUser.Description;
-            member.Picture = appUser.ProfileImageFile;
-            CustomModel model = new CustomModel();
-            model.Member = member;
+
+            if (userprofile == null)
+            {
+                profileUser = null;
+
+                member.Id = appUser.Id;
+                member.FirstName = appUser.FirstName;
+                member.LastName = appUser.LastName;
+                member.Email = appUser.Email;
+                member.UserName = appUser.UserName;
+                member.Description = appUser.Description;
+                member.Picture = appUser.ProfileImageFile;
+                model.Member = member;
+                userId = appUser.Id;
+            }
+            else
+            {
+                profileUser = await _userManager.FindByNameAsync(userprofile.ToString());
+                member.Id = profileUser.Id;
+                member.FirstName = profileUser.FirstName;
+                member.LastName = profileUser.LastName;
+                member.Email = profileUser.Email;
+                member.UserName = profileUser.UserName;
+                member.Description = profileUser.Description;
+                member.Picture = profileUser.ProfileImageFile;
+                model.Member = member;
+                userId = profileUser.Id;
+            }
+
+            if (user == null)
+            {
+                currentUser = null;
+                member.Id = appUser.Id;
+                member.FirstName = appUser.FirstName;
+                member.LastName = appUser.LastName;
+                member.Email = appUser.Email;
+                member.UserName = appUser.UserName;
+                member.Description = appUser.Description;
+                member.Picture = appUser.ProfileImageFile;
+                model.Member = member;
+                userId = appUser.Id;
+            }
+
+            else
+            {
+                currentUser = await _userManager.FindByNameAsync(user);
+
+                member.Id = currentUser.Id;
+                member.FirstName = currentUser.FirstName;
+                member.LastName = currentUser.LastName;
+                member.Email = currentUser.Email;
+                member.UserName = currentUser.UserName;
+                member.Description = currentUser.Description;
+                member.Picture = currentUser.ProfileImageFile;
+                model.Member = member;
+                userId = currentUser.Id;
+            }
+
+
+
+            if (currentUser != null)
+            {
+                if (appUser.UserName != currentUser.UserName)
+                {
+                    model.IsProfile = false;
+                }
+                else
+                {
+                    model.IsProfile = true;
+                }
+            }
+
+            if (profileUser != null)
+            {
+                if (appUser.UserName == profileUser.UserName)
+                {
+                    model.IsProfile = true;
+                }
+                else
+                {
+                    model.IsProfile = false;
+                }
+            }
+
+
 
             List<Review> reviews = new List<Review>();
             List<Quotation> quotations = new List<Quotation>();
-            var userId = appUser.Id;
+
             var userbooks = _bookAppUserService.GetByAppUserId(userId);
             foreach (var book in userbooks)
             {
@@ -169,6 +409,7 @@ namespace WebUI.Areas.Member.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(CustomModel model)
         {
+            TempData["currentUser"] = model.Member.UserName;
             if (ModelState.IsValid)
             {
 
@@ -215,6 +456,7 @@ namespace WebUI.Areas.Member.Controllers
 
         public async Task<IActionResult> Comment(CustomModel model)
         {
+            TempData["currentUser"] = model.Member.UserName;
             if (ModelState.IsValid)
             {
 
@@ -261,6 +503,7 @@ namespace WebUI.Areas.Member.Controllers
 
         public async Task<IActionResult> Quotation(CustomModel model)
         {
+            TempData["currentUser"] = model.Member.UserName;
             if (ModelState.IsValid)
             {
 

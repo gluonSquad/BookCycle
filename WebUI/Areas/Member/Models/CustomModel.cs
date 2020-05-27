@@ -15,6 +15,7 @@ namespace WebUI.Areas.Member.Models
         public IFormFile MyFile { get; set; }
 
         public Member Member { get; set; }
+        public bool IsProfile { get; set; }
     }
 
     public class Member

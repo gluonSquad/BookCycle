@@ -51,7 +51,7 @@
     </a>
 
 
-    <a asp-action="Index" asp-controller="Profile" class="f-ac-center mt-3 pl-3 pt-2 pb-2 hoverclass  @(active=="profile" ? "active" : "")">
+    <a asp-route-user="@Model.UserName" asp-action="Index" asp-controller="Profile" class="f-ac-center mt-3 pl-3 pt-2 pb-2 hoverclass  @(active=="profile" ? "active" : "")">
 
         <img class="mr-3" src="~/img/profile.svg" />
 

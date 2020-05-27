@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Member\ViewComponents\" />
     <Folder Include="wwwroot\lib\swal\" />
     <Folder Include="wwwroot\documents\" />
   </ItemGroup>

@@ -46,8 +46,6 @@ namespace WebUI.Areas.Member.Controllers
             var books = _bookService.GetBookList(out totalPage, s , page);
             ViewBag.TotalPage = totalPage;
             ViewBag.Books = books;
-           
-            
             return View();
         }
 
