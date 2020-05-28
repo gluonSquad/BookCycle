@@ -90,6 +90,16 @@
         bottom: 0;
         z-index: 1;
     }
+
+     .fixedmen2 {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right : 0;
+        z-index: 1;
+        overflow-y : scroll;
+       
+    }
 </style>
 
 
@@ -102,8 +112,8 @@
 
             </div>
         </div>
-        <div style="margin-left: auto; padding: 0; border-right: 1px solid black; border-left: 1px solid black;background-color:#364C71" class="col-6 col-sm-6">@RenderBody()</div>
-        <div style="background-color:blue;" class="col-3 col-sm-3">Değişen Alan</div>
+        <div style="margin-left: auto; margin-right:auto;padding: 0; border-right: 1px solid black; border-left: 1px solid black;background-color:#364C71" class="col-6 col-sm-6">@RenderBody()</div>
+        <div style="background-color:#364c71;" class="fixedmen2 col-3 col-sm-3">@await  Component.InvokeAsync("Right")</div>
     </div>
     <!-- /#wrapper -->
     <!-- Bootstrap core JavaScript -->

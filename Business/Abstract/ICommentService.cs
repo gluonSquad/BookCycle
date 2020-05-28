@@ -9,5 +9,7 @@ namespace Business.Abstract
     {
         public void Add(Review review);
         public List<Review> GetComments(out int totalPage, string searchWord, int currentPage);
+        public List<Review> GetComments();
+
     }
 }

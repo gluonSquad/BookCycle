@@ -1,4 +1,96 @@
-﻿
+﻿@model WebUI.Areas.Member.Models.RightModel
 @*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
+<style>
+    .row {
+        display: flex;
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .column {
+        flex: 20%;
+        margin-right: 5px;
+        margin-top: 10px;
+    }
+</style>
+<div style="margin: 0;background-color: transparent; ; color: white; border-bottom: 2px solid white; border-top: none; border-left: none; border-right: none; border-radius: 0;" class="alert alert-secondary text-center" role="alert">
+    Önerilen Kitaplar
+</div>
+<div class="row">
+
+    @foreach (var book in Model.Books)
+    {
+        <div class="column">
+            <img src="@book.BookImageUrl" style="width: 100% ; height:160px;">
+        </div>
+    }
+    <a asp-action="Index" asp-controller="Book" style="letter-spacing:5px;justify-content: center;
+    align-items: center;
+    display: flex; background-color:transparent;border:none;" class="btn btn-success">...</a>
+
+</div>
+
+<div style="margin: 0;background-color: transparent; ; color: white; border-bottom: 2px solid white; border-top: none; border-left: none; border-right: none; border-radius: 0;" class="alert alert-secondary text-center" role="alert">
+    Öne Çıkan Yorumlar
+</div>
+
+<div style="flex-direction:column" class="row">
+    @foreach (var comment in Model.Comments)
+    {
+        <div style="margin-top:10px;" class="card">
+
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <span style="color:#55967E;">@comment.Book.Title</span>
+                    <p style="font-size:16px;">@comment.ReviewText</p>
+                    <footer class="blockquote-footer">@comment.User.FirstName @comment.User.LastName</footer>
+                </blockquote>
+            </div>
+        </div>
+
+    }
+
+</div>
+
+<div style="margin: 0;background-color: transparent; ; color: white; border-bottom: 2px solid white; border-top: none; border-left: none; border-right: none; border-radius: 0;" class="alert alert-secondary text-center" role="alert">
+    Öne Çıkan Alıntılar
+</div>
+
+<div style="flex-direction:column" class="row">
+    @foreach (var quotation in Model.Quotations)
+    {
+        <div style="margin-top:10px;" class="card">
+
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <span style="color:#55967E;">@quotation.Book.Title</span> <span style="display:block;color:black;font-size:16px !important;"> Alıntı Yapılan Sayfa : @quotation.CurrentPage</span>
+                    <p style="font-size:16px;">@quotation.QuotationText</p>
+                    <footer class="blockquote-footer">@quotation.User.FirstName @quotation.User.LastName</footer>
+                </blockquote>
+            </div>
+        </div>
+
+    }
+
+</div>
+
+<div style="margin: 0;background-color: transparent; ; color: white; border-bottom: 2px solid white; border-top: none; border-left: none; border-right: none; border-radius: 0;" class="alert alert-secondary text-center" role="alert">
+    Öne Çıkan Üyeler
+</div>
+
+<div style="flex-direction:column" class="row">
+    @foreach (var user in Model.Users)
+    {
+        <a asp-route-user="@user.UserName" asp-action="Index" asp-controller="Profile" class="f-ac-center f-jc-center">
+            <button style="border: none;background-color:#55967E" class="mb-3 btn btn-secondary btn-block">
+                <img style="border-radius: 50%; float:left" height="80" width="80" src="~/img/@user.ProfileImageFile">
+                <p style="color:white; font-weight: bold;margin:0 ">@user.UserName</p>
+                <span style="display:inline-block">@user.FirstName  @user.LastName</span>
+            </button>
+        </a>
+
+    }
+
+</div>

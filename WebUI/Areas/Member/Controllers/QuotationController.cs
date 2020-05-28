@@ -51,7 +51,7 @@ namespace WebUI.Areas.Member.Controllers
                 var appUser = await _userManager.FindByNameAsync(User.Identity.Name);
                 var userId = appUser.Id;
                 model.AppUserId = userId;
-                Quotation quotation = new Quotation
+                Entities.Concrete.Quotation quotation = new Entities.Concrete.Quotation
                 {
                     AppUserId = model.AppUserId,
                     QuotationText = model.QuotationText,

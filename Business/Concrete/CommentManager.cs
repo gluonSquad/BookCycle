@@ -24,5 +24,10 @@ namespace Business.Concrete
         {
             return _reviewDal.GetComments(out totalPage, searchWord, currentPage);
         }
+
+        public List<Review> GetComments()
+        {
+            return _reviewDal.GetComments();
+        }
     }
 }

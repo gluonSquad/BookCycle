@@ -129,7 +129,7 @@ namespace WebUI.Areas.Member.Controllers
                 authorEntity = checkAuthor;
             }
 
-            Book entity = new Book
+            Entities.Concrete.Book entity = new Entities.Concrete.Book
             {
 
                 Title = bookTitleValue,

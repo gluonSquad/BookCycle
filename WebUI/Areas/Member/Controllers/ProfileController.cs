@@ -130,7 +130,7 @@ namespace WebUI.Areas.Member.Controllers
 
 
             List<Review> reviews = new List<Review>();
-            List<Quotation> quotations = new List<Quotation>();
+            List<Entities.Concrete.Quotation> quotations = new List<Entities.Concrete.Quotation>();
            
             var userbooks = _bookAppUserService.GetByAppUserId(userId);
             foreach (var book in userbooks)
@@ -255,7 +255,7 @@ namespace WebUI.Areas.Member.Controllers
 
 
             List<Review> reviews = new List<Review>();
-            List<Quotation> quotations = new List<Quotation>();
+            List<Entities.Concrete.Quotation> quotations = new List<Entities.Concrete.Quotation>();
 
             var userbooks = _bookAppUserService.GetByAppUserId(userId);
             foreach (var book in userbooks)
@@ -380,7 +380,7 @@ namespace WebUI.Areas.Member.Controllers
 
 
             List<Review> reviews = new List<Review>();
-            List<Quotation> quotations = new List<Quotation>();
+            List<Entities.Concrete.Quotation> quotations = new List<Entities.Concrete.Quotation>();
 
             var userbooks = _bookAppUserService.GetByAppUserId(userId);
             foreach (var book in userbooks)
