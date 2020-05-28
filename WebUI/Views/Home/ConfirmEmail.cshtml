@@ -3,6 +3,27 @@
     ViewData["Title"] = "ConfirmEmail";
     Layout = "~/Views/Shared/_StandartLayout.cshtml";
 }
-
-<h1>ConfirmEmail</h1>
-
+<style>
+    .card {
+      background-color: #364C71;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+}
+</style>
+<div class="card">
+    <div style="text-align: center;
+    width: 50%;background-color:#55967E;border:black;color:black;" class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Onay Mesajı</h4>
+        <p>
+            @if (TempData["message"] != null)
+            {
+                @TempData["message"]
+            }
+        </p>
+        <hr>
+        <a style="font-size:20px;" asp-area="" asp-action="Index" asp-controller="Home" class="mb-0">Giriş yapmak için tıklayınız...</a>
+    </div>
+</div>

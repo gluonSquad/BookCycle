@@ -49,6 +49,7 @@ namespace WebUI
 
             services.ConfigureApplicationCookie(opt =>
             {
+                opt.Cookie.IsEssential = true;
                 opt.Cookie.Name = "BookCycleCookie";
                 opt.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict;
                 opt.Cookie.HttpOnly = true;

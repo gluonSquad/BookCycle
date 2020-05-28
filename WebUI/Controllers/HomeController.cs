@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Business.Abstract;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebUI.EmailServices;
@@ -26,8 +27,17 @@ namespace WebUI.Controllers
             _emailSender = emailSender;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                await _signInManager.SignOutAsync();
+            }
+
+            foreach (var key in HttpContext.Request.Cookies.Keys)
+            {
+                HttpContext.Response.Cookies.Append(key, "", new CookieOptions() { Expires = DateTime.Now.AddDays(-1) });
+            }
             return View();
         }
 
@@ -100,7 +110,7 @@ namespace WebUI.Controllers
 
                       //email 
                       await _emailSender.SendEmailAsync(model.Email, "Hesabınızı onaylayınız.",
-                          $"Lütfen email hesabınızı onaylamak için linke <a href='http://localhost:50499{url}'>tıklayınız.</a>");
+                          $"Lütfen email hesabınızı onaylamak için linke <a href='http://localhost:50830{url}'>tıklayınız.</a>");
                       return RedirectToAction("Index","Home");
                   }
                     foreach (var item in addRoleResult.Errors)
