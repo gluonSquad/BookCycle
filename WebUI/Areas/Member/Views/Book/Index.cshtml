@@ -46,12 +46,8 @@
     <div class="card">
         <img style="width: 160px; height: 250px; margin: auto;" class="img-fluid" src="@item.BookImageUrl" alt="Card image cap">
         <div class="card-body">
-            <h5 class="card-title text-center">@item.Title - @item.Author.Name</h5>
-            <p class="card-text"><small class="text-muted">Isbn : @item.Isbn</small></p>
-            <p class="card-text"><small class="text-muted">Sayfa Sayısı : @item.BookPages</small></p>
-            <p class="card-text"><small class="text-muted">Yayın Evi : @item.BookPublisher</small></p>
-            <p class="card-text"><small class="text-muted">Yayın Tarihi: @item.DatePublished</small></p>
-            <p class="card-text"><small class="text-muted">Türü : @item.Category.Name</small></p>
+            <h5 style="color:#364C71;" class="card-title text-center">@item.Title</h5>
+            <h5 style="color:#364C71;"class="card-title text-center">@item.Author.Name</h5>
 
         </div>
         <a asp-action="BookDetails" asp-controller="Book" asp-route-bookId="@item.Id" style="border-radius:0;color:white;background:#364C71;border:none;" class="btn btn-warning" btn-sm>Detay</a>
@@ -76,7 +72,8 @@
 
 <nav aria-label="Page navigation example">
 
-    <ul style="padding: 10px;margin-bottom:0" class="pagination justify-content-center">
+    <ul style="        padding: 10px;
+        margin-bottom: 0" class="pagination justify-content-center">
         @if (!string.IsNullOrWhiteSpace(s))
         {
             for (int i = 1; i <= ViewBag.TotalPage; i++)
