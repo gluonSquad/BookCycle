@@ -45,15 +45,15 @@
             </div>
             <div class="col">
                 <div class="card-block py-3 px-3">
-                    <p class="card-text">Baskı Tarihi : @Model.DatePublished</p>
-                    <p class="card-text">Yayınevi : @Model.BookPublisher</p>
-                    <p class="card-text">ISBN  : @Model.Isbn</p>
-                    <p class="card-text">Sayfa  : @Model.BookPages</p>
-                    <p class="card-text">Yazar : @Model.Author.Name</p>
+                    <p style="color:#364c71" class="card-text">Baskı Tarihi : @Model.DatePublished</p>
+                    <p style="color:#364c71" class="card-text">Yayınevi : @Model.BookPublisher</p>
+                    <p  style="color:#364c71" class="card-text">ISBN  : @Model.Isbn</p>
+                    <p  style="color:#364c71" class="card-text">Sayfa  : @Model.BookPages</p>
+                    <p  style="color:#364c71" class="card-text">Yazar : @Model.Author.Name</p>
 
                     @if (Model.Description.Length > 0)
                     {
-                        <p class="card-text">Kitap Hakkında : @Model.Description</p>
+                        <p  style="color:#364c71" class="card-text">Kitap Hakkında : @Model.Description</p>
 
                     }
                     @if (Model.Reviews.Count > 0)
