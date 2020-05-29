@@ -35,5 +35,10 @@ namespace Business.Concrete
         {
             return _bookAppUserDal.GetAll(out totalPage, searchWord, currentPage);
         }
+
+        public Book GetBook(int bookId)
+        {
+            return _bookAppUserDal.GetBook(bookId);
+        }
     }
 }

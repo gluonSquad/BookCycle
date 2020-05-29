@@ -62,6 +62,58 @@ namespace WebUI.Areas.Member.Controllers
 
         }
 
+        public IActionResult BookDetails(int bookId)
+        {
+            
+            var bookTotalRating = 0;
+            TempData["Active"] = "book";
+            var book = _bookAppUserService.GetBook(bookId);
+            foreach(var review in book.Reviews)
+            {
+                bookTotalRating += review.Rating;
+            }
+            var reviewCount = book.Reviews.Count();
+            
+            var bookRating = (int)Math.Ceiling((double)bookTotalRating / reviewCount);
+
+            book.Rating = bookRating;
+            return View(book);
+        }
+
+        public IActionResult Comment(int bookId)
+        {
+            var bookTotalRating = 0;
+            TempData["Active"] = "book";
+            var book = _bookAppUserService.GetBook(bookId);
+            foreach (var review in book.Reviews)
+            {
+                bookTotalRating += review.Rating;
+            }
+            var reviewCount = book.Reviews.Count();
+
+            var bookRating = (int)Math.Ceiling((double)bookTotalRating / reviewCount);
+
+            book.Rating = bookRating;
+            return View(book);
+        }
+
+        public IActionResult Quotation(int bookId)
+        {
+            var bookTotalRating = 0;
+            TempData["Active"] = "book";
+            var book = _bookAppUserService.GetBook(bookId);
+            foreach (var review in book.Reviews)
+            {
+                bookTotalRating += review.Rating;
+            }
+            var reviewCount = book.Reviews.Count();
+
+            var bookRating = (int)Math.Ceiling((double)bookTotalRating / reviewCount);
+
+            book.Rating = bookRating;
+            return View(book);
+        }
+
 
 
 

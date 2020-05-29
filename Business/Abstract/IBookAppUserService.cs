@@ -12,5 +12,6 @@ namespace Business.Abstract
 
         List<Book> GetAll();
         List<Book> GetAll(out int totalPage, string searchWord, int currentPage);
+        Book GetBook(int bookId);
     }
 }

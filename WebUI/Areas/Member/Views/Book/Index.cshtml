@@ -43,31 +43,33 @@
 
     @foreach (var item in ViewBag.Books)
     {
-        <div class="card">
-            <img style="width: 160px; height: 250px; margin: auto;" class="img-fluid" src="@item.BookImageUrl" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title text-center">@item.Title - @item.Author.Name</h5>
-                <p class="card-text"><small class="text-muted">Isbn : @item.Isbn</small></p>
-                <p class="card-text"><small class="text-muted">Sayfa Sayısı : @item.BookPages</small></p>
-                <p class="card-text"><small class="text-muted">Yayın Evi : @item.BookPublisher</small></p>
-                <p class="card-text"><small class="text-muted">Yayın Tarihi: @item.DatePublished</small></p>
-                <p class="card-text"><small class="text-muted">Türü : @item.Category.Name</small></p>
-            </div>
-            <div class="card-footer text-muted">
-                <button type="submit"  data-bookid="@item.Id" data-appuserid="@TempData["appUserId"]" style="background-color: #55967E; color: white; font-size: 15px; border: none;" class="bookUser btn btn-primary btn-sm">
-                    Kitaplığa Ekle
-                </button>
-                <a asp-action="List" asp-controller="Comment" asp-route-s="@item.Title" style="        color: white;
-        font-size: 15px;
-        border: none;" class="btn btn-info btn-sm">
-                    Yorum
-                </a>
-                <a asp-action="List" asp-controller="Quotation" asp-route-s="@item.Title" style="color: white; font-size: 15px; border: none;" class="btn btn-secondary btn-sm">
-                    Alıntı
-                </a>
-            </div>
+    <div class="card">
+        <img style="width: 160px; height: 250px; margin: auto;" class="img-fluid" src="@item.BookImageUrl" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title text-center">@item.Title - @item.Author.Name</h5>
+            <p class="card-text"><small class="text-muted">Isbn : @item.Isbn</small></p>
+            <p class="card-text"><small class="text-muted">Sayfa Sayısı : @item.BookPages</small></p>
+            <p class="card-text"><small class="text-muted">Yayın Evi : @item.BookPublisher</small></p>
+            <p class="card-text"><small class="text-muted">Yayın Tarihi: @item.DatePublished</small></p>
+            <p class="card-text"><small class="text-muted">Türü : @item.Category.Name</small></p>
 
         </div>
+        <a asp-action="BookDetails" asp-controller="Book" asp-route-bookId="@item.Id" style="border-radius:0;color:white;background:#364C71;border:none;" class="btn btn-warning" btn-sm>Detay</a>
+        <div class="card-footer text-muted">
+            <button type="submit" data-bookid="@item.Id" data-appuserid="@TempData["appUserId"]" style="background-color: #55967E; color: white; font-size: 15px; border: none;" class="bookUser btn btn-primary btn-sm">
+                Kitaplığa Ekle
+            </button>
+            <a asp-action="List" asp-controller="Comment" asp-route-s="@item.Title" style="        color: white;
+        font-size: 15px;
+        border: none;" class="btn btn-info btn-sm">
+                Yorum
+            </a>
+            <a asp-action="List" asp-controller="Quotation" asp-route-s="@item.Title" style="color: white; font-size: 15px; border: none;" class="btn btn-secondary btn-sm">
+                Alıntı
+            </a>
+        </div>
+
+    </div>
     }
 </div>
 

@@ -12,5 +12,6 @@ namespace DataAccess.Concrete.Abstract
 
         public List<Book> GetAll();
         public List<Book> GetAll(out int totalPage, string searchWord, int currentPage);
+        public Book GetBook(int bookId);
     }
 }

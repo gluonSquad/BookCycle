@@ -1,0 +1,99 @@
+﻿@model Entities.Concrete.Book
+@{
+    ViewData["Title"] = "BookDetails";
+    Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
+}
+
+<style>
+    span {
+        font-size: 20px !important;
+    }
+
+    .dot {
+        color: white;
+        font-size: 24px !important;
+        height: 50px;
+        text-align: center;
+        width: 50px;
+        background-color: #55967E;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .flex-absolute {
+        top: 0;
+        right: 0;
+        position: absolute;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 20px;
+        margin-top: 20px;
+        flex-direction: column;
+    }
+
+    .card-footer:last-child {
+        border-radius: 0 !important;
+        border-bottom: 1px solid black;
+    }
+</style>
+<div style="padding-right: 0; padding-left: 0; background: white;" class="container">
+    <div style="border-radius:0;border:none;" class="card">
+        <div style="padding:20px;" class="row no-gutters">
+            <div class="col-auto">
+                <img src="@Model.BookImageUrl" style="width:175px;height:300px;" class="img-fluid" alt="">
+
+            </div>
+            <div class="col">
+                <div class="card-block py-3 px-3">
+                    <p class="card-text">Baskı Tarihi : @Model.DatePublished</p>
+                    <p class="card-text">Yayınevi : @Model.BookPublisher</p>
+                    <p class="card-text">ISBN  : @Model.Isbn</p>
+                    <p class="card-text">Sayfa  : @Model.BookPages</p>
+                    <p class="card-text">Yazar : @Model.Author.Name</p>
+
+                    @if (Model.Description.Length > 0)
+                    {
+                        <p class="card-text">Kitap Hakkında : @Model.Description</p>
+
+                    }
+                    @if (Model.Reviews.Count > 0)
+                    {
+                        <div class="flex-absolute">
+                            <span style="display:flex;justify-content:center;align-items:center;" class="dot">@Model.Rating</span>
+                            <span style="font-size:16px !important;margin-top:5px;color:#55967E">Oylayan Kişi Sayısı :  @Model.Reviews.Count</span>
+                        </div>
+                    }
+
+
+
+                </div>
+            </div>
+        </div>
+        <div style="background-color:white;" class="card-footer w-100">
+            <a asp-action="Comment" asp-controller="Book" asp-route-bookId="@Model.Id" style="color:white;" class="btn btn-success btn-sm">
+                Yorumlar
+            </a>
+            <a asp-action="Quotation" asp-controller="Book" asp-route-bookId="@Model.Id" style="color:white;" class="btn btn-success btn-sm">Alıntılar</a>
+            <a asp-action="BookDetails" asp-controller="Book" asp-route-bookId="@Model.Id" style="color:white;" class="btn btn-success btn-sm">Tümünü Göster</a>
+        </div>
+
+
+    </div>
+
+
+    @foreach (var quotation in Model.Quotations)
+    {
+        <div style="background-color:#364c71;position:relative;border-bottom:1px:solid black;" class="card-footer w-100">
+            <span style="color:white !important;font-size:18px !important;">@quotation.AppUser.FirstName</span> <span style="color:white !important;font-size:18px !important;">@quotation.AppUser.LastName</span> <a style="color: #55967E; font-size: 18px !important; border-radius: 0; margin-left: 10px; font-weight: bold " asp-action="Index" asp-controller="Profile" asp-route-user="@quotation.AppUser.UserName">@quotation.AppUser.UserName</a> <span style="color:#55967E ; font-size:18px !important;font-weight:bold;float:right">@quotation.CreatedOn?.ToString("D")</span>
+            <span style="        display: block;
+        font-size: 18px !important;
+        color: #55967E;
+        font-weight: bold;
+">Alıntı Yapılan Sayfa : @quotation.CurrentPage</span>
+<p style="color:white;font-size:18px;">@quotation.QuotationText</p>
+
+</div>
+}
+</div>
