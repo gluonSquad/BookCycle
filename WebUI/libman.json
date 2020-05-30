@@ -14,9 +14,10 @@
     {
       "library": "jquery@3.5.1",
       "destination": "wwwroot/lib/jquery/",
-      "files" :  ["jquery.min.js"] 
-    }
-  ,
+      "files": [
+        "jquery.min.js"
+      ]
+    },
     {
       "library": "bootstrap-sweetalert@1.0.1",
       "destination": "wwwroot/lib/swal/bootstrap-sweetalert/",
@@ -28,18 +29,34 @@
     {
       "library": "jquery-validate@1.19.1",
       "destination": "wwwroot/lib/jqueryValidate",
-      "files": [ "jquery.validate.min.js" ]
+      "files": [
+        "jquery.validate.min.js"
+      ]
     },
     {
       "library": "jquery-validation-unobtrusive@3.2.11",
       "destination": "wwwroot/lib/jqueryUnob",
-      "files": [ "jquery.validate.unobtrusive.min.js" ]
+      "files": [
+        "jquery.validate.unobtrusive.min.js"
+      ]
     },
-  {
-    "library": "font-awesome@5.13.0",
-    "destination": "wwwroot/lib/fontAwesome",
-    "files": ["css/all.min.css","js/all.min.js","webfonts/fa-solid-900.woff","webfonts/fa-solid-900.woff2","webfonts/fa-regular-400.woff","webfonts/fa-regular-400.woff2","webfonts/fa-regular-400.ttf","webfonts/fa-solid-900.ttf"]
-  }
-
-]
+    {
+      "library": "font-awesome@5.13.0",
+      "destination": "wwwroot/lib/fontAwesome",
+      "files": [
+        "css/all.min.css",
+        "js/all.min.js",
+        "webfonts/fa-solid-900.woff",
+        "webfonts/fa-solid-900.woff2",
+        "webfonts/fa-regular-400.woff",
+        "webfonts/fa-regular-400.woff2",
+        "webfonts/fa-regular-400.ttf",
+        "webfonts/fa-solid-900.ttf"
+      ]
+    },
+    {
+      "library": "flickity@2.2.1",
+      "destination": "wwwroot/lib/flickity/"
+    }
+  ]
 }

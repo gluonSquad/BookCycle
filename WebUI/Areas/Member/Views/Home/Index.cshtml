@@ -4,32 +4,54 @@
     Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
 }
 <link href="~/lib/swal/bootstrap-sweetalert/sweetalert.min.css" rel="stylesheet" />
+<link href="~/lib/flickity/flickity.min.css" rel="stylesheet" />
 
 <style>
     #btn-primary:active {
         border-color: #2f973e;
     }
+.carousel-cell {
+  width: 33%; /* full width */
+  height: 320px; /* height of carousel */
+  margin-right: 10px;
+}
+
 </style>
 
-<div  style="margin: 0;background-color: #364C71; ; color: white; border: none; border-radius: 0;" class="alert alert-secondary text-center" role="alert">
+<div style="        margin: 0;
+        background-color: #364C71;
+        color: white;
+        border: none;
+        border-radius: 0;
+" class="alert alert-secondary text-center" role="alert">
     Anasayfa
 </div>
 
-<div style="border-radius: 0; background-color: #364C71;" class="card text-center">
+<div style="border-radius: 0; background-color: #364C71; border-bottom: none;" class="card text-center">
     <div  class="card-body">
 
         <img style="height: 160px; width: 160px;" src="~/img/logo.svg" />
-        <h5  style="color: white;" class="card-title">Kitaplığımızın Büyümesinde Destek Ol </h5>
+        <h5 style="color: white;" class="card-title">Kitaplığımızın Büyümesinde Destek Ol </h5>
         <p style="color: white;" class="card-text">Kitap adı ve yazar bilgisini girdiğiniz taktirde bu kitabı bünyemizde depolayacağız bu yüzden daha fazla kitaba erişim sağlayabilmek için aşağıdaki butona tıklayarak kitap ekleyebilirsiniz.</p>
         <button id="bookButton" style="background-color: #55967E; border: none;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
             Kitap Ekle
         </button>
     </div>
-  
+
 </div>
+<div style="margin: 0;background-color: transparent; ; color: white; margin-top:10px; border-bottom: 1px solid rgba(0,0,0,0.125); border-top: none; border-left: none; border-right: none; border-radius: 0;" class="alert alert-secondary text-center" role="alert">
+    Son Eklenen Kitaplar
+</div>
+<div  class="main-carousel" style="margin-top:20px;padding:20px;">
+    @foreach (var book in ViewBag.FiveBooks)
+    {
+        <a asp-action="BookDetails" asp-controller="Book" asp-route-bookId="@book.Id" class="carousel-cell"><img src="@book.BookImageUrl" style="width:100%;height:320px;"></a>
+ 
+}
+</div>
+
+
 <!-- Button trigger modal -->
-
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -66,7 +88,13 @@
 
 <script src="~/lib/jquery/jquery.min.js"></script>
 <script src="~/lib/swal/bootstrap-sweetalert/sweetalert.min.js"></script>
+<script src="~/lib/flickity/flickity.pkgd.min.js"></script>
 <script>
+    $('.main-carousel').flickity({
+  // options
+  cellAlign: 'left',
+  contain: true
+});
     $(document).ready(function () {
 
         $("#addBook").click(function () {
@@ -83,7 +111,7 @@
                         $("#author").val("");
                         $("#title").val("");
                         swal("Kitap başarıyla eklendi!", "Destek olduğunuz için teşekkürler", "success")
-                       
+
                     } if (gelenObje == false) {
                         $("#author").val("");
                         $("#title").val("");

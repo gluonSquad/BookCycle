@@ -34,6 +34,10 @@ namespace WebUI.Areas.Member.Controllers
         }
         public IActionResult Index()
         {
+            var books = _bookService.GetList();
+            var dateFilterBooks = books.OrderByDescending(b => b.CreatedOn);
+            var fiveBooks = dateFilterBooks.Take(10);
+            ViewBag.FiveBooks = fiveBooks;
             TempData["Active"] = "home";
             return View(new BookAddViewModel());
         }
