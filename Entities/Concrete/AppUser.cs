@@ -8,6 +8,10 @@ namespace Entities.Concrete
 {
     public class AppUser : IdentityUser<int>
     {
+        public AppUser()
+        {
+            Messages = new HashSet<Message>();
+        }
         public string ProfileImageFile { get; set; } = "default.png";
 
         public string Description { get; set; }
@@ -18,6 +22,8 @@ namespace Entities.Concrete
 
         public int Age { get; set; }
 
+
+        public virtual ICollection<Message> Messages { get; set; }
 
         public virtual ICollection<Review> Reviews { get; set; }
         public virtual ICollection<BookAppUser> BookAppUsers { get; set; }

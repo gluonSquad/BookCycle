@@ -60,6 +60,12 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
                 .WithMany(a => a.Books)
                 .HasForeignKey(b => b.AuthorId);
 
+            modelBuilder.Entity<Message>()
+                .HasOne<AppUser>(a => a.Sender)
+                .WithMany(d => d.Messages)
+                .HasForeignKey(d => d.AppUserId);
+
+
             base.OnModelCreating(modelBuilder);
 
         }
@@ -75,5 +81,6 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
 
         public DbSet<Quotation> Quotations { get; set; }
         public DbSet<BookAppUser> BookAppUsers { get; set; }
+        public DbSet<Message> Messages { get; set; } 
     }
 }

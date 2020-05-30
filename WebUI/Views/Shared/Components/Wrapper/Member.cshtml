@@ -21,12 +21,12 @@
     <h2 class="headingText">BookCycle</h2>
 </div>
 <div class="f-jc-center menu">
-    <a asp-action="Index" asp-controller="Home"  class="f-ac-center pl-3 pt-2 pb-2 hoverclass mt-3  @(active=="home" ? "active" : "")">
+    <a asp-action="Index" asp-controller="Home" class="f-ac-center pl-3 pt-2 pb-2 hoverclass mt-3  @(active=="home" ? "active" : "")">
         <img class="mr-3" src="~/img/home.svg">
         <h4 class="headingText">Anasayfa</h4>
 
     </a>
-    <a  asp-action="Index" asp-controller="Book" class="f-ac-center pl-3 pt-2 pb-2 hoverclass mt-3 @(active=="book" ? "active" : "")">
+    <a asp-action="Index" asp-controller="Book" class="f-ac-center pl-3 pt-2 pb-2 hoverclass mt-3 @(active=="book" ? "active" : "")">
 
         <img class="mr-3" src="~/img/books.svg" />
 
@@ -61,13 +61,14 @@
     <a asp-action="Index" asp-controller="Comment" class="mt-3 p-3 btn btn-success btn-block">Yorum</a>
 
     <a asp-action="Index" asp-controller="Quotation" style="color: white;" class="mt-3 p-3 btn btn-success btn-block">Alıntı</a>
+    <a href="/Member/Chat/Index" style="color: white;" class="mt-3 p-3 btn btn-success btn-block">Kitap Muhabbeti</a>
 
     <div class="f-ac-center f-jc-center">
         <a asp-area="" asp-action="Logout" asp-controller="Home" style="border: none;background-color:#55967E" class="mb-3 btn-absolute btn btn-secondary btn-block">
             <img style="border-radius: 50%; float:left" height="40" width="40" src="~/img/@Model.Picture">
             <p style="color:white; font-weight: bold;margin:0 ">@Model.UserName</p>
             <span style="display:inline-block">@Model.FirstName  @Model.LastName</span>
-          
+
         </a>
     </div>
 </div>

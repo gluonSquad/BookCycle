@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebUI.CustomValidator;
 using WebUI.EmailServices;
+using WebUI.Hubs;
 using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
 namespace WebUI
@@ -45,7 +46,7 @@ namespace WebUI
                 opt.Password.RequireNonAlphanumeric = true;
                 opt.SignIn.RequireConfirmedEmail = true;
             }).AddErrorDescriber<CustomIdentityValidator>().AddEntityFrameworkStores<BookCycleContext>().AddDefaultTokenProviders();
-
+            services.AddSignalR();
 
             services.ConfigureApplicationCookie(opt =>
             {
@@ -77,6 +78,7 @@ namespace WebUI
 
             app.UseRouting();
             app.UseAuthentication();
+         
             app.UseAuthorization(); 
             IdentityInitializer.SeedData(userManager, roleManager).Wait();
             app.UseStaticFiles();
@@ -91,6 +93,7 @@ namespace WebUI
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}"
                 );
+                endpoints.MapHub<ChatHub>("/Member/Chat");
             });
         }
     }
