@@ -51,18 +51,21 @@
 
         </div>
         <a asp-action="BookDetails" asp-controller="Book" asp-route-bookId="@item.Id" style="border-radius:0;color:white;background:#364C71;border:none;" class="btn btn-warning" btn-sm>Detay</a>
-        <div class="card-footer text-muted">
-            <button type="submit" data-bookid="@item.Id" data-appuserid="@TempData["appUserId"]" style="background-color: #55967E; color: white; font-size: 15px; border: none;" class="bookUser btn btn-primary btn-sm">
+        <div style="padding:0px;" class="card-footer text-muted">
+            <button type="submit" data-bookid="@item.Id" data-appuserid="@TempData["appUserId"]" style="background-color: #55967E; border-radius:0px !important; white;width: 100%; font-size: 15px; border: none;" class="bookUser btn btn-primary btn-sm">
                 Kitaplığa Ekle
             </button>
-            <a asp-action="List" asp-controller="Comment" asp-route-s="@item.Title" style="        color: white;
+            <div style="padding-top : 10px; text-align:center;padding-bottom:10px;">
+                <a asp-action="List" asp-controller="Comment" asp-route-s="@item.Title" style="        color: white;
         font-size: 15px;
         border: none;" class="btn btn-info btn-sm">
-                Yorum
-            </a>
-            <a asp-action="List" asp-controller="Quotation" asp-route-s="@item.Title" style="color: white; font-size: 15px; border: none;" class="btn btn-secondary btn-sm">
-                Alıntı
-            </a>
+                    Yorum
+                </a>
+                <a asp-action="List" asp-controller="Quotation" asp-route-s="@item.Title" style="color: white; font-size: 15px; border: none;" class="btn btn-secondary btn-sm">
+                    Alıntı
+                </a>
+            </div>
+         
         </div>
 
     </div>
@@ -70,35 +73,35 @@
 </div>
 
 
-<nav aria-label="Page navigation example">
+    <nav aria-label="Page navigation example">
 
-    <ul style="        padding: 10px;
+        <ul style="        padding: 10px;
         margin-bottom: 0" class="pagination justify-content-center">
-        @if (!string.IsNullOrWhiteSpace(s))
-        {
-            for (int i = 1; i <= ViewBag.TotalPage; i++)
+            @if (!string.IsNullOrWhiteSpace(s))
             {
-                <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")"><a style="background-color: #364C71 !important; border: 1px solid white !important; color: white;" style="background-color: #364C71 !important; border: 1px solid white !important; color: white;" class="page-link" asp-action="Index" asp-route-s="@s" asp-route-page="@i">@i</a></li>
+                for (int i = 1; i <= ViewBag.TotalPage; i++)
+                {
+                    <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")"><a style="background-color: #364C71 !important; border: 1px solid white !important; color: white;" style="background-color: #364C71 !important; border: 1px solid white !important; color: white;" class="page-link" asp-action="Index" asp-route-s="@s" asp-route-page="@i">@i</a></li>
+                }
             }
-        }
-        else
-        {
-            for (int i = 1; i <= ViewBag.TotalPage; i++)
+            else
             {
-                <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")"><a style="background-color: #364C71 !important; border: 1px solid white !important; color: white;" class="page-link" asp-action="Index" asp-route-page="@i">@i</a></li>
+                for (int i = 1; i <= ViewBag.TotalPage; i++)
+                {
+                    <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")"><a style="background-color: #364C71 !important; border: 1px solid white !important; color: white;" class="page-link" asp-action="Index" asp-route-page="@i">@i</a></li>
+                }
             }
-        }
 
-    </ul>
-</nav>
+        </ul>
+    </nav>
 
-<script src="~/lib/jquery/jquery.min.js"></script>
-<script src="~/lib/swal/bootstrap-sweetalert/sweetalert.min.js"></script>
-<script>
-  
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/swal/bootstrap-sweetalert/sweetalert.min.js"></script>
+    <script>
 
-    $(".bookUser").on("click", function () {
-        console.log("tıkladım");
+
+        $(".bookUser").on("click", function () {
+            console.log("tıkladım");
             var bookId = $(this).data("bookid");
             console.log(bookId);
             var appUserId = $(this).data("appuserid");
@@ -113,7 +116,7 @@
                         swal("Kitaplığınıza başarıyla eklendi!", "Yorum ve Alıntı Paylaşabilirsiniz.", "success")
 
                     }
-                    
+
                     if (gelenObje == false) {
                         swal("Kitaplığınıza daha önceden eklediniz!", "Yorum ve Alıntı Paylaşabilirsiniz.", "error")
 
@@ -123,6 +126,6 @@
 
             })
         })
-   
-</script>
+
+    </script>
 
