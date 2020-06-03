@@ -67,11 +67,16 @@
         font-family: 'Montserrat', sans-serif;
         font-weight: bold;
     }
+
+    ::placeholder{
+          color: #999;
+     font-size: 16px;
+    }
 </style>
 <body>
     <div class="container">
         <div class="img">
-            <img src="~/img/book2.svg" />
+            <img src="~/img/book6.svg" />
         </div>
         <div class="login-container">
             <form asp-action="Register" method="post">
@@ -82,8 +87,8 @@
                     </div>
 
                     <div>
-                        <h5 asp-for="FirstName">Adınız : </h5>
-                        <input asp-for="@Model.FirstName" class="input" type="text" />
+
+                        <input placeholder="Adınız : " asp-for="@Model.FirstName" class="input" type="text" />
                     </div>
 
                 </div>
@@ -95,8 +100,8 @@
                     </div>
 
                     <div>
-                        <h5 asp-for="LastName">Soyadınız</h5>
-                        <input type="text" class="input" asp-for="@Model.LastName" />
+
+                        <input placeholder="Soyadınız : " type="text" class="input" asp-for="@Model.LastName" />
                     </div>
 
                 </div>
@@ -107,8 +112,8 @@
                     </div>
 
                     <div>
-                        <h5 asp-for="UserName">Kullanıcı Adınız : </h5>
-                        <input type="text" class="input" asp-for="@Model.UserName" />
+
+                        <input placeholder="Kullanıcı Adınız :" type="text" class="input" asp-for="@Model.UserName" />
                     </div>
 
                 </div>
@@ -119,8 +124,8 @@
                     </div>
 
                     <div>
-                        <h5 asp-for="Password">Şifreniz : </h5>
-                        <input type="text" class="input" asp-for="@Model.Password" type="password" />
+
+                        <input placeholder="Şifreniz :" class="input" asp-for="@Model.Password" type="password" />
                     </div>
 
                 </div>
@@ -132,8 +137,8 @@
                     </div>
 
                     <div>
-                        <h5 asp-for="ConfirmPassword">Şifrenizi Tekrar Giriniz : </h5>
-                        <input type="text" class="input" asp-for="@Model.ConfirmPassword" type="password" />
+
+                        <input placeholder="Şifrenizi Tekrar Giriniz :" type="password" class="input" asp-for="@Model.ConfirmPassword" />
                     </div>
 
                 </div>
@@ -144,8 +149,8 @@
                     </div>
 
                     <div>
-                        <h5 asp-for="Email">Email Adresiniz : </h5>
-                        <input type="text" class="input" asp-for="@Model.Email" type="text" />
+
+                        <input placeholder="Email Adresiniz :" type="email" class="input" asp-for="@Model.Email" />
                     </div>
 
                 </div>
@@ -157,29 +162,17 @@
                 </div>
 
                 <input type="submit" class="btn" value="ÜYE OL" />
+                
             </form>
         </div>
     </div>
     <script src="https://kit.fontawesome.com/70e637288c.js" crossorigin="anonymous"></script>
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/jqueryValidate/jquery.validate.min.js"></script>
+    <script src="~/lib/jqueryUnob/jquery.validate.unobtrusive.min.js"></script>
     <script>
-        const inputs = document.querySelectorAll('.input');
 
-        function focusFunc() {
-            let parent = this.parentNode.parentNode;
-            parent.classList.add("focus");
-        }
 
-        function blurFunc() {
-            let parent = this.parentNode.parentNode;
-            if (this.value == "") {
-                parent.classList.remove('focus');
-            }
-        }
-
-        inputs.forEach(input => {
-            input.addEventListener('focus', focusFunc);
-            input.addEventListener('blur', blurFunc);
-        });
     </script>
 </body>
 

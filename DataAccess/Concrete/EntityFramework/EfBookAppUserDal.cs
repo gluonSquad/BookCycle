@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Core.DataAccess.EntityFramework;
 using DataAccess.Concrete.Abstract;
 using DataAccess.Concrete.EntityFramework.Contexts;
 using Entities.Concrete;
@@ -9,11 +10,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfBookAppUserDal : IBookAppUserDal
+    public class EfBookAppUserDal : EfEntityRepositoryBase<BookAppUser> ,  IBookAppUserDal
     {
+        public EfBookAppUserDal(BookCycleContext bookCycleContext) : base(bookCycleContext)
+        {
+
+        }
         public int AddBookAppUser(int  bookId, int appUserId)
         {
-            using var context = new BookCycleContext();
+            
             var book = context.Books.First(i => i.Id == bookId);
             var appUser = context.Users.First(i => i.Id == appUserId);
             var bookList = GetByAppUserId(appUserId);
@@ -36,7 +41,7 @@ namespace DataAccess.Concrete.EntityFramework
 
         public List<Book> GetByAppUserId(int appUserId)
         {
-            using var context = new BookCycleContext();
+           
             var result =  context.BookAppUsers.Where(I => I.AppUserId == appUserId).Include(I=>I.Book).Include(I=>I.Book.Quotations).Include(I=>I.Book.Reviews).Select(b=>new Book()
             {
                 Author = new Author
@@ -127,7 +132,7 @@ namespace DataAccess.Concrete.EntityFramework
 
         public Book GetBook(int bookId)
         {
-            using var context = new BookCycleContext();
+            
             var result = context.Books.Where(I => I.Id == bookId).Include(I => I.Reviews).Include(I => I.Quotations).Include(I => I.Category).Include(I=>I.BookAppUsers).Include(I=>I.Author).Select(b => new Book()
             {
                 Author = new Author
@@ -217,7 +222,7 @@ namespace DataAccess.Concrete.EntityFramework
 
         public List<Book> GetAll()
         {
-            using var context = new BookCycleContext();
+
             var result = context.BookAppUsers.Include(I => I.Book).Include(I => I.Book.Quotations).Include(I => I.Book.Reviews).Select(b => new Book()
             {
                 Author = new Author
@@ -309,7 +314,7 @@ namespace DataAccess.Concrete.EntityFramework
 
         public List<Book> GetAll(out int totalPage, string searchWord, int currentPage)
         {
-            using var context = new BookCycleContext();
+            
             var result = context.BookAppUsers.Include(I => I.Book).Include(I => I.Book.Quotations).Include(I => I.Book.Reviews).Select(b => new Book()
             {
                 Author = new Author

@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace WebUI.EmailServices
 {
-    public interface IEmailSender
-    { 
-        Task SendEmailAsync(string email, string subject, string htmlMessage);
+    public class EmailOptions
+    {
+        public string SendGridApiKey { get; set; }
+        public string SendGridUser { get; set; }
     }
 }

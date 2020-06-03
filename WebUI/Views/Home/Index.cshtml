@@ -68,9 +68,13 @@
         font-family: 'Montserrat', sans-serif;
         font-weight: bold;
     }
+       ::placeholder{
+          color: #999;
+     font-size: 16px;
+    }
 </style>
 <body>
-    <div class="container">
+    <div style="overflow-y:scroll;" class="container">
         <div class="img">
             <img src="~/img/book.svg" />
         </div>
@@ -85,8 +89,8 @@
                     </div>
 
                     <div>
-                        <h5 asp-for="UserName">Kullanıcı Adı</h5>
-                        <input asp-for="UserName" class="input" type="text" />
+
+                        <input placeholder="Kullanıcı Adı :" asp-for="UserName" class="input" type="text" />
                     </div>
 
                 </div>
@@ -97,8 +101,8 @@
                     </div>
 
                     <div>
-                        <h5 asp-for="Password">Şifre</h5>
-                        <input class="input" asp-for="Password" />
+
+                        <input placeholder="Şifre :" class="input" asp-for="Password" />
                     </div>
 
                 </div>
@@ -107,37 +111,27 @@
                 <div style="text-align: left;" class="form-check">
                     <input class="custom" tyoe="checkbox" asp-for="RememberMe" />
                     <label asp-for="RememberMe"> </label>
+
                 </div>
+
+
 
                 <div asp-validation-summary="ModelOnly" style="color: #55967e; margin-top: 5%; margin-bottom: 5%;">
 
                 </div>
 
                 <input type="submit" class="btn" value="GİRİŞ YAP" />
+                <a style="display:flex;justify-content:center;align-items:center;" asp-action="Register" asp-controller="Home" class="btn">Kayıt Ol</a>
+                <a style="display:flex;justify-content:center;align-items:center;" asp-action="ResetPassword" class="btn"><i style="margin-right:10px;" class="fas fa-unlock"></i>Şifremi Unuttum</a>
             </form>
+
         </div>
-</div>
-<script src="https://kit.fontawesome.com/70e637288c.js" crossorigin="anonymous"></script>
-    <script>
-        const inputs = document.querySelectorAll('.input');
+    </div>
+    <script src="https://kit.fontawesome.com/70e637288c.js" crossorigin="anonymous"></script>
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/jqueryValidate/jquery.validate.min.js"></script>
+    <script src="~/lib/jqueryUnob/jquery.validate.unobtrusive.min.js"></script>
 
-        function focusFunc() {
-            let parent = this.parentNode.parentNode;
-            parent.classList.add("focus");
-        }
-
-        function blurFunc() {
-            let parent = this.parentNode.parentNode;
-            if (this.value == "") {
-                parent.classList.remove('focus');
-            }
-        }
-
-        inputs.forEach(input => {
-            input.addEventListener('focus', focusFunc);
-            input.addEventListener('blur', blurFunc);
-        });
-    </script>
 </body>
 
 </html>

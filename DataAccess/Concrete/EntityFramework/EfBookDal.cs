@@ -11,9 +11,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfBookDal : EfEntityRepositoryBase<Book, BookCycleContext>, IBookDal
+    public class EfBookDal : EfEntityRepositoryBase<Book>, IBookDal
     {
-      
+        public EfBookDal(BookCycleContext bookCycleContext) : base(bookCycleContext)
+        {
+
+        }
         //public List<Book> MapToBookForList()
         //{
         //    using (var context = new BookCycleContext())
@@ -25,7 +28,7 @@ namespace DataAccess.Concrete.EntityFramework
 
         public List<Book> GetBookWithEagerLoading()
         {
-            using (var context = new BookCycleContext())
+            
             {
                 var books = context.Books.Include(b=> b.BookAppUsers).Include(b => b.Reviews).ThenInclude(br => br.AppUser).Include(b => b.Quotations).ThenInclude(bq=>bq.AppUser).Include(b => b.Author).Include(b => b.Category).OrderByDescending(I=>I.CreatedOn).ToList();
                 return books;
@@ -35,7 +38,7 @@ namespace DataAccess.Concrete.EntityFramework
 
         public List<Book> GetBookList(out int totalPage, string searchWord, int currentPage)
         {
-            using var context = new BookCycleContext();
+           
 
 
             var result = context.Books.Join(context.Categories, book => book.CategoryId, category => category.Id,
@@ -66,7 +69,8 @@ namespace DataAccess.Concrete.EntityFramework
                 Category = I.book.Category,
                 CreatedOn = I.book.CreatedOn,
 
-            });
+            });  
+          
             totalPage = (int)Math.Ceiling((double)result.Count() / 12);
 
             if (!string.IsNullOrWhiteSpace(searchWord))
@@ -77,8 +81,8 @@ namespace DataAccess.Concrete.EntityFramework
 
                 totalPage = (int)Math.Ceiling((double)result.Count() / 12);
             }
-
-            result = result.Skip((currentPage - 1) * 12).Take(12);
+            var x = result.OrderByDescending(x => x.CreatedOn);
+            result = x.Skip((currentPage - 1) * 12).Take(12);
 
             return result.ToList();
         }

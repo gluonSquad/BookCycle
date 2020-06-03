@@ -10,11 +10,15 @@ using Microsoft.EntityFrameworkCore.Internal;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfAppUserDal :  IAppUserDal
+    public class EfAppUserDal : EfEntityRepositoryBase<AppUser>, IAppUserDal
     {
+        public EfAppUserDal(BookCycleContext bookCycleContext) : base(bookCycleContext)
+        {
+
+        }
         public List<AppUser> GetNotAdmin()
         {
-            using var context = new BookCycleContext();
+            
 
             return context.Users.Join(context.UserRoles, user => user.Id, userRole => userRole.UserId,
                 (resultUser, resultUserRole) => new
@@ -40,7 +44,7 @@ namespace DataAccess.Concrete.EntityFramework
         }
         public List<AppUser> GetNotAdmin(out int totalPage,string searchWord , int currentPage)
         {
-            using var context = new BookCycleContext();
+          
 
             var result = context.Users.Join(context.UserRoles, user => user.Id, userRole => userRole.UserId,
                 (resultUser, resultUserRole) => new

@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Business.Abstract;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
 using WebUI.EmailServices;
 using WebUI.Models;
+using WebUI.TwoFactorServices;
 
 namespace WebUI.Controllers
 {
@@ -18,13 +22,14 @@ namespace WebUI.Controllers
         private UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private IEmailSender _emailSender;
-
-        public HomeController(IBookService bookService, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IEmailSender emailSender)
+        private readonly TwoFactorService _twoFactorService;
+        public HomeController(IBookService bookService, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IEmailSender emailSender, TwoFactorService twoFactorService)
         {
             _bookService = bookService;
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
+            _twoFactorService = twoFactorService;
         }
 
         public async Task<IActionResult> Index()
@@ -49,12 +54,18 @@ namespace WebUI.Controllers
                 var user = await _userManager.FindByNameAsync(model.UserName);
                 if(user != null)
                 {
-
-                    if (!await _userManager.IsEmailConfirmedAsync(user))
+                    if (_userManager.IsEmailConfirmedAsync(user).Result == false)
                     {
-                         ModelState.AddModelError("","Lütfen email hesabınıza gelen link ile üyeliğinizi onaylayın.");
-                         return View("Index",model);
+                        ModelState.AddModelError("", "Email adresiniz onaylanmamıştır.Lütfen epostanızı kontrol ediniz.");
+                        return View("Index",model);
                     }
+
+                    //TODO : Email gönderim işlemine bakılacak
+                    //if (!await _userManager.IsEmailConfirmedAsync(user))
+                    //{
+                    //    ModelState.AddModelError("", "Lütfen email hesabınıza gelen link ile üyeliğinizi onaylayın.");
+                    //    return View("Index", model);
+                    //}
 
                     var identityResult = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
                     if (identityResult.Succeeded)
@@ -76,6 +87,7 @@ namespace WebUI.Controllers
             return View("Index",model);
         }
 
+       
 
         public IActionResult Register()
         {
@@ -104,15 +116,28 @@ namespace WebUI.Controllers
                   var addRoleResult = await _userManager.AddToRoleAsync(user, "Member");
                   if (addRoleResult.Succeeded)
                   {
-                      // generate token 
-                      var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                      var url = Url.Action("ConfirmEmail", "Home", new {userId = user.Id, token = code});
 
-                      //email 
-                      await _emailSender.SendEmailAsync(model.Email, "Hesabınızı onaylayınız.",
-                          $"Lütfen email hesabınızı onaylamak için linke <a href='http://localhost:50830{url}'>tıklayınız.</a>");
-                      return RedirectToAction("Index","Home");
-                  }
+                        string confirmationToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+
+                        string link = Url.Action("ConfirmEmail", "Home", new
+                        {
+                            userId = user.Id,
+                            token = confirmationToken
+                        },protocol:HttpContext.Request.Scheme);
+                        Helper.EmailConfirmation.SendEmail(link, user.Email);
+
+                        //TODO : Email gönderim işlemine bakılacak
+                        //// generate token 
+                        //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                        //code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                        //var callbackUrl = Url.Page("/Home/ConfirmEmail", pageHandler: null, values: new { area = "Identity", userId = user.Id, code = code }, protocol: Request.Scheme);
+
+
+                        ////email 
+                        //await _emailSender.SendEmailAsync(model.Email, "Hesabınızı onaylayınız.",
+                        //    $"Lütfen email hesabınızı onaylamak için linke <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>tıklayınız.</a>.");
+                        return RedirectToAction("Index", "Home");
+                    }
                     foreach (var item in addRoleResult.Errors)
                     {
                         ModelState.AddModelError("", item.Description);
@@ -136,6 +161,7 @@ namespace WebUI.Controllers
                 return View();
             }
 
+            
             var user = await _userManager.FindByIdAsync(userId);
             if (user != null)
             {
@@ -157,5 +183,77 @@ namespace WebUI.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult ResetPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ResetPassword (PasswordResetViewModel passwordResetViewModel)
+        {
+            AppUser user = _userManager.FindByNameAsync(passwordResetViewModel.UserName).Result;
+            if(user != null)
+            {
+                string passwordResetToken = _userManager.GeneratePasswordResetTokenAsync(user).Result;
+
+                string passwordResetLink = Url.Action("ResetPasswordConfirm", "Home", new
+                {
+                    userId = user.Id,
+                    token = passwordResetToken
+                }, HttpContext.Request.Scheme);
+
+                Helper.PasswordReset.PasswordResetSendEmail(passwordResetLink,user.Email);
+
+                ViewBag.Status = "successfull";
+            }
+            else
+            {
+                ModelState.AddModelError("", "Sistemde kayıtlı kullanıcı bulunamamıştır.");
+            }
+            return View(passwordResetViewModel);
+        }
+
+
+        public IActionResult ResetPasswordConfirm(string userId , string token)
+        {
+            TempData["userId"] = userId;
+            TempData["token"] = token;
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ResetPasswordConfirm([Bind("PasswordNew")]PasswordResetViewModel passwordResetViewModel)
+        {
+            string token = TempData["token"].ToString();
+            string userId = TempData["userId"].ToString();
+
+            AppUser user = await _userManager.FindByIdAsync(userId);
+
+            if (user != null)
+            {
+                IdentityResult result = await _userManager.ResetPasswordAsync(user, token, passwordResetViewModel.PasswordNew);
+
+                if (result.Succeeded)
+                {
+                    await _userManager.UpdateSecurityStampAsync(user);
+                    TempData["passwordResetInfo"] = "Şifreniz başarıyla yenilenmiştir.Yeni şifreniz ile giriş yapabilirsiniz.";
+                    ViewBag.Status = "success";
+                }
+                else
+                {
+                    foreach (var item in result.Errors)
+                    {
+                        ModelState.AddModelError("", item.Description);
+                    }
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "Hata meydana gelmiştir. Lütfen daha sonra tekrar deneyiniz.");
+            }
+
+            return View(passwordResetViewModel);
+        }
     }
 }

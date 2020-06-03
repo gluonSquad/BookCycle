@@ -8,8 +8,11 @@ using Entities.Concrete;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfAuthorDal : EfEntityRepositoryBase<Author,BookCycleContext> , IAuthorDal
+    public class EfAuthorDal : EfEntityRepositoryBase<Author> , IAuthorDal
     {
-       
+        public EfAuthorDal(BookCycleContext bookCycleContext) : base(bookCycleContext)
+        {
+
+        }
     }
 }

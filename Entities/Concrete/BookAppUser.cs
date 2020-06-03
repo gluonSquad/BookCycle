@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Entities.Concrete
 {
-    public class BookAppUser
+    public class BookAppUser : IEntity
     {
         public int BookId { get; set; }
 

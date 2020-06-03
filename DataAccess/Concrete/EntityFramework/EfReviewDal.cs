@@ -9,11 +9,15 @@ using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfReviewDal : EfEntityRepositoryBase<Review, BookCycleContext>, IReviewDal
+    public class EfReviewDal : EfEntityRepositoryBase<Review>, IReviewDal
     {
+        public EfReviewDal(BookCycleContext bookCycleContext) : base(bookCycleContext)
+        {
+
+        }
         public List<Review> GetComments(out int totalPage, string searchWord, int currentPage)
         {
-            using var context = new BookCycleContext();
+            
 
             var result = context.Reviews.Join(context.Books, review => review.BookId, book => book.Id,
                 (resultReview, resultBook) => new
@@ -83,7 +87,7 @@ namespace DataAccess.Concrete.EntityFramework
 
         public List<Review> GetComments()
         {
-            using var context = new BookCycleContext();
+           
 
             var result = context.Reviews.Join(context.Books, review => review.BookId, book => book.Id,
                 (resultReview, resultBook) => new

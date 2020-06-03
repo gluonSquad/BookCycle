@@ -10,11 +10,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfQuotationDal : EfEntityRepositoryBase<Quotation, BookCycleContext>, IQuotationDal
+    public class EfQuotationDal : EfEntityRepositoryBase<Quotation>, IQuotationDal
     {
+        public EfQuotationDal(BookCycleContext bookCycleContext) : base(bookCycleContext)
+        {
+
+        }
         public List<Quotation> GetQuotations(out int totalPage, string searchWord, int currentPage)
         {
-            using var context = new BookCycleContext();
+           
 
             var result = context.Quotations.Join(context.Books, quotation=> quotation.BookId, book=> book.Id,
                 (resultQuotation, resultBook) => new
@@ -84,7 +88,7 @@ namespace DataAccess.Concrete.EntityFramework
 
         public List<Quotation> GetQuotations()
         {
-            using var context = new BookCycleContext();
+           
 
             var result = context.Quotations.Join(context.Books, quotation => quotation.BookId, book => book.Id,
                 (resultQuotation, resultBook) => new

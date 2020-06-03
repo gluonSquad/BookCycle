@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Entities.Concrete
 {
-    public class AppUser : IdentityUser<int>
+    public class AppUser : IdentityUser<int> , IEntity
     {
         public AppUser()
         {

@@ -7,7 +7,9 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    overflow: hidden;
+   
+    overflow-y: scroll;
+    overflow-x : hidden;
 }
 
 .container {
@@ -17,6 +19,7 @@ body {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 12rem;
     padding: 0 2rem;
+    
     margin: 0 auto;
 }
 

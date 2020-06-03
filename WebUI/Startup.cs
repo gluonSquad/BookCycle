@@ -10,12 +10,14 @@ using Entities.Concrete;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebUI.CustomValidator;
 using WebUI.EmailServices;
 using WebUI.Hubs;
+using WebUI.TwoFactorServices;
 using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
 namespace WebUI
@@ -31,8 +33,14 @@ namespace WebUI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            
-            
+            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
+                services.AddDbContext<BookCycleContext>(options => options.UseSqlServer(_configuration.GetConnectionString("BookCycleContextProd")));
+            else
+                services.AddDbContext<BookCycleContext>(options => options.UseSqlServer(_configuration.GetConnectionString("BookCycleContext")));
+
+            var context = services.BuildServiceProvider().GetService<BookCycleContext>();
+            context.Database.Migrate();
+
             services.AddRazorPages()
                 .AddRazorRuntimeCompilation();
           
@@ -43,10 +51,11 @@ namespace WebUI
                 opt.Password.RequireUppercase = false;
                 opt.Password.RequiredLength = 8;
                 opt.Password.RequireLowercase = false;
-                opt.Password.RequireNonAlphanumeric = true;
+                opt.Password.RequireNonAlphanumeric = false;
                 opt.SignIn.RequireConfirmedEmail = true;
             }).AddErrorDescriber<CustomIdentityValidator>().AddEntityFrameworkStores<BookCycleContext>().AddDefaultTokenProviders();
             services.AddSignalR();
+       
 
             services.ConfigureApplicationCookie(opt =>
             {
@@ -59,11 +68,18 @@ namespace WebUI
                 opt.LoginPath = "/Home/Index";
             });
 
-            services.AddScoped<IEmailSender, SmtpEmailSender>(i=> new SmtpEmailSender(_configuration["EmailSender:Host"],
-                _configuration.GetValue<int>("EmailSender:Port"),
-                _configuration.GetValue<bool>("EmailSender:EnableSSL"),
-                _configuration["EmailSender:UserName"],
-                _configuration["EmailSender:Password"]));
+            services.AddSingleton<IEmailSender, SmtpEmailSender>();
+            services.Configure<EmailOptions>(_configuration);
+
+            services.Configure<TwoFactorOptions>(_configuration.GetSection("TwoFactorOptions"));
+            services.AddScoped<TwoFactorService>();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.Name = "MainSession";
+            });
+            
             services.AddControllersWithViews();
 
         }
@@ -83,6 +99,9 @@ namespace WebUI
             IdentityInitializer.SeedData(userManager, roleManager).Wait();
             app.UseStaticFiles();
 
+            app.UseSession();
+
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -95,6 +114,8 @@ namespace WebUI
                 );
                 endpoints.MapHub<ChatHub>("/Member/Chat");
             });
+           
+
         }
     }
 }

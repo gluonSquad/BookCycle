@@ -16,11 +16,13 @@ namespace WebUI.Models
         [Display(Name = "Parola :")]
         [Required(ErrorMessage = "Parola alanı boş geçilemez." )]
         [DataType(DataType.Password)]
+        [MinLength(8, ErrorMessage = "Şifreniz en az 8 karakterli olmalıdır.")]
         public string Password { get; set; }
 
         [Display(Name="Parolanızı Tekrar Giriniz : ")]
         [Compare("Password" , ErrorMessage = "Parolalar eşleşmiyor.")]
         [DataType(DataType.Password)]
+        [MinLength(8, ErrorMessage = "Şifreniz en az 8 karakterli olmalıdır.")]
         public string ConfirmPassword { get; set; }
 
 

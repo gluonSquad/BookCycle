@@ -53,7 +53,7 @@
 
     <a asp-route-user="@Model.UserName" asp-action="Index" asp-controller="Profile" class="f-ac-center mt-3 pl-3 pt-2 pb-2 hoverclass  @(active=="profile" ? "active" : "")">
 
-        <img class="mr-3" src="~/img/profile.svg" />
+        <img class="mr-3" style="height:42px;width:42px; border-radius:50%;" src="~/img/@Model.Picture" />
 
         <h4 class="headingText">Profil</h4>
 
@@ -65,7 +65,7 @@
 
     <div class="f-ac-center f-jc-center">
         <a asp-area="" asp-action="Logout" asp-controller="Home" style="border: none;background-color:#55967E" class="mb-3 btn-absolute btn btn-secondary btn-block">
-            <img style="border-radius: 50%; float:left" height="40" width="40" src="~/img/@Model.Picture">
+            <img style="border-radius: 50%; float:left" height="42" width="42" src="~/img/out.svg">
             <p style="color:white; font-weight: bold;margin:0 ">@Model.UserName</p>
             <span style="display:inline-block">@Model.FirstName  @Model.LastName</span>
 

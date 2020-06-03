@@ -45,7 +45,7 @@ namespace WebUI.Areas.Member.Controllers
             ViewBag.SearchedWord = s;
             var books = _bookService.GetBookList(out totalPage, s , page);
             ViewBag.TotalPage = totalPage;
-            ViewBag.Books = books;
+            ViewBag.Books = books.OrderByDescending(x=>x.CreatedOn);
             return View();
         }
 

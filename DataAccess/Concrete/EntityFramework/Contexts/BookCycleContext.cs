@@ -9,13 +9,13 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
 {
     public class BookCycleContext : IdentityDbContext<AppUser , AppRole ,int>
     {
-       
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+
+        public BookCycleContext(DbContextOptions<BookCycleContext> options) : base(options) 
         {
-            
-            optionsBuilder.UseSqlServer(@"Server=.;Database=BookCycle;Trusted_Connection=true");
-            base.OnConfiguring(optionsBuilder);
+
         }
+
+   
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

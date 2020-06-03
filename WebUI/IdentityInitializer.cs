@@ -32,9 +32,11 @@ namespace WebUI
                     FirstName = "Samet",
                     LastName = "İrkören",
                     UserName = "Samet",
-                    Email = "sametirkoren@gmail.com"
+                    Email = "sametirkoren@gmail.com",
+                    EmailConfirmed = true
+
                 };
-                await userManager.CreateAsync(user,"1");
+                await userManager.CreateAsync(user,"Aqswde123!.");
                 await userManager.AddToRoleAsync(user, "Admin");
             }
         }

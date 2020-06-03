@@ -135,14 +135,27 @@ namespace WebUI.Areas.Member.Controllers
             var userbooks = _bookAppUserService.GetByAppUserId(userId);
             foreach (var book in userbooks)
             {
-                if (book.Reviews.Count > 0)
+                if (book.Reviews.Count > 0 )
                 {
-                    reviews.AddRange(book.Reviews);
+                    foreach(var reivew in book.Reviews)
+                    {
+                        if(reivew.AppUserId == userId)
+                        {
+                            reviews.Add(reivew);
+                        } 
+                    }
+                    
                 }
 
                 if (book.Quotations.Count > 0)
                 {
-                    quotations.AddRange(book.Quotations);
+                    foreach (var quotation in book.Quotations)
+                    {
+                        if (quotation.AppUserId == userId)
+                        {
+                            quotations.Add(quotation);
+                        }
+                    }
                 }
             }
 
@@ -262,12 +275,25 @@ namespace WebUI.Areas.Member.Controllers
             {
                 if (book.Reviews.Count > 0)
                 {
-                    reviews.AddRange(book.Reviews);
+                    foreach (var reivew in book.Reviews)
+                    {
+                        if (reivew.AppUserId == userId)
+                        {
+                            reviews.Add(reivew);
+                        }
+                    }
+
                 }
 
                 if (book.Quotations.Count > 0)
                 {
-                    quotations.AddRange(book.Quotations);
+                    foreach (var quotation in book.Quotations)
+                    {
+                        if (quotation.AppUserId == userId)
+                        {
+                            quotations.Add(quotation);
+                        }
+                    }
                 }
             }
 
@@ -387,12 +413,25 @@ namespace WebUI.Areas.Member.Controllers
             {
                 if (book.Reviews.Count > 0)
                 {
-                    reviews.AddRange(book.Reviews);
+                    foreach (var reivew in book.Reviews)
+                    {
+                        if (reivew.AppUserId == userId)
+                        {
+                            reviews.Add(reivew);
+                        }
+                    }
+
                 }
 
                 if (book.Quotations.Count > 0)
                 {
-                    quotations.AddRange(book.Quotations);
+                    foreach (var quotation in book.Quotations)
+                    {
+                        if (quotation.AppUserId == userId)
+                        {
+                            quotations.Add(quotation);
+                        }
+                    }
                 }
             }
 
