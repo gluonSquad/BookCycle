@@ -241,7 +241,7 @@
                             <div>
                                 <h1 style="color: #55967e; font-weight: bold; font-size: 27px !important;">@quotation.Book.Title</h1>
                                 <span style="display: block; color: white; font-size: 18px !important;"><i class="far fa-bookmark mr-2"></i>Alıntı Yapılan Sayfa : @quotation.CurrentPage</span>
-                                <span style="display: block; color: white; font-size: 18px !important;"><i class="fas fa-hourglass-half mr-2"></i>@quotation.CreatedOn?.ToString("D")</span>
+                                <span style="display: block; color: white; font-size: 18px !important;"><i class="fas fa-hourglass-half mr-2"></i>@quotation.CreatedOn?.ToString("dd / M / yyyy")</span>
                                 <span style="color: white; font-size: 18px !important;"><i class="fas fa-user-edit mr-2 "></i>@quotation.AppUser.FirstName @quotation.AppUser.LastName</span>
                                 <p style="color: white; text-align: justify" class="margin-top-s">@quotation.QuotationText</p>
                                 <h5 style="color: #55967e; font-weight: bold;">@quotation.Book.Author.Name</h5>

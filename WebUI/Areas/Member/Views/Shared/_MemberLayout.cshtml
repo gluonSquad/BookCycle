@@ -13,8 +13,10 @@
     <!-- Bootstrap core CSS -->
 
     <link href="~/lib/bootswatch/bootstrap.min.css" rel="stylesheet" />
+
     <link href="~/css/left.css" rel="stylesheet" />
-  
+
+    <link href="~/css/responsive.css" rel="stylesheet" />
 
 </head>
 
@@ -22,20 +24,60 @@
 
 <body>
 
+
     <div class="row area">
-        <div class="fixedmen f-jc-center col-3 col-sm-3">
+        <div id="responsiveMenu"  class="fixedmen f-jc-center col-3 col-md-3 col-lg-3 col-xl-3 col-sm-3">
             <div class="spiral pl-3 pr-3">
                 @await Component.InvokeAsync("Wrapper")
 
             </div>
         </div>
-        <div style="margin-left: auto; margin-right:auto;padding: 0; border-right: 1px solid black; border-left: 1px solid black;background-color:#364C71" class="col-6 col-sm-6">@RenderBody()</div>
-        <div style="background-color:#364c71;" class="fixedmen2 col-3 col-sm-3">@await  Component.InvokeAsync("Right")</div>
+        <div style="margin-left: auto; position:relative; margin-right:auto;padding: 0; overflow-x:hidden; border-right: 1px solid black; border-left: 1px solid black;background-color:#364C71" class="col-6 col-md-6 col-lg-6 col-xl-6 col-sm-6">
+            <a id="menu-toggle" href="javascript:void(0);" class="icon" onclick="myFunction()" style="top:0;z-index:1; right:5% ; color : #55967e ; font-size:30px; position:absolute; display:flex;justify-content:flex-start;align-items:center"><i class="fas fa-bars"></i></a>
+            @RenderBody()
+        </div>
+        <div style="background-color:#364c71;" class="fixedmen2 col-3 col-sm-3">@await Component.InvokeAsync("Right")</div>
     </div>
+
+
     <!-- /#wrapper -->
     <!-- Bootstrap core JavaScript -->
     <script src="~/lib/jquery/jquery.min.js"></script>
     <script src="~/lib/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/70e637288c.js" crossorigin="anonymous"></script>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("responsiveMenu");
+            if (x.style.display === "flex") {
+                x.style.display = "none";
+               
+            } else {
+                x.style.display = "flex";
+               
+            }
+        }
+        function deneme(x) {
+            var y = document.getElementById("menu-toggle");
+            var z = document.getElementById("responsiveMenu")
+            
+            if (x.matches) { // If media query matches
+            
+              
+                y.style.display = "block";
+                z.style.display = "none";
+
+          } else {
+                
+               
+                y.style.display = "none";
+                
+          }
+        }
+
+        var x = window.matchMedia("(max-width: 600px)")
+        deneme(x) // Call listener function at run time
+        x.addListener(deneme) // Attach listener function on state changes
+    </script>
     @RenderSection("scripts", required: false)
 
 </body>

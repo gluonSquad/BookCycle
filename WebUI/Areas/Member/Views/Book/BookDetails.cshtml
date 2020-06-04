@@ -69,12 +69,12 @@
                 </div>
             </div>
         </div>
-        <div style="background-color:white;" class="card-footer w-100">
-            <a asp-action="Comment" asp-controller="Book" asp-route-bookId="@Model.Id" style="color:white;" class="btn btn-success btn-sm">
+        <div id="footerres" style="background-color:white;" class="card-footer w-100">
+            <a id="commentres" asp-action="Comment" asp-controller="Book" asp-route-bookId="@Model.Id" style="color:white;" class="btn btn-success btn-sm">
                 Yorumlar
             </a>
-            <a asp-action="Quotation" asp-controller="Book" asp-route-bookId="@Model.Id" style="color:white;" class="btn btn-success btn-sm">Alıntılar</a>
-            <a asp-action="BookDetails" asp-controller="Book" asp-route-bookId="@Model.Id" style="color:white;" class="btn btn-success btn-sm">Tümünü Göster</a>
+            <a id="quotationres" asp-action="Quotation" asp-controller="Book" asp-route-bookId="@Model.Id" style="color:white;" class="btn btn-success btn-sm">Alıntılar</a>
+            <a id="allres" asp-action="BookDetails" asp-controller="Book" asp-route-bookId="@Model.Id" style="color:white;" class="btn btn-success btn-sm">Tümünü Göster</a>
         </div>
 
 
@@ -82,7 +82,7 @@
     @foreach (var comment in Model.Reviews)
     {
         <div style="background-color:#364c71;position:relative;border-bottom:1px:solid black;" class="card-footer w-100">
-            <span style="color:white !important;font-size:18px !important;">@comment.AppUser.FirstName</span> <span style="color:white !important; font-size:18px !important">@comment.AppUser.LastName</span> <a style="color:#55967E;font-size:18px !important; border-radius:0; margin-left:10px;font-weight:bold" asp-action="Index" asp-controller="Profile" asp-route-user="@comment.AppUser.UserName">@comment.AppUser.UserName</a> <span style="color:#55967E ; font-size:18px !important;font-weight:bold;float:right">@comment.CreatedOn?.ToString("D")</span>
+            <span style="color:white !important;font-size:18px !important;">@comment.AppUser.FirstName</span> <span style="color:white !important; font-size:18px !important">@comment.AppUser.LastName</span> <a style="color:#55967E;font-size:18px !important; border-radius:0; margin-left:10px;font-weight:bold" asp-action="Index" asp-controller="Profile" asp-route-user="@comment.AppUser.UserName">@comment.AppUser.UserName</a> <span style="color:#55967E ; font-size:18px !important;font-weight:bold;float:right">@comment.CreatedOn?.ToString("dd / M / yyyy")</span>
             <p style="color:white;font-size:18px;">@comment.ReviewText</p>
             <span style="position: absolute;
     display: flex;
@@ -98,7 +98,7 @@
     @foreach (var quotation in Model.Quotations)
     {
         <div style="background-color:#364c71;position:relative;border-bottom:1px:solid black;" class="card-footer w-100">
-            <span style="color:white !important;font-size:18px !important;">@quotation.AppUser.FirstName</span> <span style="color:white !important;font-size:18px !important;">@quotation.AppUser.LastName</span> <a style="color: #55967E; font-size: 18px !important; border-radius: 0; margin-left: 10px; font-weight: bold " asp-action="Index" asp-controller="Profile" asp-route-user="@quotation.AppUser.UserName">@quotation.AppUser.UserName</a> <span style="color:#55967E ; font-size:18px !important;font-weight:bold;float:right">@quotation.CreatedOn?.ToString("D")</span>
+            <span style="color:white !important;font-size:18px !important;">@quotation.AppUser.FirstName</span> <span style="color:white !important;font-size:18px !important;">@quotation.AppUser.LastName</span> <a style="color: #55967E; font-size: 18px !important; border-radius: 0; margin-left: 10px; font-weight: bold " asp-action="Index" asp-controller="Profile" asp-route-user="@quotation.AppUser.UserName">@quotation.AppUser.UserName</a> <span style="color:#55967E ; font-size:18px !important;font-weight:bold;float:right">@quotation.CreatedOn?.ToString("dd / M / yyyy")</span>
             <span style="        display: block;
         font-size: 18px !important;
         color: #55967E;

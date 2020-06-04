@@ -307,7 +307,7 @@
                             <div>
                                 <h1 style="color: #55967e; font-weight: bold; font-size: 27px !important;">@item.Book.Title</h1>
                                 <h2 style="color: white;">@item.HeadLine</h2>
-                                <span style="display: block; color: white; font-size: 18px !important;"><i class="fas fa-hourglass-half mr-2"></i>@item.CreatedOn?.ToString("D")</span>
+                                <span style="display: block; color: white; font-size: 18px !important;"><i class="fas fa-hourglass-half mr-2"></i>@item.CreatedOn?.ToString("dd / M / yyyy")</span>
                                 <span style="color: white; font-size: 18px !important;"><i class="fas fa-user-edit mr-2 "></i>@item.AppUser.FirstName @item.AppUser.LastName</span>
                                 <p style="color: white; text-align: justify" class="margin-top-s">@item.ReviewText</p>
                                 <h5 style="color: #55967e; font-weight: bold;">@item.Book.Author.Name</h5>

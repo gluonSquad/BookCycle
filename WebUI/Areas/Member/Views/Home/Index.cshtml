@@ -12,7 +12,7 @@
     }
 .carousel-cell {
   width: 33%; /* full width */
-  height: 320px; /* height of carousel */
+  height: 200px; /* height of carousel */
   margin-right: 10px;
 }
 
@@ -45,7 +45,7 @@
 <div  class="main-carousel" style="margin-top:20px;padding:20px;">
     @foreach (var book in ViewBag.FiveBooks)
     {
-        <a asp-action="BookDetails" asp-controller="Book" asp-route-bookId="@book.Id" class="carousel-cell"><img src="@book.BookImageUrl" style="width:100%;height:320px;"></a>
+        <a asp-action="BookDetails" asp-controller="Book" asp-route-bookId="@book.Id" class="carousel-cell"><img  id="imageResponsive" src="@book.BookImageUrl" style="width:100%;height:200px;"></a>
  
 }
 </div>
